@@ -1483,6 +1483,7 @@ Version:	1.1
 }
 #blog .single-comments .main {
 	overflow: hidden;
+	padding: 10px;
 }
 #blog .single-comments .head {
 	float: left;
