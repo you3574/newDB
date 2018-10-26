@@ -146,7 +146,7 @@
 					<div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
 						<div class="section-title center">
 							<h2>대체과목<span>페이지</span></h2>
-							<p>해당 학과 대체과목을 등록, 수정할 수 있습니다.</p>
+							<p>해당 과목의 대체과목을 등록, 수정할 수 있습니다.</p>
 						</div>
 					</div>
 				</div>
@@ -159,7 +159,6 @@
                                     <th scope="col">과목명</th>
                                     <th scope="col">세부영역</th>
                                     <th scope="col">학점</th>
-                                    <th scope="col">대체과목</th>
                                     <th scope="col">삭제</th>
                                   </tr>
                                 </thead>
@@ -170,35 +169,130 @@
                                     <td>알고리즘</td>
                                     <td>3</td>
                                     <td>전공영역</td>
-                                    <td><a href="subject_require.html">보기ㄴ</a></td>
-                                    <td><button>삭제</button></td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>000000</td>
-                                    <td>알고리즘</td>
-                                    <td>3</td>
-                                    <td>전공영역</td>
-                                    <td><button>보기</button></td>
-                                    <td><button>삭제</button></td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td>000000</td>
-                                    <td>알고리즘</td>
-                                    <td>3</td>
-                                    <td>전공영역</td>
-                                    <td><button>보기</button></td>
                                     <td><button>삭제</button></td>
                                   </tr>
                                 </tbody>
-                              </table>
+                        </table>
 				</div>
 			</div>
-		</section>
-		<!--/ End Service -->
-		
-		
+        </section>
+        <!--/ End Service -->
+        
+        <!-- Start Service -->
+		<section id="service" class="section" style="padding-top: 20px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                            <div class="section-title center">
+                                <h4>해당과목 대체과목 리스트</h4>
+                                <div class="pull-right mb5">
+                                        <button class="btn btn-default" data-target="#layerpop" data-toggle="modal" style="background-color:#16A085; color:white;">글쓰기</button><br/>  
+								</div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <table class="table table-hover">
+                                    <thead style="background-color:lightgrey;">
+                                      <tr>
+                                        <th scope="col">번호</th>
+                                        <th scope="col">과목코드</th>
+                                        <th scope="col">과목명</th>
+                                        <th scope="col">세부영역</th>
+                                        <th scope="col">학점</th>
+                                        <th scope="col">삭제</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>000001</td>
+                                        <td>알고리즘2</td>
+                                        <td>3</td>
+                                        <td>전공영역</td>
+                                        <td><button>삭제</button></td>
+                                      </tr>
+                                       <tr>
+                                        <th scope="row">1</th>
+                                        <td>000002</td>
+                                        <td>알고리즘3</td>
+                                        <td>3</td>
+                                        <td>전공영역</td>
+                                        <td><button>삭제</button></td>
+                                      </tr>
+                                    </tbody>
+                            </table>
+                    </div>
+                </div>
+            </section>
+            <!--/ End Service -->
+
+
+            <!--/ 모달구현 -->
+            <div class="modal fade" id="layerpop" >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <!-- header -->
+                        <div class="modal-header">
+                          <!-- 닫기(x) 버튼 -->
+                          <button type="button" class="close" data-dismiss="modal">×</button>
+                          <!-- header title -->
+                          <h4 class="modal-title"></h4>
+                          <section id="blog" class="single section page" style="padding-bottom: 0px; padding-top:0px;">
+                                  <!-- Blog Sidebar -->
+                                  <div class="blog-sidebar">
+                                      <!-- Start Search Form -->
+                                      <div class="single-sidebar form">
+                                          <form class="search" action="#">
+                                              <input type="text" placeholder="Type To Search">
+                                              <div class="s-button">
+                                                  <input type="submit" value="search">
+                                              </div>
+                                          </form>
+                                      </div>
+                                      <!--/ End Search Form -->
+                                  
+                                  <!--/ End Blog Sidebar -->
+                              </div>
+                              </section>
+                        </div>
+                        <!-- body -->
+                        <div class="modal-body">
+                           <!-- Start Service -->
+                      <section id="service" class="section" style="padding:0px">
+                                      <table class="table table-hover">
+                                              <thead style="background-color:lightgrey;">
+                                              <tr>
+                                                  <th scope="col">번호</th>
+                                                  <th scope="col">과목코드</th>
+                                                  <th scope="col">과목명</th>
+                                                  <th scope="col">세부영역</th>
+                                                  <th scope="col">학점</th>
+                                                  <th scope="col">삭제</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              <tr>
+                                                  <th scope="row">1</th>
+                                                  <td>000000</td>
+                                                  <td>알고리즘</td>
+                                                  <td>3</td>
+                                                  <td>전공영역</td>
+                                                  <td><button>삭제</button></td>
+                                              </tr>
+                                              </tbody>
+                                      </table>
+                      </section>
+                      <!--/ End Service -->
+                        </div>
+                        <!-- Footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
 		<!-- Start Footer -->
 		<footer id="footer" class="wow fadeIn">
 			<!-- Footer Top -->
