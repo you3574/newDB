@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+ <meta name="description" content="welcome to codeglim">
+   <meta name='copyright' content='codeglim'>
+   <meta name="viewport" content="width=device-width, initial-scale=1">   
+
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="images/favicon.png">   
+      
+        <!-- Google Font -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900" rel="stylesheet"> 
+
+      <!-- Google Map Api -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM" type="text/javascript"></script>   
+   
+      <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+
+      <!-- Animate CSS -->
+        <link rel="stylesheet" href="css/animate.min.css">
+
+      <!-- Slicknav CSS -->
+        <link rel="stylesheet" href="css/slicknav.min.css">
+
+      <!-- Owl Carousel CSS -->
+      <link rel="stylesheet" href="css/owl.theme.default.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+      
+      <!-- Magnific Popup CSS -->
+      <link rel="stylesheet" href="css/magnific-popup.css">
+      
+      <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+      
+      <!-- Bizpro Style CSS -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/default.css">   
+        <link rel="stylesheet" href="css/responsive.css">
+      <style>
+      h1{
+      color:#555 ;
+      }
+      </style>
+
+</head>
+<body>
+   
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(login.png);">
+               <span class="login100-form-title-1">
+                     졸업관리시스템
+               </span>
+            </div>
+
+            <form class="login100-form">
+               <div class="wrap-input100">
+                  <span class="label-input100">아이디</span>
+                  <input class="input100" type="text" name="username" placeholder="Enter ID">
+               </div>
+               <br/>
+               
+               <div class="wrap-input100">
+                  <span class="label-input100">비밀번호</span>
+                  <input class="input100" type="password" name="pass" placeholder="Enter Password">
+                  <span></span>
+               </div>
+               <br/>
+               <br/>
+
+               <div class="single-service">
+                  <button class="btn btn-default" id="popbutton">
+                     Login
+                  </button>
+                  &nbsp;
+                  <a data-target="#layerpop_sm1" data-toggle="modal">
+                       <button class="btn btn-default" id="popbutton">Sign up</button>
+                       </a>
+                       
+                      <div class="modal fade" id="layerpop_sm1" >
+                            <div class="modal-dialog">
+                           <div class="modal-content">
+                            <!-- header -->
+                            <div class="modal-header">
+                                <!-- header title -->
+                                <h2>회원가입</h2>
+                            </div>
+                            <br/>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <form method="post" modelAttribute="student">  
+                                   <div class="form-group">
+                                    <label>이름 :</label>
+                                    <input path="studentName" class="form-control" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label>학번 :</label>
+                                    <input path="studentNumber" class="form-control"/>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>비밀번호 :</label>
+                                    <input path="password" class="form-control" />
+                                  </div>
+                  
+                                </form>
+                              </div>
+                            <br/>
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                               <button type="submit" class="btn btn-default">가입</button>                                    
+                                &nbsp;
+                                <button type="button" class="btn btn-default" data-dismiss="modal" >취소</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
+      </div>
+   </div>
+   
+      <!-- Jquery JS -->
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      
+      <!-- Colors JS -->
+      <script type="text/javascript" src="js/colors.js"></script>
+      
+      <!-- Google Map JS -->
+      <script  type="text/javascript" src="js/gmap.js"></script>
+      
+      <!-- Modernizr JS -->
+      <script type="text/javascript"  src="js/modernizr.min.js"></script>
+   
+      <!-- Appear JS-->
+      <script  type="text/javascript" src="js/jquery.appear.js"></script>
+
+      <!-- Animate JS -->
+       <script  type="text/javascript" src="js/wow.min.js"></script>
+      
+      <!-- Onepage Nav JS -->
+       <script  type="text/javascript" src="js/jquery.nav.js"></script>
+      
+      <!-- Yt Player -->
+      <script  type="text/javascript" src="js/ytplayer.min.js"></script>
+   
+      <!-- Popup JS -->
+      <script type="text/javascript"  src="js/jquery.magnific-popup.min.js"></script>
+
+      <!-- Typed JS -->
+      <script  type="text/javascript" src="js/typed.min.js"></script>
+      
+      <!-- Scroll Up JS -->
+      <script  type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
+      
+      <!-- Slick Nav JS -->
+      <script  type="text/javascript" src="js/jquery.slicknav.min.js"></script>
+      
+      <!-- Counterup JS -->
+      <script  type="text/javascript" src="js/waypoints.min.js"></script>
+      <script  type="text/javascript" src="js/jquery.counterup.min.js"></script>
+      
+      <!-- Owl Carousel JS -->
+      <script  type="text/javascript" src="js/owl.carousel.min.js"></script>
+      
+      <!-- Bootstrap JS -->
+      <script  type="text/javascript" src="js/bootstrap.min.js"></script>
+      
+      <!-- Main JS -->
+      <script type="text/javascript"  src="js/main.js"></script>
+   
+
+</body>
+</html>
