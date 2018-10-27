@@ -2077,15 +2077,12 @@ Version:	1.1
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background:  #16A085;
 }
 
 
 .wrap-login100 {
-  width: 500px;
-  height: 400px;
-  background: #fff;
-  border-radius: 10px;
+  width: auto;
+  height: auto;
   overflow: hidden;
   position: relative;
 }
@@ -2103,18 +2100,15 @@ Version:	1.1
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-  padding: 70px 15px 74px 15px;
 }
 
 .login100-form-title-1 {
   font-family: Poppins-Bold;
   font-size: 40px;
-  color: #555;
+  color:#16A085;
   text-transform: uppercase;
   line-height: 1.2;
   text-align: center;
@@ -2130,7 +2124,8 @@ Version:	1.1
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 43px 88px 100px 190px;
+  padding-left: 40%;
+  padding-top: 5%;
 }
 
 
@@ -2158,9 +2153,8 @@ Version:	1.1
   font-size: 15px;
   color: #555555;
   line-height: 1.2;
-
   display: block;
-  width: 100%;
   background: transparent;
   padding: 0 5px;
+  margin-bottom: 10px;
 }
