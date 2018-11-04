@@ -113,7 +113,7 @@
 								<div class="mobile-nav"></div>
 								<div class="collapse navbar-collapse">
 									<ul class="nav navbar-nav menu">
-										<li class="active"><a href="student.html">메인패이지</a></li>
+										<li class="active"><a href="student.html">메인페이지</a></li>
 										<li><a href="graduation.html">졸업관리</a></li>
 										<li><a href="request.html">예외사항 신청</a></li>
 										<li><a href="question.html">문의사항</a></li>	

@@ -166,16 +166,20 @@
 									        <th>이름</th>
 									        <th>학과</th>
 									        <th>학년</th>
+									        <th>전공이수학점</th>
+									        <th>교양이수학점</th>
 									      </tr>
 									    </thead>
 									    <tbody>
 									      <c:forEach var="student" items="${ students }">
-									        <tr data-url="student_details">
+									        <tr data-url="student_details?id=${ student.id }">
 									          <td>${ student.id }</td>
 									          <td>${ student.studentId }</td>
 									          <td>${ student.name }</td>
-									          <td>${ student.departmentId}</td>
+									          <td>${ student.dname}</td>
 									          <td>${ student.grade }</td>
+									          <td>${ student.majorCredit }</td>
+									          <td>${ student.culturalCredit }</td>
 									        </tr>
 									      </c:forEach>
 									    </tbody>
@@ -206,6 +210,7 @@
 							<!--/ End Search Form -->
 						</div>
 						<!--/ End Blog Sidebar -->
+						
 					</div>
 				</div>
 			</div>

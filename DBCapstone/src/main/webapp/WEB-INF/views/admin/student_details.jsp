@@ -158,15 +158,15 @@
                                     
                                     <!-- Skill Main -->
                                     <div class="skill-main">
-                                        <!-- Single Skill -->
+							 <!-- Single Skill -->
                                         <div class="single-skill">
                                             <div class="skill-info">
                                                 <h4>전체</h4>
-                                            </div>
+                                             </div>
                                             <div class="progress">
                                                 <div class="progress-bar" data-percent="80"><span>80%</span></div>
                                             </div>
-                                        </div>	
+                                        </div>    
                                         <!--/ End Single Skill -->
                                         <!-- Single Skill -->
                                         <div class="single-skill">
@@ -176,7 +176,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" data-percent="90"><span>90%</span></div>
                                             </div>
-                                        </div>	
+                                        </div>    
                                         <!--/ End Single Skill -->
                                         <!-- Single Skill -->
                                         <div class="single-skill">
@@ -186,7 +186,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" data-percent="70"><span>70%</span></div>
                                             </div>
-                                        </div>	
+                                        </div>    
                                         <!--/ End Single Skill -->
                                         <!-- Single Skill -->
                                         <div class="single-skill">
@@ -196,9 +196,9 @@
                                             <div class="progress">
                                                 <div class="progress-bar" data-percent="60"><span>95%</span></div>
                                             </div>
-                                        </div>	
+                                        </div>    
                                         <!--/ End Single Skill -->
-                                    </div>
+                                    
                                     <!--/ End Skill Main -->
                                 
 							</div>
@@ -211,13 +211,13 @@
 						<!-- Blog Sidebar -->
 						<div class="blog-sidebar">
 							<!-- Start Search Form -->
-							<div class="single-sidebar form">
-								
-							</div>
+							<div>${student.studentId }</div>
+							<div>${student.name }</div>
 							<!--/ End Search Form -->
 						</div>
 						<!--/ End Blog Sidebar -->
 					</div>
+					 <a href="student_review" class="btn btn-info">목록으로</a>
 				</div>
 			</div>
 			
@@ -242,6 +242,7 @@
 			<!--/ End Footer Top -->
 		</footer>
 
+      </script>
 		<!-- Jquery JS -->
 		<script type="text/javascript" src="/res/js/jquery.min.js"></script>
 		

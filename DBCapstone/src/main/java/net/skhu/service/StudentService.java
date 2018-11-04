@@ -22,10 +22,10 @@ public class StudentService {
 		return studentmapper.getAllstudent();
 	}
 
-//	public net.skhu.VO.Student findOne(int id) {
-//		// TODO Auto-generated method stub
-//		return studentmapper.findOne(id);
-//	}
+	public net.skhu.VO.Student getAStudent(int id) {
+
+		return studentmapper.getAStudent(id);
+	}
 
 //	public List<Student> getfindAll(){
 //		return studentmapper.findAll();

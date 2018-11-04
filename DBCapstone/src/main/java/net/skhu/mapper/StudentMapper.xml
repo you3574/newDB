@@ -13,9 +13,9 @@
   	from student s left join department d on s.departmentId=d.id;
   </select>
   
-<!--   <select id="findOne" resultType="net.skhu.VO.Student"> -->
-<!-- 		SELECT * FROM Student WHERE id = #{id} -->
-<!-- 	</select> -->
+  <select id="getAStudent" resultType="net.skhu.VO.Student">
+		SELECT * FROM student WHERE id = #{student.id}
+  </select>
   
 <!--   <select id="findByStudentId" resultType="Student"> -->
 <!--     SELECT * FROM Student WHERE studentId = #{studentId} -->
