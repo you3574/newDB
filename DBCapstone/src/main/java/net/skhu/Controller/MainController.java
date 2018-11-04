@@ -1,6 +1,7 @@
 package net.skhu.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.skhu.VO.Admin;
+import net.skhu.VO.MajorRequire;
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
+import net.skhu.service.AdminService;
 import net.skhu.service.SignService;
 
 @Controller
@@ -25,6 +28,9 @@ public class MainController {
 
 	@Autowired
 	private SignService signService;
+
+	@Autowired
+	private AdminService adminService;
 
 	@GetMapping("/")
 	public ModelAndView LoginPage() {
@@ -90,6 +96,99 @@ public class MainController {
 	public String excel() {
 		return "excel";
 	}
+
+	@GetMapping("graduation_require")
+	public String Graduation_require() {
+		return "admin/graduation_require";
+	}
+
+	@GetMapping("cultural_require")
+	public ModelAndView cultural_require() {
+
+		ModelAndView response = new ModelAndView("admin/cultural_require");
+
+		return response;
+	}
+
+	@GetMapping("cultural_require18")
+	public ModelAndView cultural_require18() {
+
+		ModelAndView response = new ModelAndView("admin/cultural_require18");
+
+		return response;
+	}
+
+	@GetMapping("major_connect")
+	public ModelAndView major_connect(@RequestParam("id") int id) {
+
+		ModelAndView response = new ModelAndView("admin/major_connect");
+
+		if(id==1) {
+			response.addObject("ConnectList",adminService.testList());
+		}else {
+			response.addObject("ConnectList",adminService.testList2());
+		}
+		return response;
+	}
+
+	@GetMapping("major_require")
+	public ModelAndView major_require(@RequestParam("id") int id) {
+		ModelAndView response = new ModelAndView("admin/major_require");
+
+		String code = adminService.getCode(id);
+		List<MajorRequire> temp = adminService.getMajorRequire(code);
+		response.addObject("MajorRequireList", temp );
+		response.addObject("code",code);
+		response.addObject("totalCultural", temp.get(0).getTotalCultural());
+		return response;
+	}
+
+	@PostMapping("major_input")
+	@ResponseBody
+	public boolean major_input(@RequestBody MajorRequire input) {
+
+		//소프만 할거라서 임의로 추가한 코드 , 나중에 자동화시킬거임
+		input.setDepartmentId(1);
+		input.setDepartmentName("소프");
+
+
+		int temp = adminService.majorInput(input);
+		if(temp>0)
+			return true;
+		else
+			return false;
+	}
+
+	@GetMapping("edit_major")
+	public ModelAndView edit_major(@RequestParam("id") int id) {
+		ModelAndView response = new ModelAndView("admin/edit_major");
+		response.addObject( "major", adminService.getMajorRequireById(id));
+		return response;
+
+	}
+
+	@PostMapping("edit_major")
+	public String edit_major(MajorRequire edit) {
+		System.out.println(edit.getCode());
+		System.out.println(edit.getDepartmentName());;
+		int temp = adminService.editMajor(edit);
+		return "redirect:graduation_require";
+	}
+
+	@GetMapping("delete_major")
+	public String delete_major(@RequestParam("id") int id) {
+		adminService.deleteMajor(id);
+		return "redirect:graduation_require";
+	}
+
+
+	@GetMapping("major_require18")
+	public ModelAndView major_require18() {
+		ModelAndView response = new ModelAndView("admin/major_require18");
+
+		return response;
+	}
+
 
 
 }

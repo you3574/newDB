@@ -8,38 +8,7 @@
    <meta name='copyright' content='codeglim'>
    <meta name="viewport" content="width=device-width, initial-scale=1">   
 
-      <!-- Favicon -->
-      <link rel="icon" type="image/png" href="/res/images/favicon.png">   
-      
-        <!-- Google Font -->
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900" rel="stylesheet"> 
-
-      <!-- Google Map Api -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM" type="text/javascript"></script>   
-   
-      <!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="/res/css/font-awesome.min.css">
-
-      <!-- Animate CSS -->
-        <link rel="stylesheet" href="/res/css/animate.min.css">
-
-      <!-- Slicknav CSS -->
-        <link rel="stylesheet" href="/res/css/slicknav.min.css">
-
-      <!-- Owl Carousel CSS -->
-      <link rel="stylesheet" href="/res/css/owl.theme.default.css">
-        <link rel="stylesheet" href="/res/css/owl.carousel.min.css">
-      
-      <!-- Magnific Popup CSS -->
-      <link rel="stylesheet" href="/res/css/magnific-popup.css">
-      
-      <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/res/css/bootstrap.min.css">
-      
-      <!-- Bizpro Style CSS -->
-        <link rel="stylesheet" href="/res/style.css">
-        <link rel="stylesheet" href="/res/css/default.css">   
-        <link rel="stylesheet" href="/res/css/responsive.css">
+      <%@include file="/WEB-INF/views/include/css.jsp" %>
       <style>
       h1{
       color:#555 ;
@@ -123,51 +92,7 @@
       </div>
    </div>
    
-      <!-- Jquery JS -->
-      <script type="text/javascript" src="/res/js/jquery.min.js"></script>
-      
-      <!-- Colors JS -->
-      <script type="text/javascript" src="/res/js/colors.js"></script>
-      
-      <!-- Modernizr JS -->
-      <script type="text/javascript"  src="/res/js/modernizr.min.js"></script>
-   
-      <!-- Appear JS-->
-      <script  type="text/javascript" src="/res/js/jquery.appear.js"></script>
-
-      <!-- Animate JS -->
-       <script  type="text/javascript" src="/res/js/wow.min.js"></script>
-      
-      <!-- Onepage Nav JS -->
-       <script  type="text/javascript" src="/res/js/jquery.nav.js"></script>
-      
-      <!-- Yt Player -->
-      <script  type="text/javascript" src="/res/js/ytplayer.min.js"></script>
-   
-      <!-- Popup JS -->
-      <script type="text/javascript"  src="/res/js/jquery.magnific-popup.min.js"></script>
-
-      <!-- Typed JS -->
-      <script  type="text/javascript" src="/res/js/typed.min.js"></script>
-      
-      <!-- Scroll Up JS -->
-      <script  type="text/javascript" src="/res/js/jquery.scrollUp.min.js"></script>
-      
-      <!-- Slick Nav JS -->
-      <script  type="text/javascript" src="/res/js/jquery.slicknav.min.js"></script>
-      
-      <!-- Counterup JS -->
-      <script  type="text/javascript" src="/res/js/waypoints.min.js"></script>
-      <script  type="text/javascript" src="/res/js/jquery.counterup.min.js"></script>
-      
-      <!-- Owl Carousel JS -->
-      <script  type="text/javascript" src="/res/js/owl.carousel.min.js"></script>
-      
-      <!-- Bootstrap JS -->
-      <script  type="text/javascript" src="/res/js/bootstrap.min.js"></script>
-      
-      <!-- Main JS -->
-      <script type="text/javascript"  src="/res/js/main.js"></script>
+      <%@include file="/WEB-INF/views/include/javascript.jsp" %>
       
       <script>
  	 function checkVal(){

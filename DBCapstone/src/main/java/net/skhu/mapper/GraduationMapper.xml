@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.GraduationMapper">
+  
+  <select id="testList" resultType="net.skhu.VO.MajorConnect">
+  	select id, name from major_connect
+  	where tableName = 'major_require'
+  </select>
+  
+  <select id="testList2" resultType="net.skhu.VO.MajorConnect">
+  	select id, name from major_connect
+  	where tableName = 'major_require18'
+  </select>
+  
+  <select id="getCode" resultType="String">
+  	select code from major_connect
+  	where id=#{id}
+  </select>
+  
+  <select id="getMajorRequire" resultType="net.skhu.VO.MajorRequire">
+  	select id, code, name, requireMajor, totalMajor, totalCultural, total
+  	from major_require
+  	where code = #{code}
+  </select>
+  
+  <select id="getMajorRequireById" resultType="net.skhu.VO.MajorRequire">
+  	select id, code, name, requireMajor, totalMajor, totalCultural, total
+  	from major_require
+  	where id = #{id}
+  </select>
+  
+  <insert id="majorInput" parameterType="net.skhu.VO.MajorRequire">
+  	insert into major_require (code, name, requireMajor, totalMajor, totalCultural, total, departmentId, departmentName)
+  	values ( #{code}, #{name}, #{requireMajor}, #{totalMajor}, #{totalCultural}, #{total}, #{departmentId}, #{departmentName})
+  </insert>
+  
+  <update id="editMajor" parameterType="net.skhu.VO.MajorRequire">
+  	update major_require
+  	set name = #{name}, requireMajor = #{requireMajor}, totalMajor=#{totalMajor}, total=#{total},
+  		departmentId=#{departmentId}, departmentName=#{departmentName}
+  	where id = #{id}
+  </update>
+  
+  <delete id="deleteMajor">
+  	delete from major_require where id=#{id}
+  </delete>
+</mapper>
