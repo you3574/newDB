@@ -19,12 +19,15 @@ import net.skhu.VO.Admin;
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.SignService;
+import net.skhu.service.StudentService;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	private SignService signService;
+	@Autowired
+	private StudentService studentService;
 
 	@GetMapping("/")
 	public ModelAndView LoginPage() {
@@ -61,6 +64,8 @@ public class MainController {
 	@GetMapping("admin")
 	public String Admin() {
 		return "admin/admin";
+
+
 	}
 
 	@GetMapping("student")
@@ -92,19 +97,19 @@ public class MainController {
 	public boolean studentChange(@RequestBody String password,
 			HttpSession session) throws Exception{
 
-		System.out.println(password);
+
 		Student student = (Student)session.getAttribute("loginUser");
 		student.setPw(password);
 
-		System.out.println(student.getStudentId());
-		System.out.println(student.getName());
-		System.out.println(student.getPw());
+
 		int temp2 = signService.studentChange(student);
 		if(temp2>0)
 			return true;
 		else
 			return false;
 	}
+
+
 
 	@GetMapping("excel")
 	public String excel() {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -13,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">	
 		
 		<!-- Title Tag -->
-        <title>졸업시켜조</title>
+        <title>관리자 페이지</title>
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" href="/res/images/favicon.png">	
@@ -51,13 +52,13 @@
 		<!-- You Can Use 8 Different color Just remove bottom of the comment tag -->
 		
 		<link rel="stylesheet" href="/res/css/skin/green.css">
-		<!--<link rel="stylesheet" href="css/skin/pink.css">-->
-		<!--<link rel="stylesheet" href="css/skin/yellow.css">-->
-		<!--<link rel="stylesheet" href="css/skin/red.css">-->
-		<!--<link rel="stylesheet" href="css/skin/pink.css">-->
-		<!--<link rel="stylesheet" href="css/skin/orange.css">-->
-		<!--<link rel="stylesheet" href="css/skin/blaze.css">-->
-		<!--<link rel="stylesheet" href="css/skin/blue.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/pink.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/yellow.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/red.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/pink.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/orange.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/blaze.css">-->
+		<!--<link rel="stylesheet" href="/res/css/skin/blue.css">-->
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,18 +114,11 @@
 								<div class="mobile-nav"></div>
 								<div class="collapse navbar-collapse">
 									<ul class="nav navbar-nav menu">
-										<li class="active"><a href="admin.html">메인페이지</a></li>
-										<li><a href="admin/student_review">학생조회</a></li>
+										<li><a href="admin.html">메인페이지</a></li>
+										<li class="active"><a href="student_review.html">학생조회</a></li>
 										<li><a href="graduation_require.html">졸업요건</a></li>
-										<li><a href="subject.html">대체과목 관리</a></li>	
-										<li><a href="question_admin.html">문의사항</a></li>
-										<li>${loginUser.name}</li>
-										<c:if test="${loginUser != NULL }">
-										<li>
-											<a href="/logout"><button class="btn btn-default">로그아웃</button></a>
-										</li>
-										</c:if>
-										
+										<li class="active"><a href="subject.html">대체과목 관리</a></li>	                                        
+										<li><a href="question_admin.html">문의사항</a></li>		
 									</ul>
 								</div>
 							</nav>
@@ -137,112 +131,88 @@
 		</header>
 		<!--/ End Header -->
 		
-		<!-- Start Slider -->
-		<section id="j-slider">
-			<div class="slide-main">
-				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg1.jpg);" >
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 col-sm-12 col-xs-12">
-							<!-- Slider Text -->
-							<div class="slide-text left">
-								<div class="slider-inner">
-									<h1><span>성공회대학교</span>졸업관리시스템</h1>
-									<p>이 페이지는 성공회대학교 졸업관리시스템입니다.<br><a href="www.skhu.ac.kr">www.skhu.ac.kr</a></p>
-								</div>
-							</div>
-							<!--/ End Slider Text -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/ End Single Slider -->
-				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg2.jpg);" >
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 col-sm-12 col-xs-12">
-									<!-- Slider Text -->
-									<div class="slide-text left">
-										<div class="slider-inner">
-											<h1><span>성공회대학교</span>졸업관리시스템</h1>
-											<p>이 페이지는 성공회대학교 졸업관리시스템입니다.<br><a href="www.skhu.ac.kr">www.skhu.ac.kr</a></p>
-										</div>
-									</div>
-									<!--/ End Slider Text -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/ End Single Slider -->
-				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg3.jpg);" >
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 col-sm-12 col-xs-12">
-								<!-- Slider Text -->
-								<div class="slide-text left">
-									<div class="slider-inner">
-										<h1><span>성공회대학교</span>졸업관리시스템</h1>
-										<p>이 페이지는 성공회대학교 졸업관리시스템입니다.<br><a href="www.skhu.ac.kr">www.skhu.ac.kr</a></p>
-									</div>
-								</div>
-								<!--/ End Slider Text -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/ End Single Slider -->
-			</div>
-		</section>
-		<!--/ End Slider -->
-		
-		<!-- Our Skill -->
-		<section id="our-skill" class="section">
+		<!-- Start Breadcrumbs -->
+		<section id="breadcrumbs">
 			<div class="container">
-				<div class="row"> 
-					<div class="col-md-6 col-sm-12 col-xs-12 wow fadeIn">
-						<!-- Info Main -->
-						<div class="info-main">
-							<div class="section-title left">
-								<h2>공지사항</h2>
-							</div>
-							<div class="some-info">
-								<p>성공회대학교 졸업관련 공지사항</p>
-							</div>
-							<ul class="info-list">
-								<li><i class="fa fa-check"></i>consectetuer adipiscing elit, sed diam nonummy.</li>
-								<li><i class="fa fa-check"></i>has been the industry'sstandar.</li>
-								<li><i class="fa fa-check"></i>has been the industry'sstandar.</li>
-								<li><i class="fa fa-check"></i>Pellentesque habitant morbi tristique senectus.</li>
-							</ul>	
-						</div>
-						<!--/ End Info Main -->
-					</div>				
-					<div class="col-md-6 col-sm-12 col-xs-12 wow fadeIn">
-						<!-- Info Main -->
-						<div class="info-main">
-							<div class="section-title left">
-								<h2>게시판 알림</h2>
-							</div>
-							<div class="some-info">
-								<p>문의사항 게시판 새로운 글</p>
-							</div>
-							<ul class="info-list">
-								<li><i class="fa fa-check"></i>consectetuer adipiscing elit, sed diam nonummy.</li>
-								<li><i class="fa fa-check"></i>has been the industry'sstandar.</li>
-								<li><i class="fa fa-check"></i>has been the industry'sstandar.</li>
-								<li><i class="fa fa-check"></i>Pellentesque habitant morbi tristique senectus.</li>
-							</ul>	
-						</div>
-						<!--/ End Info Main -->
+				<div class="row">
+					<div class="col-md-12">
+						<h2>관리자 페이지</h2>
+						<ul>
+							<li><a href="admin.html">Home</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!--/ End Our Skill -->
-	
+		<!--/ End Breadcrumbs -->
+		
+		<!-- Start blog -->
+		<section id="blog" class="single section page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<!-- Single blog -->
+						<div class="single-blog">
+							<div class="blog-content">
+								<h2 style="margin-bottom:30px">학생조회</h2>
+                                    
+                                    <!-- Skill Main -->
+                                    <div class="skill-main">
+							<table class="table table-bordered mt5">
+									    <thead>
+									      <tr>
+									        <th>id</th>
+									        <th>학번</th>
+									        <th>이름</th>
+									        <th>학과</th>
+									        <th>학년</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+									      <c:forEach var="student" items="${ students }">
+									        <tr data-url="student_details">
+									          <td>${ student.id }</td>
+									          <td>${ student.studentId }</td>
+									          <td>${ student.name }</td>
+									          <td>${ student.departmentId}</td>
+									          <td>${ student.grade }</td>
+									        </tr>
+									      </c:forEach>
+									    </tbody>
+									  </table>
+                                       
+                                       
+                                    </div>
+                                    <!--/ End Skill Main -->
+                                
+							</div>
+						</div>
+						<!--/ End Single blog -->
+						
+                    </div>
+                    
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<!-- Blog Sidebar -->
+						<div class="blog-sidebar">
+							<!-- Start Search Form -->
+							<div class="single-sidebar form">
+								<form class="search" action="#">
+									<input type="text" placeholder="Type To Search">
+									<div class="s-button">
+										<input type="submit" value="search">
+									</div>
+								</form>
+							</div>
+							<!--/ End Search Form -->
+						</div>
+						<!--/ End Blog Sidebar -->
+					</div>
+				</div>
+			</div>
+			
+		</section>
+		
+		
 		<!-- Start Footer -->
 		<footer id="footer" class="wow fadeIn">
 			<!-- Footer Top -->
@@ -260,8 +230,8 @@
 			</div>
 			<!--/ End Footer Top -->
 		</footer>
-		<!--/ End Footer -->
 
+      </script>
 		<!-- Jquery JS -->
 		<script type="text/javascript" src="/res/js/jquery.min.js"></script>
 		

@@ -17,8 +17,17 @@ public class StudentService {
 
 		return studentmapper.getAllstudentId();
 	}
-	
-	public List<String> getAllstudent(){
+
+	public List<net.skhu.VO.Student> getAllstudent(){
 		return studentmapper.getAllstudent();
 	}
+
+//	public net.skhu.VO.Student findOne(int id) {
+//		// TODO Auto-generated method stub
+//		return studentmapper.findOne(id);
+//	}
+
+//	public List<Student> getfindAll(){
+//		return studentmapper.findAll();
+//	}
 }
