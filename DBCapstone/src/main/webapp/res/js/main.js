@@ -66,6 +66,20 @@ Version:	1.1
         });     
 	
     }
+	
+	/* url 넘어가기*/
+	$(function() {
+		
+		  $("[data-url]").click(function() {
+		    var url = $(this).attr("data-url");
+		    location.href = url;
+		  })
+
+		  $("[data-confirm-delete]").click(function() {
+		    return confirm("삭제하시겠습니까?");
+		  })
+
+		})
 
 	/*======================================
 	// Main Slider
@@ -313,23 +327,6 @@ Version:	1.1
 		e.preventDefault();
 	});
 	
-	/*======================================
-	// Google Map
-	======================================*/ 
-	var map = new GMaps({
-			el: '.map',
-			lat: 23.810332,
-			lng: 90.412518,
-			scrollwheel: false,
-		});
-		map.addMarker({
-			lat: 23.810332,
-			lng: 90.412518,
-			title: 'Marker with InfoWindow',
-			infoWindow: {
-			content: '<p>Welcome to Codeglim</p>'
-		}
-	});
 	/*====================================
 		Background Video
 	======================================*/

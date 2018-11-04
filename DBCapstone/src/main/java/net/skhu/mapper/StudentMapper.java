@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StudentMapper {
 
 	List<String> getAllstudentId();
-
+	List<String> getAllstudent();
 }

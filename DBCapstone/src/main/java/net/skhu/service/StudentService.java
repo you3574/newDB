@@ -17,4 +17,8 @@ public class StudentService {
 
 		return studentmapper.getAllstudentId();
 	}
+	
+	public List<String> getAllstudent(){
+		return studentmapper.getAllstudent();
+	}
 }

@@ -46,11 +46,12 @@ public class MainController {
 		Admin admin = signService.adminLogin(loginMap);
 		Student student = signService.studentLogin(loginMap);
 
+
 		if(admin != null) {
-			session.setAttribute("loginUser", admin);
+			session.setAttribute("loginUser", admin); //세션에 로그인 정보 넣어두기.
 			return "redirect:admin";
 		}else if(student != null) {
-			session.setAttribute("loginUser", student);
+			session.setAttribute("loginUser", student); //loginUser에 알맞은 객체 넣기.
 			return "redirect:student";
 		}else {
 			return "redirect:/";
@@ -81,6 +82,25 @@ public class MainController {
 
 		int temp = signService.SignUp(signUpDto);
 		if(temp>0)
+			return true;
+		else
+			return false;
+	}
+
+	@PostMapping("studentChange")
+	@ResponseBody
+	public boolean studentChange(@RequestBody String password,
+			HttpSession session) throws Exception{
+
+		System.out.println(password);
+		Student student = (Student)session.getAttribute("loginUser");
+		student.setPw(password);
+
+		System.out.println(student.getStudentId());
+		System.out.println(student.getName());
+		System.out.println(student.getPw());
+		int temp2 = signService.studentChange(student);
+		if(temp2>0)
 			return true;
 		else
 			return false;

@@ -8,4 +8,8 @@
   	select studentId from student
   </select>
   
+  <select id="getAllstudent" resultType="String">
+  	select s.*, d.dname
+  	from student s left join department d on s.departmentId=d.id;
+  </select>
 </mapper>
