@@ -21,14 +21,14 @@ public class AdminController {
 	private StudentService studentService;
 
 
-	@RequestMapping("admin/student_review")
+	@RequestMapping("student_review")
 	public String ShowStudent(Model model) {
 
 		List<net.skhu.VO.Student> students=studentService.getAllstudent();
 		model.addAttribute("students",students);
 		return "admin/student_review";
 	}
-	@RequestMapping(value="admin/student_details", method=RequestMethod.GET)
+	@RequestMapping(value="student_details", method=RequestMethod.GET)
 	public String ShowStudentDetails(Model model, @RequestParam("id") int id) {
 		 net.skhu.VO.Student student = studentService.getAStudent(id);
 

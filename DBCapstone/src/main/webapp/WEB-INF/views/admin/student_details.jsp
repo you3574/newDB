@@ -158,7 +158,7 @@
                                     
                                     <!-- Skill Main -->
                                     <div class="skill-main">
-							 <!-- Single Skill -->
+							 		<!-- Single Skill -->
                                         <div class="single-skill">
                                             <div class="skill-info">
                                                 <h4>전체</h4>
@@ -198,29 +198,30 @@
                                             </div>
                                         </div>    
                                         <!--/ End Single Skill -->
-                                    
                                     <!--/ End Skill Main -->
-                                
 							</div>
 						</div>
-						<!--/ End Single blog -->
-						
-                    </div>
-                    
-					<div class="col-md-4 col-sm-12 col-xs-12">
+	</div>
+					</div>
+					 <div class="col-md-4 col-sm-12 col-xs-12">
 						<!-- Blog Sidebar -->
 						<div class="blog-sidebar">
-							<!-- Start Search Form -->
-							<div>${student.studentId }</div>
-							<div>${student.name }</div>
+
+							<form class="search" action="#">
+									<div class="single-sidebar form">
+										<div>${student.studentId }</div>
+										<div>${student.name }</div>
+										 <a href="student_review" class="btn btn-info">목록으로</a>
+									</div>
+								</form>
+
+							</div>
 							<!--/ End Search Form -->
 						</div>
-						<!--/ End Blog Sidebar -->
 					</div>
-					 <a href="student_review" class="btn btn-info">목록으로</a>
+					
 				</div>
-			</div>
-			
+
 		</section>
 		
 		
