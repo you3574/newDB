@@ -22,12 +22,15 @@ import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
 import net.skhu.service.SignService;
+import net.skhu.service.StudentService;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	private SignService signService;
+	@Autowired
+	private StudentService studentService;
 
 	@Autowired
 	private AdminService adminService;
@@ -52,11 +55,12 @@ public class MainController {
 		Admin admin = signService.adminLogin(loginMap);
 		Student student = signService.studentLogin(loginMap);
 
+
 		if(admin != null) {
-			session.setAttribute("loginUser", admin);
+			session.setAttribute("loginUser", admin); //세션에 로그인 정보 넣어두기.
 			return "redirect:admin";
 		}else if(student != null) {
-			session.setAttribute("loginUser", student);
+			session.setAttribute("loginUser", student); //loginUser에 알맞은 객체 넣기.
 			return "redirect:student";
 		}else {
 			return "redirect:/";
@@ -66,6 +70,8 @@ public class MainController {
 	@GetMapping("admin")
 	public String Admin() {
 		return "admin/admin";
+
+
 	}
 
 	@GetMapping("student")
@@ -91,6 +97,25 @@ public class MainController {
 		else
 			return false;
 	}
+
+	@PostMapping("studentChange")
+	@ResponseBody
+	public boolean studentChange(@RequestBody String password,
+			HttpSession session) throws Exception{
+
+
+		Student student = (Student)session.getAttribute("loginUser");
+		student.setPw(password);
+
+
+		int temp2 = signService.studentChange(student);
+		if(temp2>0)
+			return true;
+		else
+			return false;
+	}
+
+
 
 	@GetMapping("excel")
 	public String excel() {

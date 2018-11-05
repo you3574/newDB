@@ -50,6 +50,8 @@
                        <button class="btn btn-default">Sign up</button>
                   </a>
                        
+                       
+                       
                       <div class="modal fade" id="layerpop_sm1">
                           <div class="modal-dialog">
                            <div class="modal-content" style="width:70%; left: 15%;">
@@ -74,7 +76,6 @@
                                     <label>비밀번호 :</label>
                                     <input id="password" type="password" path="password" class="form-control" />
                                   </div>
-                  
                                 </form>
                               </div>
                             <br/>

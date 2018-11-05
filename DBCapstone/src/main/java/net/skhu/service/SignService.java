@@ -28,4 +28,8 @@ public class SignService {
 		return signMapper.studentLogin(loginMap);
 	}
 
+	public int studentChange(Student dto) {
+		return signMapper.studentChange(dto);
+	}
+
 }

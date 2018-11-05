@@ -8,4 +8,40 @@
   	select studentId from student
   </select>
   
+  <select id="getAllstudent" resultType="net.skhu.VO.Student">
+  	select s.*, d.dname
+  	from student s left join department d on s.departmentId=d.id;
+  </select>
+  
+  <select id="getAStudent" resultType="net.skhu.VO.Student">
+		SELECT * FROM student WHERE id = #{student.id}
+  </select>
+  
+<!--   <select id="findByStudentId" resultType="Student"> -->
+<!--     SELECT * FROM Student WHERE studentId = #{studentId} -->
+<!--   </select>    -->
+
+<!--   <select id="findAll" resultType="Student"> -->
+<!--     SELECT * FROM Student  -->
+<!--   </select> -->
+
+	
+<!--   <insert id="insert" useGeneratedKeys="true" keyProperty="id"> -->
+<!--     INSERT Student (studentId, name, departmentId, grade) -->
+<!--     VALUES (#{studentId}, #{name}, #{departmentId}, #{grade}) -->
+<!--   </insert> -->
+
+<!--   <update id="update"> -->
+<!--     UPDATE Student SET  -->
+<!--       studentId = #{studentId},  -->
+<!--       name = #{name},  -->
+<!--       departmentId = #{departmentId},  -->
+<!--       grade = #{grade}  -->
+<!--     WHERE id = #{id} -->
+<!--   </update> -->
+
+<!--   <delete id="delete"> -->
+<!--     DELETE FROM Student WHERE id = #{id} -->
+<!--   </delete> -->
+  
 </mapper>

@@ -14,5 +14,6 @@ public interface SignMapper {
 	int signup(SignUpDto signUpDto);
 	Admin adminLogin(Map<String, Object> loginMap);
 	Student studentLogin(Map<String, Object> loginMap);
+	int studentChange(Student dto);
 
 }
