@@ -103,7 +103,7 @@
 					<div class="col-md-3 col-sm-15 col-xs-15">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><span>졸업</span>관리시스템</a>
+							<a href="admin"><span>졸업</span>관리시스템</a>
 						</div>
 						<!--/ End Logo -->
 					</div>
@@ -114,10 +114,10 @@
 								<div class="mobile-nav"></div>
 								<div class="collapse navbar-collapse">
 									<ul class="nav navbar-nav menu">
-										<li><a href="admin.html">메인페이지</a></li>
-										<li class="active"><a href="student_review.html">학생조회</a></li>
-										<li><a href="graduation_require.html">졸업요건</a></li>
-										<li class="active"><a href="subject.html">대체과목 관리</a></li>	                                        
+										<li><a href="admin">메인페이지</a></li>
+										<li class="active"><a href="student_review">학생조회</a></li>
+										<li><a href="graduation_require">졸업요건</a></li>
+										<li><a href="subject.html">대체과목 관리</a></li>	                                        
 										<li><a href="question_admin.html">문의사항</a></li>		
 									</ul>
 								</div>
@@ -138,7 +138,7 @@
 					<div class="col-md-12">
 						<h2>관리자 페이지</h2>
 						<ul>
-							<li><a href="admin.html">Home</a></li>
+							<li><a href="admin">Home</a></li>
 						</ul>
 					</div>
 				</div>
