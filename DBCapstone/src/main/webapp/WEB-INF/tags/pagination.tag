@@ -18,32 +18,32 @@ int recordCount = (Integer)jspContext.getAttribute("recordCount");
 int pageSize = (Integer)jspContext.getAttribute("pageSize");
 
 int current = 1;
-if (request.getParameter("pg") != null)
-    current = Integer.parseInt(request.getParameter("pg"));
+if (request.getParameter("now") != null)
+    current = Integer.parseInt(request.getParameter("now"));
 
 int pageCount = recordCount / pageSize;
 if (pageCount * pageSize < recordCount) ++pageCount;
 
 String queryString = request.getQueryString();
 if (queryString == null)
-    queryString = "pg=@@@";
-else if (queryString.matches(".*pg=[0-9]+.*"))
-    queryString = queryString.replaceAll("pg=[0-9]+", "pg=@@@");
+    queryString = "now=@@@";
+else if (queryString.matches(".*now=[0-9]+.*"))
+    queryString = queryString.replaceAll("now=[0-9]+", "now=@@@");
 else
-    queryString = queryString + "&pg=@@@";
+    queryString = queryString + "&now=@@@";
 String url = request.getAttribute("javax.servlet.forward.request_uri") + "?" + queryString;
 
 if (current > pageCount) current = pageCount;
-int base = ((current - 1) / 10) * 10;
+int base = ((current - 1) / 5) * 5;
 
 ArrayList<Page> pages = new ArrayList<Page>();
 if (base > 0) pages.add(new Page(base, "&lt;"));
-for (int i = 1; i <= 10; ++i) {
+for (int i = 1; i <= 5; ++i) {
     int n = base + i;
     if (n > pageCount) break;
     pages.add(new Page(n, String.valueOf(n)));
 }
-int n = base + 11;
+int n = base + 6;
 if (n <= pageCount)
     pages.add(new Page(n, "&gt;"));
 %>

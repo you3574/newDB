@@ -14,8 +14,14 @@ public class Student {
 	private int culturalCredit;
 	private boolean socialService;
 	private String dname;
+	private String dcode;
 
-
+	public String getDcode() {
+		return dcode;
+	}
+	public void setDcode(String dcode) {
+		this.dcode = dcode;
+	}
 	public int getId() {
 		return id;
 	}

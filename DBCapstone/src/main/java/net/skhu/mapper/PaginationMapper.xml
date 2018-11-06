@@ -5,7 +5,7 @@
 <mapper namespace="net.skhu.mapper.PaginationMapper">
 
 	<select id="findAll" resultType="net.skhu.VO.Student">
-		<bind name="start" value="(pg - 1) * size" />
+		<bind name="start" value="(now - 1) * size" />
 		SELECT s.*,d.dname,d.dcode
 		FROM student s left join department d on s.departmentId=d.id
 		WHERE s.id>0
