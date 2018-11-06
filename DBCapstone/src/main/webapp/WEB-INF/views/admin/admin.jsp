@@ -90,7 +90,7 @@
 		<section id="j-slider">
 			<div class="slide-main">
 				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg1.jpg);" >
+				<div class="single-slider" style="background-image:url(/res/images/slider/slider_bg1.jpg);" >
 					<div class="container">
 						<div class="row">
 							<div class="col-md-8 col-sm-12 col-xs-12">
@@ -108,7 +108,7 @@
 				</div>
 				<!--/ End Single Slider -->
 				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg2.jpg);" >
+				<div class="single-slider" style="background-image:url(/res/images/slider/slider_bg2.jpg);" >
 					<div class="container">
 						<div class="row">
 							<div class="col-md-8 col-sm-12 col-xs-12">
@@ -126,7 +126,7 @@
 				</div>
 				<!--/ End Single Slider -->
 				<!-- Single Slider -->
-				<div class="single-slider" style="background-image:url(/res/images/slider/slider-bg3.jpg);" >
+				<div class="single-slider" style="background-image:url(/res/images/slider/slider_bg3.jpg);" >
 					<div class="container">
 						<div class="row">
 							<div class="col-md-8 col-sm-12 col-xs-12">
