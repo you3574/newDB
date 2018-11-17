@@ -17,6 +17,7 @@
 		SELECT * FROM student WHERE id = #{student.id}
   </select>
   
+  
 <!--   <select id="findByStudentId" resultType="Student"> -->
 <!--     SELECT * FROM Student WHERE studentId = #{studentId} -->
 <!--   </select>    -->
