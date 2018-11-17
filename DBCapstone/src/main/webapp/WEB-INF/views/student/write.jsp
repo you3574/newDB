@@ -70,7 +70,7 @@
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
 										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
-										</li>
+										</li> 
 									</c:if>
 
 								</ul>
