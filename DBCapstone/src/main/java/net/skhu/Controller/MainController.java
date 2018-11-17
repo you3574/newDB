@@ -216,13 +216,13 @@ public class MainController {
 		return response;
 	}
 	
-	@GetMapping("graduation")
-	public String graduation() {
-		return "student/graduation";
-	}
-
+	 @RequestMapping(value="graduation", method=RequestMethod.GET)
+	    public String Graduation(Model model,HttpSession session) {
+		 	Student student = (Student)session.getAttribute("loginUser");
+		 	model.addAttribute("student", student);
+	        
+	       return "student/graduation";
+	    }
 	
-
-
 	
 }

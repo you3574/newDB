@@ -26,6 +26,11 @@ public class StudentService {
 
 		return studentmapper.getAStudent(id);
 	}
+	
+	public net.skhu.VO.Student findByStudentId(int id) {
+
+		return studentmapper.findByStudentId(id);
+	}
 
 //	public List<Student> getfindAll(){
 //		return studentmapper.findAll();
