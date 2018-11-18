@@ -17,9 +17,9 @@
 		SELECT * FROM student WHERE id = #{student.id}
   </select>
   
-<!--   <select id="findByStudentId" resultType="Student"> -->
-<!--     SELECT * FROM Student WHERE studentId = #{studentId} -->
-<!--   </select>    -->
+  <select id="findByStudentId" resultType="net.skhu.VO.Student"> 
+  SELECT * FROM student WHERE studentId = #{studentId}
+  </select>
 
 <!--   <select id="findAll" resultType="Student"> -->
 <!--     SELECT * FROM Student  -->

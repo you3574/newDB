@@ -117,8 +117,8 @@
 										<li><a href="admin">메인페이지</a></li>
 										<li class="active"><a href="student_review">학생조회</a></li>
 										<li><a href="graduation_require">졸업요건</a></li>
-										<li><a href="subject.html">대체과목 관리</a></li>	                                        
-										<li><a href="question_admin.html">문의사항</a></li>		
+										<li><a href="subject">대체과목 관리</a></li>	                                        
+										<li><a href="question_admin">문의사항</a></li>		
 									</ul>
 								</div>
 							</nav>

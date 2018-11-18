@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.ArticleMapper">
+
+	<select id="getOne" resultType="net.skhu.VO.Article">
+		SELECT
+		a.*,s.name as writerName
+		FROM
+		article a left join student s
+		ON
+		a.writerId=s.id
+		WHERE 
+		a.id = #{id}
+	</select>
+
+
+	<select id="getAllArticles" resultType="net.skhu.VO.Article">
+		SELECT
+		a.*,s.name as writerName
+		FROM
+		article a left join student s
+		ON
+		a.writerId=s.id;
+	</select>
+
+
+	<select id="getMyArticles" resultType="net.skhu.VO.Article">
+		SELECT
+		a.*,s.name as writerName
+		FROM
+		article a left join student s
+		ON
+		a.writerId=s.id
+		WHERE
+		a.writerId=#{userNumber}
+	</select>
+
+	<select id="findTopOrderByNoDesc" resultType="net.skhu.VO.Article">
+		SELECT
+		*
+		FROM
+		article
+		ORDER BY
+		no DESC
+		LIMIT
+		0, 1
+	</select>
+
+
+	<delete id="delete">
+		DELETE
+		FROM
+		article
+		WHERE
+		id = #{id}
+	</delete>
+
+
+	<update id="update">
+		UPDATE
+		article
+		SET
+		subject = #{subject},
+		message =#{message},
+		time = NOW()
+		WHERE
+		id = #{id}
+	</update>
+
+	<insert id="insert">
+		INSERT
+		article (no,time, subject, message, writerId)
+		VALUES
+		(#{no},NOW(), #{subject},#{message}, #{writerId})
+	</insert>
+
+
+</mapper>

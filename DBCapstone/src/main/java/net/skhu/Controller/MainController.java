@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -224,7 +225,14 @@ public class MainController {
 
 		return response;
 	}
-
-
-
+	
+	 @RequestMapping(value="graduation", method=RequestMethod.GET)
+	    public String Graduation(Model model,HttpSession session) {
+		 	Student student = (Student)session.getAttribute("loginUser");
+		 	model.addAttribute("student", student);
+	        
+	       return "student/graduation";
+	    }
+	
+	
 }

@@ -16,10 +16,8 @@ public interface StudentMapper {
 	//학생의 기본키를 가지고 해당 학생 한 명을 조회하여 그 객체 반환
 	net.skhu.VO.Student getAStudent(int id);
 
-
-
-//	//학생의 학번을 가지고  해당 학생 한 명을 조회하여 그 객체 반환
-//	Student findByStudentId(int studentId);
+	//학생의 학번을 가지고  해당 학생 한 명을 조회하여 그 객체 반환
+	net.skhu.VO.Student findByStudentId(int studentId);
 //
 //	//학생 테이블에 존재하는 모든 학생의 객체들을 반환
 //	List<Student> findAll();

@@ -28,10 +28,4 @@ public class PaginationController {
         model.addAttribute("category", paginationService.getCategoryOptions());
         return "list2";
     }
-
-
-
-
-
-
 }
