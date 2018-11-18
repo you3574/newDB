@@ -9,7 +9,14 @@ public class Answer {
 	String message;
 	Date time;
 	int articleId;
+	String adminName;
 
+	public String getAdminName() {
+		return adminName;
+	}
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
 	public int getId() {
 		return id;
 	}

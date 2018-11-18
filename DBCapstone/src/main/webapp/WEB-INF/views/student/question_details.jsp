@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
@@ -64,8 +64,8 @@
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
 									<li class="active"><a href="student">메인페이지</a></li>
-									<li><a href="graduation.html">졸업관리</a></li>
-									<li><a href="request.html">예외사항 신청</a></li>
+									<li><a href="graduation">졸업관리</a></li>
+									<li><a href="request">예외사항 신청</a></li>
 									<li><a href="question">문의사항</a></li>
 
 									<li>${loginUser.name}</li>
@@ -114,14 +114,10 @@
 							<hr />
 
 							<div id="info">
-								<span>no:</span> 
-								<span>${ article.no }</span>
-								<br>
-								<span>글쓴이:</span>
-								<span>${ article.writerName }</span> 
-								<br>
-								<span>글쓴시각:</span> 
-								<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ article.time }" /></span>
+								<span>no:</span> <span>${ article.no }</span> <br> <span>글쓴이:</span>
+								<span>${ article.writerName }</span> <br> <span>글쓴시각:</span>
+								<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+										value="${ article.time }" /></span>
 							</div>
 							<hr />
 							<div id="body">${ article.message }</div>
@@ -138,8 +134,13 @@
 							<div class="single-comments">
 								<div class="main">
 									<div class="body">
-										<p class="meta">날짜</p>
-										<p>답글</p>
+
+										<p>${ answer.adminName }</p>
+										<p class="meta">
+											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+												value="${ answer.time }" />
+										</p>
+										<p>${ answer.message }</p>
 									</div>
 								</div>
 							</div>

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.skhu.VO.Answer;
 import net.skhu.VO.Article;
+import net.skhu.mapper.AnswerMapper;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.model.ArticleModel;
 
@@ -15,6 +17,7 @@ import net.skhu.model.ArticleModel;
 public class QnAService {
 
 	@Autowired ArticleMapper articleMapper;
+	@Autowired AnswerMapper answerMapper;
 
     public Article getOne(int id) {
         return articleMapper.getOne(id);
@@ -52,6 +55,11 @@ public class QnAService {
     public void delete(int id) {
         articleMapper.delete(id);
     }
+
+	public Answer getAnswer(int id) {
+
+		return answerMapper.getAnswer(id);
+	}
 
 
 
