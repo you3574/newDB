@@ -10,9 +10,18 @@ public class MyCourseRecord {
 	private int year;
 	private int credits;
 
+	private String name;
+
+
 	//private int score;
 
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getStudentId() {
 		return studentId;
 	}

@@ -215,14 +215,15 @@ public class MainController {
 
 		return response;
 	}
-	
-	 @RequestMapping(value="graduation", method=RequestMethod.GET)
-	    public String Graduation(Model model,HttpSession session) {
-		 	Student student = (Student)session.getAttribute("loginUser");
-		 	model.addAttribute("student", student);
-	        
-	       return "student/graduation";
-	    }
-	
-	
+
+	@RequestMapping(value="graduation", method=RequestMethod.GET)
+	public String Graduation(Model model,HttpSession session) {
+		Student student = (Student)session.getAttribute("loginUser");
+		Map<String, Object> tempMap = studentService.getStudentRecord(student.getStudentId());
+		model.addAttribute("Map", tempMap);
+
+		return "student/graduation";
+	}
+
+
 }

@@ -44,4 +44,16 @@
 <!--     DELETE FROM Student WHERE id = #{id} -->
 <!--   </delete> -->
   
+  <select id="getStudentRecord" resultType="net.skhu.VO.MyCourseRecord"> 
+  	SELECT * FROM my_course_record where studentId=#{studentId}
+	order by year, semester;
+  </select>
+  
+  <select id="getMajorCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
+  	select majorName from soft_course where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
+  </select>
+  
+  <select id="getCulturalCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
+  	select cultureName from cultural_course where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
+  </select>
 </mapper>
