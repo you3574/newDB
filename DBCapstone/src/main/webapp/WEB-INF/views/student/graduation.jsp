@@ -52,7 +52,7 @@
 					<div class="col-md-3 col-sm-15 col-xs-15">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><span>졸업</span>관리시스템</a>
+							<a href="student"><span>졸업</span>관리시스템</a>
 						</div>
 						<!--/ End Logo -->
 					</div>
@@ -66,7 +66,7 @@
 										<li><a href="student">메인페이지</a></li>
 										<li class="active"><a href="graduation">졸업관리</a></li>
 										<li><a href="request">예외사항 신청</a></li>
-										<li><a href="question_admin.html">문의사항</a></li>		
+										<li><a href="question">문의사항</a></li>		
 									</ul>
 								</div>
 							</nav>
@@ -126,10 +126,10 @@
                     
                         <p><h4>사회봉사</h4>(아이콘갯수로 이수횟수를 나타냅니다.)</p>
                         
-                        <img style="width: 30px; margin-top: 20px" src="images/success.png">
+                        <img style="width: 30px; margin-top: 20px" src="/res/images/success.png">
 
                         <p style="margin-bottom:30px"><h4>채플</h4>(아이콘갯수로 이수횟수를 나타냅니다.)</p>
-                        <img style="width: 30px; margin-top: 20px" src="images/success.png">
+                        <img style="width: 30px; margin-top: 20px" src="/res/images/success.png">
 						<!--/ End Info Main -->
 					</div>				
 					<div class="col-md-6 col-sm-12 col-xs-12">
