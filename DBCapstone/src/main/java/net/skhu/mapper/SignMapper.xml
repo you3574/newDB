@@ -25,4 +25,5 @@
     WHERE studentId = #{studentId}
   </update>
   	
+  
 </mapper>

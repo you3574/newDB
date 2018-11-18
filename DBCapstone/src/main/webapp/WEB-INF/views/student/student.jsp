@@ -63,10 +63,10 @@
 								<div class="mobile-nav"></div>
 								<div class="collapse navbar-collapse">
 									<ul class="nav navbar-nav menu">
-										<li class="active"><a href="student.html">메인페이지</a></li>
-										<li><a href="graduation.html">졸업관리</a></li>
-										<li><a href="request.html">예외사항 신청</a></li>
-										<li><a href="question.html">문의사항</a></li>	
+										<li class="active"><a href="student">메인페이지</a></li>
+										<li><a href="graduation">졸업관리</a></li>
+										<li><a href="request">예외사항 신청</a></li>
+										<li><a href="question">문의사항</a></li>	
 										 
 										<li>${loginUser.name}</li>
 										<c:if test="${loginUser != NULL }">
@@ -175,7 +175,7 @@
 				                       <button class="btn btn-default">수정하기</button>
 				                  </a></li>
 				                  
-								 <div class="modal fade" id="layerpop_sm2">
+								<div class="modal fade" id="layerpop_sm2">
                           		<div class="modal-dialog">
                            		<div class="modal-content" style="width:70%; left: 15%;">
 			                            <!-- header -->
@@ -343,7 +343,6 @@
 	});
 
       </script>
-		
->>>>>>> tommorrow2
+
     </body>
 </html>

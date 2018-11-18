@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
 import net.skhu.service.SignService;
 import net.skhu.service.StudentService;
+import net.skhu.service.SubjectService;
 
 @Controller
 public class MainController {
@@ -31,9 +33,10 @@ public class MainController {
 	private SignService signService;
 	@Autowired
 	private StudentService studentService;
-
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private SubjectService subjectService;
 
 	@GetMapping("/")
 	public ModelAndView LoginPage() {
@@ -115,8 +118,16 @@ public class MainController {
 			return false;
 	}
 
+	@GetMapping("request")
+	public String ShowReplacement(Model model, HttpSession session) throws Exception{
+
+		 Student student = (Student)session.getAttribute("loginUser");
+	     model.addAttribute("replacement", subjectService.getReplacement(student.getStudentId()));
 
 
+		return "student/request";
+	}
+//
 	@GetMapping("excel")
 	public String excel() {
 		return "excel";

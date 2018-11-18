@@ -6,16 +6,34 @@ public class MyCourseRecord {
 	private String courseId;
 	private String semester;
 	private String grade;
-
 	private int year;
 	private int credits;
 
+
 	//private int score;
+
 
 
 	public String getStudentId() {
 		return studentId;
 	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
@@ -36,18 +54,6 @@ public class MyCourseRecord {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
-	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public int getCredits() {
-		return credits;
-	}
-	public void setCredits(int credits) {
-		this.credits = credits;
 	}
 
 
