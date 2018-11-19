@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.skhu.VO.Admin;
 import net.skhu.VO.MajorRequire;
+import net.skhu.VO.Replacement;
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
 import net.skhu.service.SignService;
 import net.skhu.service.StudentService;
 import net.skhu.service.SubjectService;
+
 
 @Controller
 public class MainController {
@@ -117,6 +120,17 @@ public class MainController {
 			return true;
 		else
 			return false;
+	}
+
+	@PostMapping("replaceRequest")
+	public String replaceRequest(@RequestParam int id,
+			 HttpServletResponse response) throws Exception{
+
+
+		List<Replacement> code=subjectService.getReplaceRequest(id);
+
+			return "student/request";
+
 	}
 
 	@GetMapping("request")
@@ -225,14 +239,14 @@ public class MainController {
 
 		return response;
 	}
-	
+
 	 @RequestMapping(value="graduation", method=RequestMethod.GET)
 	    public String Graduation(Model model,HttpSession session) {
 		 	Student student = (Student)session.getAttribute("loginUser");
 		 	model.addAttribute("student", student);
-	        
+
 	       return "student/graduation";
 	    }
-	
-	
+
+
 }

@@ -18,4 +18,8 @@ public class SubjectService {
 		return subjectMapper.getReplacement(studentId);
 
 	}
+
+	public List<Replacement> getReplaceRequest(int id){
+		return subjectMapper.getReplaceRequest(id);
+	}
 }

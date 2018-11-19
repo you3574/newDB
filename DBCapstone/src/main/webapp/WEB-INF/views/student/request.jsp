@@ -101,9 +101,10 @@
 									<th scope="col">학점</th>
 								</tr>
 							</thead>
+							
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									<tr id="replace">
+									<tr id="tr${replacement.id}" data-target="#layerpop_sm3" data-toggle="modal">
 										<td>${ replacement.abolishCode }</td>
 										<td>${ replacement.abolishName }</td>
 										<td>${ replacement.category }</td>
@@ -115,7 +116,46 @@
 
 					</div>
 					<!--/ End Info Main -->
+					<div class="modal fade" id="layerpop_sm3">
+						<div class="modal-dialog">
+							<div class="modal-content" style="width: 70%; left: 15%;">
+								<!-- header -->
+								<div class="modal-header">
+									<!-- header title -->
+									<h2>대체과목 신청</h2>
+								</div>
+								<br />
+								<!-- body -->
+								<div class="modal-body">
+									<form method="post" modelAttribute="request">
+										<div class="form-group" style="width: 70%;">
+											<label>이름</label>
+											<p id="code"></p>
+										</div>
+										<div class="form-group" style="width: 70%;">
+											<label>학번 :</label>
+											<p></p>
+										</div>
+										<div class="form-group" style="width: 70%;">
+											<label>비밀번호 :</label> <input id="password" type="password"
+												path="password" class="form-control" />
+										</div>
+									</form>
+								</div>
+								<br />
+								<!-- Footer -->
+								<div class="modal-footer">
+									<button type="button" id="replaceRequest"
+										class="btn btn-default">등록하기</button>
+									&nbsp;
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">되돌아가기</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+
 				<div class="col-md-6 col-sm-12 col-xs-12 wow fadeIn">
 					<!-- Info Main -->
 					<div class="info-main">
@@ -140,60 +180,24 @@
 							</thead>
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									
-									<tr a data-target="#replace" data-toggle="modal">
+									<tr id="tr${replacement.id}">
 										<td>${ replacement.abolishCode }</td>
 										<td>${ replacement.abolishName}</td>
 										<td>${ replacement.replacementCode }</td>
 										<td>${ replacement.replacementName }</td>
+
 									</tr>
 								</c:forEach>
-
 							</tbody>
 						</table>
+
 					</div>
 					<!--/ End Info Main -->
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--/ End Our Skill -->
-	<div class="modal fade" id="replace">
-		<div class="modal-dialog">
-			<div class="modal-content" style="width: 70%; left: 15%;">
-				<!-- header -->
-				<div class="modal-header">
-					<!-- header title -->
-					<h2>정보변경</h2>
-				</div>
-				<br />
-				<!-- body
-				<div class="modal-body">
-					<form method="post" modelAttribute="student">
-						<div class="form-group" style="width: 70%;">
-							<label>이름</label>
-							<p>${loginUser.name}</p>
-						</div>
-						<div class="form-group" style="width: 70%;">
-							<label>학번 :</label>
-							<p>${loginUser.studentId}</p>
-						</div>
-						<div class="form-group" style="width: 70%;">
-							<label>비밀번호 :</label> <input id="password" type="password"
-								path="password" class="form-control" />
-						</div>
-					</form>
-				</div>
-				<br /> -->
-				<!-- Footer -->
-				<div class="modal-footer">
-					<button type="button" id="studentChange" class="btn btn-default">등록하기</button>
-					&nbsp;
-					<button type="button" class="btn btn-default" data-dismiss="modal">되돌아가기</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!-- Start Footer -->
 	<footer id="footer" class="wow fadeIn">
 		<!-- Footer Top -->
@@ -211,39 +215,25 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
-
-	<script>
- 	 function checkVal2(){
- 		if($('#password').val()==''){
- 			alert("비밀번호를 입력해주세요.");
- 			return false;	
- 		}
- 		return true;				
- 	};
-
-	$('#studentChange').bind({
+<script>
+ 	 
+	$('tr').bind({
 		click: function(e){
     		e.preventDefault();
-
-
+ 
 			$.ajax({
-    			url: "studentChange",
+    			url: "replaceRequest",
     			method: "POST",
-    			data:  $('#password').val(),
+    			data:  $('#id').val(),
     			dataType: "json",
     			contentType: "application/json;charset=UTF-8",
-    			beforeSend: function(){
-    				if(confirm('비밀번호를 바꾸시겠습니까?')){	
-						return true;
-					}
-					else{
-						return false;
-					}    				
+    			 				
     			},
     			success:function(data){
     				if(data){
     					alert(data+"성공하셨습니다.");
     					location.reload();
+    					
     				}else{
     					alert("에러");
     				}
@@ -251,7 +241,9 @@
 				error: function(){
             		alert("에러");
          	   }
+			}
 			});
+			
 		}//end of click
 	});
 

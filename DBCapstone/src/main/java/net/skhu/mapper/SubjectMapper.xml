@@ -10,4 +10,11 @@
 	where m.studentId=#{userNumber};
   </select>
  
+  <select id="getReplaceRequest" resultType="net.skhu.VO.Replacement">
+  	select abolishCode,abolishName,replacementCode,replacementName
+ 	from replacement
+ 	where id=#{id};
+  </select>
+ 
+ 
 </mapper>    
