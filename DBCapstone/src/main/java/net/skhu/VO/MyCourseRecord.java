@@ -10,10 +10,14 @@ public class MyCourseRecord {
 	private int credits;
 
 
-	//private int score;
+	private String name;
 
-
-
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getStudentId() {
 		return studentId;
 	}
