@@ -15,4 +15,11 @@
 		a.articleId = #{id}
 	</select>
 	
+	<insert id="insert">
+		INSERT
+		answer(adminId,message,time,articleId) 
+		VALUES
+		(#{adminId},#{message},NOW(),#{articleId});
+	</insert>
+	
 	</mapper>

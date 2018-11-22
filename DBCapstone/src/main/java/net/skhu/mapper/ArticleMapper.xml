@@ -69,6 +69,14 @@
 		WHERE
 		id = #{id}
 	</update>
+	<update id="updateYN">
+		UPDATE
+		article
+		SET
+		answerYN=#{no}
+		WHERE
+		id = #{id}
+	</update>
 
 	<insert id="insert">
 		INSERT

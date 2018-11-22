@@ -24,6 +24,8 @@ public interface ArticleMapper {
 
 	void insert(net.skhu.VO.Article article);
 
+	void updateYN(@Param("no") boolean no,@Param("id") int id);
+
 
 
 

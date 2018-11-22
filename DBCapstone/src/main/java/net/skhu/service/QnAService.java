@@ -10,6 +10,7 @@ import net.skhu.VO.Answer;
 import net.skhu.VO.Article;
 import net.skhu.mapper.AnswerMapper;
 import net.skhu.mapper.ArticleMapper;
+import net.skhu.model.AnswerModel;
 import net.skhu.model.ArticleModel;
 
 
@@ -36,6 +37,10 @@ public class QnAService {
         articleMapper.update(a.getId(),a.getSubject(),a.getMessage());
     }
 
+    public void updateYN(boolean yes,int id) {
+    	articleMapper.updateYN(yes,id);
+    }
+
     public void insert(ArticleModel a, int writerId) {
         Article last = articleMapper.findTopOrderByNoDesc();
         int no = (last == null) ? 1 : last.getNo() + 1;
@@ -59,6 +64,20 @@ public class QnAService {
 	public Answer getAnswer(int id) {
 
 		return answerMapper.getAnswer(id);
+	}
+
+	public void insertAnswer(AnswerModel a,int articleId,String adminId) {
+
+		Answer answer=new Answer();
+
+		answer.setArticleId(articleId);
+		answer.setAdminId(adminId);
+		answer.setMessage(a.getMessage());
+		answer.setTime(new Date());
+
+		answerMapper.insert(answer);
+
+
 	}
 
 
