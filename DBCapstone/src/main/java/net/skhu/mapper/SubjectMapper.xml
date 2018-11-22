@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.SubjectMapper">
+  
+  <select id="getReplacement" resultType="net.skhu.VO.Replacement">
+  	SELECT m.studentId,r.category, r.departmentName, r.abolishCode,r.abolishName, r.replacementCode, r.replacementName
+	from my_course_record m join replacement r on m.courseId=r.abolishCode
+	where m.studentId=#{userNumber};
+  </select>
+ 
+  <select id="getReplaceRequest" resultType="net.skhu.VO.Replacement">
+  	select abolishCode,abolishName,replacementCode,replacementName
+ 	from replacement
+ 	where id=#{id};
+  </select>
+ 
+ 
+</mapper>    

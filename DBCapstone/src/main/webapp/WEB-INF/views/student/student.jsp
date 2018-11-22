@@ -163,19 +163,11 @@
 								<li><i class="fa fa-check"></i>${loginUser.name}</li>
 								<li><i class="fa fa-check"></i>${loginUser.studentId}</li>
 								<li><i class="fa fa-check"></i>${loginUser.dname}</li>
-								<!-- 
-								<c:if test="${loginUser != NULL }">
-									<li>
-										<a href="studentEdit?id=${ loginUser.studentId }"><button class="btn btn-default">수정하기</button></a>
-									</li>
-								</c:if> -->	
-								
-								
 								<li><a data-target="#layerpop_sm2" data-toggle="modal">
 				                       <button class="btn btn-default">수정하기</button>
 				                  </a></li>
 				                  
-								 <div class="modal fade" id="layerpop_sm2">
+								<div class="modal fade" id="layerpop_sm2">
                           		<div class="modal-dialog">
                            		<div class="modal-content" style="width:70%; left: 15%;">
 			                            <!-- header -->
@@ -331,6 +323,7 @@
     				if(data){
     					alert(data+"성공하셨습니다.");
     					location.reload();
+    					
     				}else{
     					alert("에러");
     				}
@@ -343,7 +336,6 @@
 	});
 
       </script>
-		
->>>>>>> tommorrow2
+
     </body>
 </html>
