@@ -5,13 +5,13 @@
 <mapper namespace="net.skhu.mapper.SubjectMapper">
   
   <select id="getReplacement" resultType="net.skhu.VO.Replacement">
-  	SELECT m.studentId,r.category, r.departmentName, r.abolishCode,r.abolishName, r.replacementCode, r.replacementName
+  	SELECT r.id,m.studentId,r.category, r.departmentName, r.abolishCode,r.abolishName, r.replacementCode, r.replacementName
 	from my_course_record m join replacement r on m.courseId=r.abolishCode
 	where m.studentId=#{userNumber};
   </select>
  
   <select id="getReplaceRequest" resultType="net.skhu.VO.Replacement">
-  	select abolishCode,abolishName,replacementCode,replacementName
+  	select id, abolishCode,abolishName,replacementCode,replacementName, category, credits
  	from replacement
  	where id=#{id};
   </select>

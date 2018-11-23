@@ -123,13 +123,13 @@ public class MainController {
 	}
 
 	@PostMapping("replaceRequest")
-	public String replaceRequest(@RequestParam int id,
+	@ResponseBody
+	public Replacement replaceRequest(@RequestBody int id,
 			 HttpServletResponse response) throws Exception{
 
+		Replacement code=subjectService.getReplaceRequest(id);
 
-		List<Replacement> code=subjectService.getReplaceRequest(id);
-
-			return "student/request";
+		return code;
 
 	}
 

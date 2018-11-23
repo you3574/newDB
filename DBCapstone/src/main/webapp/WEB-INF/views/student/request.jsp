@@ -104,8 +104,8 @@
 
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									<tr id="tr${replacement.id}" data-target="#layerpop_sm3"
-										data-toggle="modal">
+									<tr class="request_click" id="${replacement.id}"
+										data-target="#layerpop_sm3" data-toggle="modal">
 										<td>${ replacement.abolishCode }</td>
 										<td>${ replacement.abolishName }</td>
 										<td>${ replacement.category }</td>
@@ -131,32 +131,36 @@
 									<table class="table table-hover">
 										<thead style="background-color: lightgrey;">
 											<tr>
+												<th scope="col">선택</th>
 												<th scope="col">과목코드</th>
 												<th scope="col">과목명</th>
 												<th scope="col">세부영역</th>
 												<th scope="col">학점</th>
 											</tr>
 										</thead>
-
-										<tbody>
-												<tr>
-													<td>AC00012</td>
-													<td>대학생활세미나1</td>
-													<td>전필</td>
-													<td>2</td>
-												</tr>
+										<form id="requestFrom">
+										<tbody id="request">
+											<tr>
+												<td><input type="radio"  name="ck"/></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
 										</tbody>
+										</form>
 									</table>
 								</div>
 								<br />
 								<!-- Footer -->
 								<div class="modal-footer">
-									<button type="button" id="replaceRequest"
-										class="btn btn-default">등록하기</button>
+									<button type="button" id="replaceRequest_submit"
+										class="btn btn-default" value="submit">등록하기</button>
 									&nbsp;
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">되돌아가기</button>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -186,11 +190,8 @@
 							</thead>
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									<tr id="tr${replacement.id}">
-										<td>${ replacement.abolishCode }</td>
-										<td>${ replacement.abolishName}</td>
-										<td>${ replacement.replacementCode }</td>
-										<td>${ replacement.replacementName }</td>
+									<tr id="${replacement.id}">
+										<td></td>
 
 									</tr>
 								</c:forEach>
@@ -221,41 +222,41 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
+
+
+	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 	<script>
- 	 
-	$('tr').bind({
-		click: function(e){
-    		e.preventDefault();
- 
-			$.ajax({
-    			url: "replaceRequest",
-    			method: "POST",
-    			data:  $('#id').val(),
-    			dataType: "json",
-    			contentType: "application/json;charset=UTF-8",
-    			 				
-    			},
-    			success:function(data){
-    				if(data){
-    					alert(data+"성공하셨습니다.");
-    					location.reload();
-    					
-    				}else{
-    					alert("에러");
-    				}
-				},
-				error: function(){
-            		alert("에러");
-         	   }
-			}
-			});
+	
+	$('.request_click').click(function(){
+		var id = $(this).attr("id");
+		
+		$.ajax({
+			url: "replaceRequest",
+			method: "POST",
+			data:id,
+			dataType: "json",
+			contentType: "application/json;charset=UTF-8",
+			success:function(data){
+				if(data){
+					//alert(data+"성공하셨습니다.");
+					$("#request>tr>td").eq(1).text(data.abolishCode);
+					$("#request>tr>td").eq(2).text(data.abolishName);
+					$("#request>tr>td").eq(3).text(data.category);
+					$("#request>tr>td").eq(4).text(data.credits);
+					
+				}else{
+					alert("에러");
+				}
+			},
+			error: function(){
+        		alert("에러");
+     	    }
 			
-		}//end of click
+		});
+		
 	});
 
       </script>
-
-	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 
 </body>
 </html>
