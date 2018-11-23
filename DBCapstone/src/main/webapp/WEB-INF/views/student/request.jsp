@@ -101,10 +101,11 @@
 									<th scope="col">학점</th>
 								</tr>
 							</thead>
-							
+
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									<tr id="tr${replacement.id}" data-target="#layerpop_sm3" data-toggle="modal">
+									<tr id="tr${replacement.id}" data-target="#layerpop_sm3"
+										data-toggle="modal">
 										<td>${ replacement.abolishCode }</td>
 										<td>${ replacement.abolishName }</td>
 										<td>${ replacement.category }</td>
@@ -127,20 +128,25 @@
 								<br />
 								<!-- body -->
 								<div class="modal-body">
-									<form method="post" modelAttribute="request">
-										<div class="form-group" style="width: 70%;">
-											<label>이름</label>
-											<p id="code"></p>
-										</div>
-										<div class="form-group" style="width: 70%;">
-											<label>학번 :</label>
-											<p></p>
-										</div>
-										<div class="form-group" style="width: 70%;">
-											<label>비밀번호 :</label> <input id="password" type="password"
-												path="password" class="form-control" />
-										</div>
-									</form>
+									<table class="table table-hover">
+										<thead style="background-color: lightgrey;">
+											<tr>
+												<th scope="col">과목코드</th>
+												<th scope="col">과목명</th>
+												<th scope="col">세부영역</th>
+												<th scope="col">학점</th>
+											</tr>
+										</thead>
+
+										<tbody>
+												<tr>
+													<td>AC00012</td>
+													<td>대학생활세미나1</td>
+													<td>전필</td>
+													<td>2</td>
+												</tr>
+										</tbody>
+									</table>
 								</div>
 								<br />
 								<!-- Footer -->
@@ -215,7 +221,7 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
-<script>
+	<script>
  	 
 	$('tr').bind({
 		click: function(e){
