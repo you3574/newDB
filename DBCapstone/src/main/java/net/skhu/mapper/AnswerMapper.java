@@ -6,6 +6,9 @@ import net.skhu.VO.Answer;
 
 @Mapper
 public interface AnswerMapper {
+
 	Answer getAnswer(int id);
+
+	void insert(Answer answer);
 
 }

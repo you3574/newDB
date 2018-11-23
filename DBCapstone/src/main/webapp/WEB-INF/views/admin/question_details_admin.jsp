@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -18,6 +18,7 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+<link rel="stylesheet" href="res/qna.css">
 </head>
 <body>
 
@@ -67,10 +68,11 @@
 									<li><a href="graduation">졸업관리</a></li>
 									<li><a href="request">예외사항 신청</a></li>
 									<li><a href="question">문의사항</a></li>
+
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
 										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
-										</li> 
+										</li>
 									</c:if>
 
 								</ul>
@@ -90,9 +92,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>문의사항 게시판</h2>
+					<h2>문의사항 답변</h2>
 					<ul>
-						<li><a href="student">Home</a></li>
+						<li><a href="question_admin">게시판 돌아가기</a></li>
 					</ul>
 				</div>
 			</div>
@@ -100,42 +102,72 @@
 	</section>
 	<!--/ End Breadcrumbs -->
 
-	<!-- Contact Us -->
-	<section id="contact" class="section">
+	<!-- Start blog -->
+	<section id="blog" class="single section page">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
-					<div class="section-title center">
-						<h2>문의사항 글쓰기 게시판</h2>
-						<p>관리자에게 문의할 내용을 적어 제출하세요!</p>
+				<div class="col-md-8 col-sm-12 col-xs-12" style="margin-left: 20%;">
+					<!-- Single blog -->
+					<div class="single-blog">
+
+						<div class="blog-content">
+							<h3>제목:${ article.subject }</h3>
+							<hr />
+
+							<div id="info">
+								<span>no:</span> <span>${ article.no }</span> <br> <span>글쓴이:</span>
+								<span>${ article.writerName }</span> <br> <span>글쓴시각:</span>
+								<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+										value="${ article.time }" /></span>
+							</div>
+							<hr />
+							<div id="body">${ article.message }</div>
+							<hr />
+
+						</div>
 					</div>
+					<!--/ End Single blog -->
+					<!-- Comments -->
+					<div class="blog-comments">
+						<h2>답변</h2>
+						<div class="comments-body">
+							<!-- Single Comments -->
+							<div class="single-comments">
+								<div class="main">
+								<c:if test="${article.answerYN ==true }">
+								<div class="body">
+										<p>${ answer.adminName }</p>
+										<p class="meta">
+											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ answer.time }" />
+										</p>
+										<p>${ answer.message }</p>
+									</div>
+								</c:if>
+								<c:if test="${article.answerYN ==false}">
+									<form method="post" modelAttribute="ArticleModel">
+										<div class="body">
+											<textarea name="message" placeholder="message" path="message"></textarea>
+										</div>
+										<div class="btn">
+											<button type="submit" class="button">Submit</button>
+										</div>
+
+									</form>
+									</c:if>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<!--/ End Comments -->
 				</div>
+
 			</div>
+		</div>
 
-			<!-- Contact Form -->
-			<div class="col-md-5 col-sm-5 col-xs-12" style="margin-left: 30%">
-				<form class="form" method="post" modelAttribute="ArticleModel">
-					
-
-					<div class="form-group">
-						<input type="text" name="subject" placeholder="subject"
-							path="subject" required="required">
-					</div>
-					<div class="form-group">
-						<textarea name="message" rows="6" placeholder="message"
-							path="message"></textarea>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="button primary">
-							<i class="fa fa-send"></i>Submit
-						</button>
-
-					</div>
-				</form>
-			</div>
-			<!--/ End Contact Form -->
 	</section>
-	<!--/ End Clients Us -->
 
 
 	<!-- Start Footer -->
@@ -155,7 +187,8 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
-	<!--/ End Footer -->
+
+
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 </body>
 </html>
