@@ -105,20 +105,15 @@
 				<div class="col-md-4 col-sm-4 col-xs-12">
 					<!-- Start table -->
 					<div class="container">
+					
+						<div class="pull-right mb5" id="write">
+							<a href="question_write"style="margin-bottom: 30px;">글쓰기</a>
+						</div>
+						<div class="pull-right mb5" id="mylist" style="margin-bottom: 30px; margin-right: 10px">
+							<a href="myquestion">내 글목록</a>
+						</div>
 
-						<div class="pull-right mb5">
-							<a href="question_write" class="button primary" style="margin-bottom: 30px">
-								<span class="glyphicon glyphicon-user"></span><i
-								class="fa fa-send"></i> 글쓰기
-							</a>
-						</div>
-						<div class="pull-right mb5">
-							<a href="myquestion" class="btn btn-info"
-								style="margin-bottom: 30px; margin-right: 30px"> <span
-								class="glyphicon glyphicon-user"></span><i class="fa fa-send"></i>
-								내 글보기
-							</a>
-						</div>
+
 						<!--/ End Contact Form -->
 
 						<table class="table table-bordered mt5">

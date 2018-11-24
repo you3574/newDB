@@ -8,7 +8,7 @@ import net.skhu.model.Option;
 import net.skhu.model.Pagination;
 
 @Mapper
-public interface PaginationMapper {
+public interface SearchMapper {
 
 	//나타낼 페이지의 조건을 나타내는 Pagination객체에 맞는 학생목록 반환
 	List<net.skhu.VO.Student> findAll(Pagination pagination);

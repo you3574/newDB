@@ -70,7 +70,7 @@
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
 										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
-										</li> 
+										</li>
 									</c:if>
 
 								</ul>
@@ -91,9 +91,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>문의사항 게시판</h2>
-					<ul>
-						<li><a href="student">Home</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -115,7 +112,7 @@
 			<!-- Contact Form -->
 			<div class="col-md-5 col-sm-5 col-xs-12" style="margin-left: 30%">
 				<form class="form" method="post" modelAttribute="ArticleModel">
-					
+
 
 					<div class="form-group">
 						<input type="text" name="subject" placeholder="subject"

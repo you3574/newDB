@@ -66,10 +66,11 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-									<li class="active"><a href="student">메인페이지</a></li>
-									<li><a href="graduation">졸업관리</a></li>
-									<li><a href="request">예외사항 신청</a></li>
-									<li><a href="question">문의사항</a></li>
+									<li><a href="admin">메인페이지</a></li>
+									<li><a href="search">학생조회</a></li>
+									<li><a href="graduation_require">졸업요건</a></li>
+									<li class="active"><a href="subject">대체과목 관리</a></li>
+									<li class="active"><a href="question_admin">문의사항</a></li>
 
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
@@ -143,7 +144,7 @@
 											<textarea name="message"  path="message">${ answer.message }</textarea>
 										</div>
 										<div class="btn">
-											<button type="submit" class="button">수정완료</button>
+											<button type="submit" class="button">완료</button>
 										</div>
 
 									</form>

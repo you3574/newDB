@@ -84,6 +84,13 @@
 		VALUES
 		(#{no},NOW(), #{subject},#{message}, #{writerId})
 	</insert>
+	
+	<insert id="insertNotice">
+		INSERT
+		article (no,time, subject, message, writerId ,notice)
+		VALUES
+		(#{no},NOW(), #{subject},#{message}, #{writerId}, #{notice})
+	</insert>
 
 
 </mapper>

@@ -79,11 +79,31 @@ public class QnAService {
 
 
 	}
+	public void insertNotice(ArticleModel a, String adminId) {
+		 Article last = articleMapper.findTopOrderByNoDesc();
+	        int no = (last == null) ? 1 : last.getNo() + 1;
+
+	        Article article = new Article();
+	        int writerId= Integer.parseInt(adminId);
+
+	        article.setNo(no);
+	        article.setWriterId(writerId);
+	        article.setTime(new Date());
+	        article.setSubject(a.getSubject());
+	        article.setMessage(a.getMessage());
+	        article.setNotice(true);
+
+	        articleMapper.insertNotice(article);
+
+
+	}
+
 
 	public void updateAnswer(String message,int articleId) {
 
 		answerMapper.update(message,articleId);
 	}
+
 
 
 }

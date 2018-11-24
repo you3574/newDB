@@ -106,6 +106,22 @@ public class QnAController {
         return "redirect:question";
     }
 
+    @GetMapping("question_write_notice")
+    public String write_notice(Model model) {
+
+        model.addAttribute("articleModel", new ArticleModel());
+        return "admin/question_write_notice";
+    }
+
+    @Transactional
+    @PostMapping("question_write_notice")
+    public String write_notice(ArticleModel a, Model model,HttpSession session) {
+
+    	Admin admin=(Admin)session.getAttribute("loginUser");
+        qnaService.insertNotice(a,admin.getId());
+        return "redirect:question_admin";
+    }
+
     @RequestMapping(value="delete", method=RequestMethod.GET)
     public String delete(@RequestParam("id") int id, Model model) {
         qnaService.delete(id);

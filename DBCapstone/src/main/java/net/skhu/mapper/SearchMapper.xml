@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="net.skhu.mapper.PaginationMapper">
+<mapper namespace="net.skhu.mapper.SearchMapper">
 
 	<select id="findAll" resultType="net.skhu.VO.Student">
 		<bind name="start" value="(now - 1) * size" />
