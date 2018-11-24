@@ -1,3 +1,17 @@
+#portfolio.notice{
+	background-color: transparent;
+	font-size:13px;
+	font-weight:500;
+	border: 2px solid #16A085;
+    color: #16A085;
+    padding-left: 10px;
+    padding-right: 10px;
+	text-align:right;
+}
+div.list{
+	text-align:center;
+	margin-top:20px;
+}
 .single-comments textarea{
 	border: 0px solid rgba(255, 255, 255, 1);
     color: #FFFFFF;
@@ -16,6 +30,10 @@
     padding-right: 10px;
     margin-left: 5px;
     display:inline-block;
+}
+.single-comments #edit{
+	padding-left: 20px;
+    padding-right: 20px;
 }
 .single-comments .button:hover {
     background-color: #16a085;

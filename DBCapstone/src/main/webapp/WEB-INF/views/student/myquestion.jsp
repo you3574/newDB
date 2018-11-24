@@ -88,9 +88,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>문의사항 게시판</h2>
-					<ul>
-						<li><a href="student">Home</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -111,7 +108,7 @@
 						<table class="table table-bordered mt5">
 							<thead>
 								<tr>
-									<th class="text-center">번호</th>
+									<th class="text-center">NO</th>
 									<th>제목</th>
 									<th>내용</th>
 									<th>글쓴이</th>
@@ -135,8 +132,12 @@
 						</table>
 					</div>
 					<!-- End table -->
-					<a href="question" class="btn btn-info">전체목록으로</a>
-
+					<div class="list">
+						<button type="button" class="button primary" style="background-color:#16A085"
+							onclick="location.href='question' ">
+							<i class="fa fa-send"></i>목록으로
+						</button>
+					</div>
 				</div>
 
 

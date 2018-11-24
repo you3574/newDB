@@ -80,6 +80,10 @@ public class QnAService {
 
 	}
 
+	public void updateAnswer(String message,int articleId) {
+
+		answerMapper.update(message,articleId);
+	}
 
 
 }

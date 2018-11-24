@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -18,7 +20,7 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-<link rel="stylesheet" href="res/qna.css">
+
 </head>
 <body>
 
@@ -134,29 +136,18 @@
 							<!-- Single Comments -->
 							<div class="single-comments">
 								<div class="main">
-								<c:if test="${article.answerYN ==true }">
-								<div class="body">
-										<p>${ answer.adminName }</p>
-										<p class="meta">
-											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ answer.time }" />
-										</p>
-										<p>${ answer.message }</p>
-									</div>
-									<div class="btn">
-											<button type="button" class="button" id="edit" onclick="location.href='question_details_edit?id=${ article.id }' ">EDIT</button>
-										</div>
-								</c:if>
-								<c:if test="${article.answerYN ==false}">
-									<form method="post" modelAttribute="AnswerModel">
+								
+								
+									<form method="post" modelAttribute="answer">  
 										<div class="body">
-											<textarea name="message" placeholder="message" path="message"></textarea>
+											<textarea name="message"  path="message">${ answer.message }</textarea>
 										</div>
 										<div class="btn">
-											<button type="submit" class="button">Submit</button>
+											<button type="submit" class="button">수정완료</button>
 										</div>
 
 									</form>
-									</c:if>
+									
 
 								</div>
 

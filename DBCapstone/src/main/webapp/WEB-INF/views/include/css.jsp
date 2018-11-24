@@ -51,3 +51,6 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<link rel="stylesheet" href="#" id="colors">
+		
+		
+		<link rel="stylesheet" href="res/qna.css">

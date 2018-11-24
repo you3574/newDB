@@ -18,6 +18,7 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+
 </head>
 <body>
 
@@ -92,9 +93,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>문의사항 답변</h2>
-					<ul>
-						<li><a href="question">게시판 돌아가기</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -133,21 +131,34 @@
 							<!-- Single Comments -->
 							<div class="single-comments">
 								<div class="main">
-									<div class="body">
+									<c:if test="${article.answerYN ==false }">
+										<p style="color: black;text-align:center">아직 답변이 등록되지
+											않았습니다! 잠시만 기다려주세요^0^</p>
+									</c:if>
+									<c:if test="${article.answerYN ==true }">
+										<div class="body">
 
-										<p>${ answer.adminName }</p>
-										<p class="meta">
-											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-												value="${ answer.time }" />
-										</p>
-										<p>${ answer.message }</p>
-									</div>
+											<p>${ answer.adminName }</p>
+											<p class="meta">
+												<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+													value="${ answer.time }" />
+											</p>
+											<p>${ answer.message }</p>
+										</div>
+									</c:if>
+
 								</div>
 							</div>
 
 						</div>
 					</div>
 					<!--/ End Comments -->
+					<div class="list">
+						<button type="button" class="button primary" style="background-color:#16A085"
+							onclick="location.href='question' ">
+							<i class="fa fa-send"></i>목록으로
+						</button>
+					</div>
 				</div>
 
 			</div>

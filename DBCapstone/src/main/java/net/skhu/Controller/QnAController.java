@@ -64,6 +64,23 @@ public class QnAController {
         return "redirect:question_admin";
     }
 
+    @GetMapping("question_details_edit")
+    public String edit_answer(@RequestParam("id") int id,Model model) {
+        model.addAttribute("article", qnaService.getOne(id));
+        model.addAttribute("answer", qnaService.getAnswer(id));
+
+        return "admin/question_details_edit";
+    }
+   @Transactional
+    @PostMapping("question_details_edit")
+    public String edit_answer(AnswerModel a,HttpSession session,@RequestParam("id") int id) {
+
+        Admin admin=(Admin)session.getAttribute("loginUser");
+        qnaService.updateAnswer(a.getMessage(),id);
+
+        return "redirect:question_admin";
+    }
+
 
 
     @GetMapping("myquestion")
@@ -73,15 +90,15 @@ public class QnAController {
     	return "student/myquestion";
     }
 
-    @GetMapping("write")
+    @GetMapping("question_write")
     public String write(Model model) {
 
         model.addAttribute("articleModel", new ArticleModel());
-        return "student/write";
+        return "student/question_write";
     }
 
     @Transactional
-    @PostMapping("write")
+    @PostMapping("question_write")
     public String write(ArticleModel a, Model model,HttpSession session) {
 
         Student student = (Student)session.getAttribute("loginUser");

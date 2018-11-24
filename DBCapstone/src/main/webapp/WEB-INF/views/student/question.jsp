@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
 <!-- Title Tag -->
 <title>졸업시켜조</title>
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+
 </head>
 <body>
 
@@ -62,19 +63,18 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-										<li class="active"><a href="student">메인페이지</a></li>
-										<li><a href="graduation">졸업관리</a></li>
-										<li><a href="request">예외사항 신청</a></li>
-										<li><a href="question">문의사항</a></li>	
-										 
-										<li>${loginUser.name}</li>
-										<c:if test="${loginUser != NULL }">
-										<li>
-											<a href="/logout"><button class="btn btn-default">로그아웃</button></a>
+									<li class="active"><a href="student">메인페이지</a></li>
+									<li><a href="graduation">졸업관리</a></li>
+									<li><a href="request">예외사항 신청</a></li>
+									<li><a href="question">문의사항</a></li>
+
+									<li>${loginUser.name}</li>
+									<c:if test="${loginUser != NULL }">
+										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
 										</li>
-										</c:if>	
-										
-									</ul>
+									</c:if>
+
+								</ul>
 							</div>
 						</nav>
 						<!--/ End Main Menu -->
@@ -92,9 +92,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>문의사항 게시판</h2>
-					<ul>
-						<li><a href="student">Home</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -108,13 +105,11 @@
 				<div class="col-md-4 col-sm-4 col-xs-12">
 					<!-- Start table -->
 					<div class="container">
-						<h1>목록</h1>
 
 						<div class="pull-right mb5">
-							<a href="write" class="btn btn-info"
-								style="margin-bottom: 30px"> <span
-								class="glyphicon glyphicon-user"></span><i class="fa fa-send"></i>
-								글쓰기
+							<a href="question_write" class="button primary" style="margin-bottom: 30px">
+								<span class="glyphicon glyphicon-user"></span><i
+								class="fa fa-send"></i> 글쓰기
 							</a>
 						</div>
 						<div class="pull-right mb5">
@@ -145,7 +140,8 @@
 										<td>${ article.message }</td>
 										<td>${ article.writerName }</td>
 										<td>${ article.answerYN}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ article.time }" /></td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+												value="${ article.time }" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -198,6 +194,6 @@
 	</footer>
 	<!--/ End Footer -->
 
-	<%@include file="/WEB-INF/views/include/javascript.jsp" %>
+	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 </body>
 </html>
