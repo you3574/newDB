@@ -1,6 +1,7 @@
 package net.skhu.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.skhu.VO.MajorColor;
+import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.VO.Student;
 import net.skhu.mapper.StudentMapper;
@@ -41,7 +44,7 @@ public class StudentService {
 	//		return studentmapper.findAll();
 	//	}
 
-	public Map<String, Object> getStudentRecord(String studentId) {
+	public Map<String, Object> getStudentRecord(String studentId, String course) {
 		List<MyCourseRecord> list = studentmapper.getStudentRecord(studentId);
 
 		/*
@@ -106,22 +109,107 @@ public class StudentService {
 		tempMap.put("totalSum",totalSum);
 		tempMap.put("majorSum",majorSum);
 		tempMap.put("culturalSum",culturalSum);
-		//130, 60, 47은 임시로 준 값
-		double totalPercentage = Math.round(  (((double)totalSum/130*100)*100) / 100.0  );
+
+		//수료 학점 가져오기
+		String year = studentId.substring(0, 4);
+		String tableName = studentmapper.getTableName(year);
+		String code = studentmapper.getCode(year);
+		//System.out.println(tableName+"  "+code);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tableName", tableName);
+		map.put("code", code);
+		map.put("course", course);
+		MajorRequire temp = studentmapper.getMajorRequire(map);
+		int total = temp.getTotal();
+		int totalMajor = temp.getTotalMajor();
+		int totalCultural = temp.getTotalCultural();
+
+		double totalPercentage = Math.round(  (((double)totalSum/total*100)*100) / 100.0  );
 		if(totalPercentage>100)
 			totalPercentage = 100;
 		tempMap.put("totalPercentage",totalPercentage);
 
-		double majorPercentage = Math.round(  (((double)majorSum/60*100)*100) / 100.0  );
+		double majorPercentage = Math.round(  (((double)majorSum/totalMajor*100)*100) / 100.0  );
 		if(majorPercentage>100)
 			majorPercentage = 100;
 		tempMap.put("majorPercentage",majorPercentage);
 
-		double culturalPercentage = Math.round(  (((double)culturalSum/47*100) *100 ) / 100.0  );
+		double culturalPercentage = Math.round(  (((double)culturalSum/totalCultural*100) *100 ) / 100.0  );
 		if(culturalPercentage>100)
 			culturalPercentage = 100;
 		tempMap.put("culturalPercentage",culturalPercentage);
 
 		return tempMap;
+	}
+
+	public List<List<MajorColor>> getNameList(String year, String course, List<MyCourseRecord> majorList) {
+
+		String tableName = studentmapper.getTableName(year);
+		String code = studentmapper.getCode(year);
+		System.out.println(tableName+"  "+code);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tableName", tableName);
+		map.put("code", code);
+		map.put("course", course);
+
+		MajorRequire temp = studentmapper.getMajorRequire(map);
+		List<List<String>> list = new ArrayList<>();
+
+
+		//문자열 -> 배열 -> 리스트
+
+		list.add(new ArrayList<>(Arrays.asList(temp.getFirstSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getSecondSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getThirdSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getFourthSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getFifthSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getSixthSemester().split(","))));
+		list.add(new ArrayList<>(Arrays.asList(temp.getSeventhSemester().split(","))));
+
+		List<List<MajorColor>> nameList = new ArrayList<>();
+
+		//리스트를 가지고 과목 이름으로 가져오기
+		for(int i=0 ; i<list.size() ; i++) {
+			List<MajorColor> tempList =  new ArrayList<>();
+			for(int k=0 ; k<list.get(i).size() ; k++) {
+				MajorColor tempColor = new MajorColor();
+				Map<String, Object> tempMap = new HashMap<String, Object>();
+				tempMap.put("courseId", list.get(i).get(k));
+				tempMap.put("year", year);
+
+				tempColor.setName(studentmapper.getMajorName(tempMap));
+				tempColor.setCourseId(list.get(i).get(k));
+				tempColor.setCheck(false);
+				tempList.add(tempColor);
+				//System.out.println(tempColor.getName());
+			}
+			nameList.add(tempList);
+		}
+
+		//수강한 과목인지 채크값 넣어주기
+		for(int i=0 ; i<nameList.size() ; i++) {
+			for(int k=0 ; k<nameList.get(i).size() ; k++) {
+				for(int n=0 ; n<majorList.size() ; n++) {
+					//nameList.get(i).get(k).getName() -> C프로그래밍Ⅰ
+					if(nameList.get(i).get(k).getCourseId().equals(majorList.get(n).getCourseId())) {
+						nameList.get(i).get(k).setCheck(true);
+						break;
+					}
+				}
+			}
+		}
+
+		/*
+		for(int i=0 ; i<nameList.size() ; i++) {
+			for(int k=0 ; k<nameList.get(i).size() ; k++) {
+				System.out.println(nameList.get(i).get(k).getCourseId()+" "+ nameList.get(i).get(k).getName() +" "+ nameList.get(i).get(k).isCheck());
+			}
+		}
+		 */
+
+		return nameList;
+
 	}
 }
