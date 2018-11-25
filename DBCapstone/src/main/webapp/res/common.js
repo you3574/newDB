@@ -1,3 +1,4 @@
+
 $(function() {
 
     $("[data-url]").click(function() {
@@ -12,5 +13,12 @@ $(function() {
     $(".autosubmit").change(function() {
     	$(this).parents("form").submit();
     })
-
+    
+    $('#replace').click(function(){
+    	action=""
+    })
+    
 })
+
+
+

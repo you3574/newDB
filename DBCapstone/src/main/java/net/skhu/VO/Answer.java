@@ -5,7 +5,7 @@ import java.util.Date;
 public class Answer {
 
 	int id;
-	int adminId;
+	String adminId;
 	String message;
 	Date time;
 	int articleId;
@@ -23,10 +23,10 @@ public class Answer {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAdminId() {
+	public String getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(int adminId) {
+	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
 	public String getMessage() {

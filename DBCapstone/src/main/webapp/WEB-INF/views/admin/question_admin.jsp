@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<c:url var="R" value="/" />
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -18,6 +16,7 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+<link rel="stylesheet" href="res/qna.css">
 </head>
 <body>
 
@@ -52,7 +51,7 @@
 				<div class="col-md-3 col-sm-15 col-xs-15">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="student"><span>졸업</span>관리시스템</a>
+						<a href="admin"><span>졸업</span>관리시스템</a>
 					</div>
 					<!--/ End Logo -->
 				</div>
@@ -63,16 +62,11 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-									<li class="active"><a href="student">메인페이지</a></li>
-									<li><a href="graduation">졸업관리</a></li>
-									<li><a href="request">예외사항 신청</a></li>
-									<li><a href="question">문의사항</a></li>
-									<li>${loginUser.name}</li>
-									<c:if test="${loginUser != NULL }">
-										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
-										</li> 
-									</c:if>
-
+									<li><a href="admin">메인페이지</a></li>
+									<li><a href="student_review">학생조회</a></li>
+									<li><a href="graduation_require">졸업요건</a></li>
+									<li class="active"><a href="subject">대체과목 관리</a></li>
+									<li class="active"><a href="question_admin">문의사항</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -91,51 +85,66 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>문의사항 게시판</h2>
-					<ul>
-						<li><a href="student">Home</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!--/ End Breadcrumbs -->
 
-	<!-- Contact Us -->
-	<section id="contact" class="section">
+
+	<!-- Start Project -->
+	<section id="portfolio" class="section archive page">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
-					<div class="section-title center">
-						<h2>문의사항 글쓰기 게시판</h2>
-						<p>관리자에게 문의할 내용을 적어 제출하세요!</p>
+				<c:forEach var="article" items="${ articles }">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<!-- Single Portfolio -->
+						<div class="portfolio-single">
+							<a href="" class="zoom">
+								<div class="portfolio-head">
+									<img src="" alt="" /> <i class="fa fa-search"></i>
+								</div>
+							</a>
+							<div class="text">
+								<h4>
+									<a href="question_details_admin?id=${ article.id }">${article.subject}</a>
+								</h4>
+								<p>${article.message}</p>
+								<c:if test="${article.answerYN ==true }">
+									<p id="yes">답변 완료</p>
+								</c:if>
+								<c:if test="${article.answerYN ==false }">
+									<p id="no">답변 미완료</p>
+								</c:if>
+							</div>
+						</div>
+						<!--/ End Portfolio -->
 					</div>
+				</c:forEach>
+
+			</div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<!-- Start Pagination -->
+					<ul class="pagination">
+						<li class="prev"><a href="#"><span
+								class="fa fa-angle-left"></span></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li class="next"><a href="#"><span
+								class="fa fa-angle-right"></span></a></li>
+					</ul>
+					<!--/ End Pagination -->
 				</div>
 			</div>
-
-			<!-- Contact Form -->
-			<div class="col-md-5 col-sm-5 col-xs-12" style="margin-left: 30%">
-				<form class="form" method="post" modelAttribute="ArticleModel">
-					
-
-					<div class="form-group">
-						<input type="text" name="subject" placeholder="subject"
-							path="subject" required="required">
-					</div>
-					<div class="form-group">
-						<textarea name="message" rows="6" placeholder="message"
-							path="message"></textarea>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="button primary">
-							<i class="fa fa-send"></i>Submit
-						</button>
-
-					</div>
-				</form>
-			</div>
-			<!--/ End Contact Form -->
+		</div>
+		<div class="gmap">
+			<div class="map"></div>
+		</div>
 	</section>
-	<!--/ End Clients Us -->
+	<!--/ End Project -->
 
 
 	<!-- Start Footer -->
@@ -155,7 +164,8 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
-	<!--/ End Footer -->
+
+
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 </body>
 </html>
