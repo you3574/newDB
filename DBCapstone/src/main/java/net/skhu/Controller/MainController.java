@@ -22,11 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import net.skhu.VO.Admin;
 import net.skhu.VO.MajorColor;
 import net.skhu.VO.MajorRequire;
-<<<<<<< HEAD
 import net.skhu.VO.MyCourseRecord;
-=======
 import net.skhu.VO.Replacement;
->>>>>>> 25a21c90d2c74e70ba192e114095ffd96de9a9ab
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
