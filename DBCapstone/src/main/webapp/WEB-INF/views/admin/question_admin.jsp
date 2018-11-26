@@ -16,7 +16,7 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-<link rel="stylesheet" href="res/qna.css">
+
 </head>
 <body>
 
@@ -63,10 +63,16 @@
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
 									<li><a href="admin">메인페이지</a></li>
-									<li><a href="student_review">학생조회</a></li>
+									<li><a href="search">학생조회</a></li>
 									<li><a href="graduation_require">졸업요건</a></li>
 									<li class="active"><a href="subject">대체과목 관리</a></li>
 									<li class="active"><a href="question_admin">문의사항</a></li>
+
+									<li>${loginUser.name}</li>
+									<c:if test="${loginUser != NULL }">
+										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
+										</li>
+									</c:if>
 								</ul>
 							</div>
 						</nav>
@@ -95,6 +101,9 @@
 	<!-- Start Project -->
 	<section id="portfolio" class="section archive page">
 		<div class="container">
+			<div class="notice">
+				<a href="question_write">공지사항 작성</a>
+			</div>
 			<div class="row">
 				<c:forEach var="article" items="${ articles }">
 					<div class="col-md-4 col-sm-4 col-xs-12">

@@ -22,4 +22,13 @@
 		(#{adminId},#{message},NOW(),#{articleId});
 	</insert>
 	
+	<update id="update">
+		UPDATE
+		answer a
+		SET
+		message=#{message},time=NOW()
+		WHERE
+		a.articleId=#{id}
+	</update>
+	
 	</mapper>

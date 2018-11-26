@@ -101,10 +101,11 @@
 									<th scope="col">학점</th>
 								</tr>
 							</thead>
-							
+
 							<tbody>
 								<c:forEach var="replacement" items="${replacement}">
-									<tr id="tr${replacement.id}" data-target="#layerpop_sm3" data-toggle="modal">
+									<tr class="request_click" id="${replacement.id}"
+										data-target="#layerpop_sm3" data-toggle="modal">
 										<td>${ replacement.abolishCode }</td>
 										<td>${ replacement.abolishName }</td>
 										<td>${ replacement.category }</td>
@@ -127,30 +128,37 @@
 								<br />
 								<!-- body -->
 								<div class="modal-body">
-									<form method="post" modelAttribute="request">
-										<div class="form-group" style="width: 70%;">
-											<label>이름</label>
-											<p id="code"></p>
-										</div>
-										<div class="form-group" style="width: 70%;">
-											<label>학번 :</label>
-											<p></p>
-										</div>
-										<div class="form-group" style="width: 70%;">
-											<label>비밀번호 :</label> <input id="password" type="password"
-												path="password" class="form-control" />
-										</div>
-									</form>
+									<table class="table table-hover">
+										<thead style="background-color: lightgrey;">
+											<tr>
+												<th scope="col">선택</th>
+												<th scope="col">과목코드</th>
+												<th scope="col">과목명</th>
+												<th scope="col">세부영역</th>
+												<th scope="col">학점</th>
+											</tr>
+										</thead>
+										<tbody id="request">
+											<tr>
+												<td><input type="radio" value="zz" name="ck" /></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 								<br />
 								<!-- Footer -->
 								<div class="modal-footer">
-									<button type="button" id="replaceRequest"
-										class="btn btn-default">등록하기</button>
+									<button type="button" id="replaceRequest_submit"
+										class="btn btn-default" value="submit">등록하기</button>
 									&nbsp;
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">되돌아가기</button>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -178,16 +186,15 @@
 									<th scope="col">과목명</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="replacement" items="${replacement}">
-									<tr id="tr${replacement.id}">
-										<td>${ replacement.abolishCode }</td>
-										<td>${ replacement.abolishName}</td>
-										<td>${ replacement.replacementCode }</td>
-										<td>${ replacement.replacementName }</td>
-
-									</tr>
-								</c:forEach>
+							<tbody id="replace">
+							<c:forEach var="myreplace" items="${myreplace}">
+								<tr>
+									<td>${myreplace.abolishCode }</td>
+									<td>${myreplace.abolishName }</td>
+									<td>${myreplace.replacementCode }</td>
+									<td>${myreplace.replacementName }</td>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 
@@ -215,41 +222,80 @@
 		</div>
 		<!--/ End Footer Top -->
 	</footer>
-<script>
- 	 
-	$('tr').bind({
-		click: function(e){
-    		e.preventDefault();
- 
-			$.ajax({
-    			url: "replaceRequest",
-    			method: "POST",
-    			data:  $('#id').val(),
-    			dataType: "json",
-    			contentType: "application/json;charset=UTF-8",
-    			 				
-    			},
-    			success:function(data){
-    				if(data){
-    					alert(data+"성공하셨습니다.");
-    					location.reload();
-    					
-    				}else{
-    					alert("에러");
-    				}
-				},
-				error: function(){
-            		alert("에러");
-         	   }
-			}
-			});
+
+
+	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
+	<script>
+	
+	$('.request_click').click(function(){
+		var id = $(this).attr("id");
+		var abolcode = $(this).children('td').eq(0).text();
+		var abolname = $(this).children('td').eq(1).text();
+		
+		$.ajax({
+			url: "replaceRequest",
+			method: "POST",
+			data:id,
+			dataType: "json",
+			contentType: "application/json;charset=UTF-8",
+			success:function(data){
+				if(data){
+					//alert(data+"성공하셨습니다.");
+					
+					$("#request>tr>td").eq(1).text(data.replacementCode);
+					$("#request>tr>td").eq(2).text(data.replacementName);
+					$("#request>tr>td").eq(3).text(data.category);
+					$("#request>tr>td").eq(4).text(data.credits);
+					
+					$('#replaceRequest_submit').click(function(){
+						
+						
+						var rcode = $("input[name='ck']:checked").parent().next().text();
+						var rname = $("input[name='ck']:checked").parent().next().next().text();
+						
+						var sendData;
+						sendData=JSON.stringify({
+							"abolishCode": abolcode,
+							"abolishName": abolname,
+							"replacementCode": rcode,
+							"replacementName": rname
+						});
+						
+						$.ajax({
+							url: "myreplace",
+							method:"POST",
+							data:sendData,
+							dataType: "json",
+							contentType: "application/json;charset=UTF-8",
+							success:function(data){
+								if(data){
+				    				alert(data+" 등록에 성공하셨습니다.");
+				    				location.reload();	
+				    			}else{
+				    				alert("에러");
+				    			}
+							},
+							error: function(){
+				            	alert("에러");
+							}
+						});
+					});
+				}else{
+					alert("에러");
+				}
+				
+				
+			},
+			error: function(){
+        		alert("에러");
+     	    }
 			
-		}//end of click
+		
+		});
+		
 	});
 
       </script>
-
-	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 
 </body>
 </html>

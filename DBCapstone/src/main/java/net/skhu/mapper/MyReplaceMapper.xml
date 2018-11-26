@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.MyReplaceMapper">
+	<insert id="insertreplace" parameterType="java.util.HashMap">
+		INSERT
+		my_replacement (studentId,abolishCode, abolishName,replacementCode, replacementName)
+		VALUES
+		( #{studentId}, #{myreplace.abolishCode},#{myreplace.abolishName}, #{myreplace.replacementCode}, #{myreplace.replacementName});
+	</insert>
+	
+	 <select id="getAllreplace" resultType="net.skhu.VO.MyReplace">
+  		select *
+  		from my_replacement where studentId=#{studentId}
+  	</select>
+</mapper>

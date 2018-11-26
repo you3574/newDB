@@ -64,10 +64,11 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-									<li class="active"><a href="student">메인페이지</a></li>
-									<li><a href="graduation">졸업관리</a></li>
-									<li><a href="request">예외사항 신청</a></li>
-									<li><a href="question">문의사항</a></li>
+									<li><a href="admin">메인페이지</a></li>
+									<li><a href="search">학생조회</a></li>
+									<li><a href="graduation_require">졸업요건</a></li>
+									<li class="active"><a href="subject">대체과목 관리</a></li>
+									<li class="active"><a href="question_admin">문의사항</a></li>
 
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
@@ -137,14 +138,17 @@
 								<c:if test="${article.answerYN ==true }">
 								<div class="body">
 										<p>${ answer.adminName }</p>
-										<p class="meta">
+										<p class="meta" style="text-align:right">
 											<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ answer.time }" />
 										</p>
 										<p>${ answer.message }</p>
 									</div>
+									<div class="btn">
+											<button type="button" class="button" id="edit" onclick="location.href='question_details_edit?id=${ article.id }' ">EDIT</button>
+										</div>
 								</c:if>
 								<c:if test="${article.answerYN ==false}">
-									<form method="post" modelAttribute="ArticleModel">
+									<form method="post" modelAttribute="AnswerModel">
 										<div class="body">
 											<textarea name="message" placeholder="message" path="message"></textarea>
 										</div>

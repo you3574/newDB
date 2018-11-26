@@ -11,6 +11,7 @@ public interface SubjectMapper {
 
 	List<Replacement> getReplacement(String studentId);
 
-	List<Replacement> getReplaceRequest(int id);
+	Replacement getReplaceRequest(int id);
+
 
 }
