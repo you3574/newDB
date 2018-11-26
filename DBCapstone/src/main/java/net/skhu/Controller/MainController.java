@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.skhu.VO.Admin;
+import net.skhu.VO.MajorColor;
 import net.skhu.VO.MajorRequire;
+import net.skhu.VO.MyCourseRecord;
 import net.skhu.VO.MyReplace;
 import net.skhu.VO.Replacement;
 import net.skhu.VO.Student;
@@ -274,9 +276,15 @@ public class MainController {
 	@RequestMapping(value="graduation", method=RequestMethod.GET)
 	public String Graduation(Model model,HttpSession session) {
 		Student student = (Student)session.getAttribute("loginUser");
-		Map<String, Object> tempMap = studentService.getStudentRecord(student.getStudentId());
+
+		//로그인한 사람의 학번 가져와서 앞의 4자리만 추출
+		String year = student.getStudentId().substring(0, 4);
+
+		Map<String, Object> tempMap = studentService.getStudentRecord(student.getStudentId(), student.getCourse());
 		model.addAttribute("Map", tempMap);
 
+		List<List<MajorColor>> nameList = studentService.getNameList(year, student.getCourse(), (List<MyCourseRecord>)tempMap.get("MajorList"));
+		model.addAttribute("NameList", nameList);
 		return "student/graduation";
 	}
 

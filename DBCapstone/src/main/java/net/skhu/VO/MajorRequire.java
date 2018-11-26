@@ -11,8 +11,56 @@ public class MajorRequire {
 	private int total;
 	private int departmentId;
 	private String departmentName;
+	private String firstSemester;
+	private String secondSemester;
+	private String thirdSemester;
+	private String fourthSemester;
+	private String fifthSemester;
+	private String sixthSemester;
+	private String seventhSemester;
 
-
+	public String getFirstSemester() {
+		return firstSemester;
+	}
+	public void setFirstSemester(String firstSemester) {
+		this.firstSemester = firstSemester;
+	}
+	public String getSecondSemester() {
+		return secondSemester;
+	}
+	public void setSecondSemester(String secondSemester) {
+		this.secondSemester = secondSemester;
+	}
+	public String getThirdSemester() {
+		return thirdSemester;
+	}
+	public void setThirdSemester(String thirdSemester) {
+		this.thirdSemester = thirdSemester;
+	}
+	public String getFourthSemester() {
+		return fourthSemester;
+	}
+	public void setFourthSemester(String fourthSemester) {
+		this.fourthSemester = fourthSemester;
+	}
+	public String getFifthSemester() {
+		return fifthSemester;
+	}
+	public void setFifthSemester(String fifthSemester) {
+		this.fifthSemester = fifthSemester;
+	}
+	public String getSixthSemester() {
+		return sixthSemester;
+	}
+	public void setSixthSemester(String sixthSemester) {
+		this.sixthSemester = sixthSemester;
+	}
+	public String getSeventhSemester() {
+		return seventhSemester;
+	}
+	public void setSeventhSemester(String seventhSemester) {
+		this.seventhSemester = seventhSemester;
+	}
 	public int getId() {
 		return id;
 	}

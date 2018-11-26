@@ -88,10 +88,39 @@
 					<div class="info-main" style="margin-bottom: 30px">
 						<div class="section-title left">
 							<h2>
-								나의 이수내역 ->아직 구현 X<br />
+								나의 이수내역<br />
 							</h2>
-							<p style="padding-left: 0%">이수한 과목은 빨간색으로 보입니다.</p>
+							<p style="padding-left: 0%">이수하지 않은 과목은 빨간색으로 보입니다.</p>
 						</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">학기</th>
+									<th scope="col">전공 필수 과목</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="nameList" items="${NameList }" varStatus="status">
+									<tr>
+										<th scope="row" style="width: 20%">${status.count}학기</td>
+										<td>
+										<c:forEach var="semester" items="${nameList}">
+											<c:choose>
+												<c:when test="${semester.check == false }">
+													<font color="red">${semester.name}</font>
+												</c:when>
+												<c:otherwise>
+													${semester.name}
+												</c:otherwise>
+											</c:choose>
+											
+										</c:forEach>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<!-- 
 						<table class="table">
 							<thead>
 								<tr>
@@ -123,6 +152,7 @@
 								</tr>
 							</tbody>
 						</table>
+						 -->
 					</div>
 
 					<p>
@@ -148,6 +178,7 @@
 							<h2>나의 졸업현황</h2>
 						</div>
 						<div class="some-info">
+							<!-- 
 							<form>
 								<select>
 									<option>전공기초</option>
@@ -159,6 +190,7 @@
 									style="background-color: #16A085; color: white; margin-left: 30px">선택</button>
 								<br /> 현재 전공 기초만
 							</form>
+							 -->
 						</div>
 						<!-- Single Skill -->
 						<div class="single-skill">

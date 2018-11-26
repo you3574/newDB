@@ -1,9 +1,11 @@
 package net.skhu.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.VO.Student;
 
@@ -37,4 +39,8 @@ public interface StudentMapper {
 	List<MyCourseRecord> getStudentRecord(String studentId);
 	String getMajorCourseName(MyCourseRecord record);
 	String getCulturalCourseName(MyCourseRecord record);
+	String getTableName(String year);
+	String getCode(String year);
+	MajorRequire getMajorRequire(Map<String, Object> map);
+	String getMajorName(Map<String, Object> map);
 }

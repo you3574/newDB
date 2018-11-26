@@ -56,4 +56,20 @@
   <select id="getCulturalCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
   	select cultureName from cultural_course where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
   </select>
+  
+  <select id="getTableName" resultType="String">
+  	select tableName from major_connect where name=#{year}
+  </select>
+  
+  <select id="getCode" resultType="String">
+  	select code from major_connect where name=#{year}
+  </select>
+  
+  <select id="getMajorRequire" parameterType="java.util.HashMap" resultType="net.skhu.VO.MajorRequire">
+  	select * from ${tableName} where code = #{code} and name = #{course} 
+  </select>
+  
+  <select id="getMajorName" parameterType="java.util.HashMap" resultType="String">
+  	SELECT majorName FROM soft_course where courseId=#{courseId} LIMIT 1;
+  </select>
 </mapper>
