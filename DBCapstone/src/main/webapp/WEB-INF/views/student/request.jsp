@@ -138,17 +138,15 @@
 												<th scope="col">학점</th>
 											</tr>
 										</thead>
-										<form id="requestFrom">
 										<tbody id="request">
 											<tr>
-												<td><input type="radio"  name="ck"/></td>
+												<td><input type="radio" value="zz" name="ck" /></td>
 												<td></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 										</tbody>
-										</form>
 									</table>
 								</div>
 								<br />
@@ -188,13 +186,15 @@
 									<th scope="col">과목명</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="replacement" items="${replacement}">
-									<tr id="${replacement.id}">
-										<td></td>
-
-									</tr>
-								</c:forEach>
+							<tbody id="replace">
+							<c:forEach var="myreplace" items="${myreplace}">
+								<tr>
+									<td>${myreplace.abolishCode }</td>
+									<td>${myreplace.abolishName }</td>
+									<td>${myreplace.replacementCode }</td>
+									<td>${myreplace.replacementName }</td>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 
@@ -229,6 +229,8 @@
 	
 	$('.request_click').click(function(){
 		var id = $(this).attr("id");
+		var abolcode = $(this).children('td').eq(0).text();
+		var abolname = $(this).children('td').eq(1).text();
 		
 		$.ajax({
 			url: "replaceRequest",
@@ -239,19 +241,56 @@
 			success:function(data){
 				if(data){
 					//alert(data+"성공하셨습니다.");
-					$("#request>tr>td").eq(1).text(data.abolishCode);
-					$("#request>tr>td").eq(2).text(data.abolishName);
+					
+					$("#request>tr>td").eq(1).text(data.replacementCode);
+					$("#request>tr>td").eq(2).text(data.replacementName);
 					$("#request>tr>td").eq(3).text(data.category);
 					$("#request>tr>td").eq(4).text(data.credits);
 					
+					$('#replaceRequest_submit').click(function(){
+						
+						
+						var rcode = $("input[name='ck']:checked").parent().next().text();
+						var rname = $("input[name='ck']:checked").parent().next().next().text();
+						
+						var sendData;
+						sendData=JSON.stringify({
+							"abolishCode": abolcode,
+							"abolishName": abolname,
+							"replacementCode": rcode,
+							"replacementName": rname
+						});
+						
+						$.ajax({
+							url: "myreplace",
+							method:"POST",
+							data:sendData,
+							dataType: "json",
+							contentType: "application/json;charset=UTF-8",
+							success:function(data){
+								if(data){
+				    				alert(data+" 등록에 성공하셨습니다.");
+				    				location.reload();	
+				    			}else{
+				    				alert("에러");
+				    			}
+							},
+							error: function(){
+				            	alert("에러");
+							}
+						});
+					});
 				}else{
 					alert("에러");
 				}
+				
+				
 			},
 			error: function(){
         		alert("에러");
      	    }
 			
+		
 		});
 		
 	});

@@ -13,4 +13,5 @@ public interface SubjectMapper {
 
 	Replacement getReplaceRequest(int id);
 
+
 }

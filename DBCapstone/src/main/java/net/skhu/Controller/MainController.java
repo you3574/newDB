@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.skhu.VO.Admin;
 import net.skhu.VO.MajorRequire;
+import net.skhu.VO.MyReplace;
 import net.skhu.VO.Replacement;
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
+import net.skhu.service.MyReplaceService;
 import net.skhu.service.SignService;
 import net.skhu.service.StudentService;
 import net.skhu.service.SubjectService;
@@ -41,6 +45,9 @@ public class MainController {
 	private AdminService adminService;
 	@Autowired
 	private SubjectService subjectService;
+	@Autowired
+	private MyReplaceService myReplaceService;
+
 
 	@GetMapping("/")
 	public ModelAndView LoginPage() {
@@ -125,7 +132,7 @@ public class MainController {
 	@PostMapping("replaceRequest")
 	@ResponseBody
 	public Replacement replaceRequest(@RequestBody int id,
-			 HttpServletResponse response) throws Exception{
+			HttpServletResponse response) throws Exception{
 
 		Replacement code=subjectService.getReplaceRequest(id);
 
@@ -133,16 +140,40 @@ public class MainController {
 
 	}
 
+	//@PostMapping(value="myreplace", produces="application/json; charset=UTF-8")
+	@RequestMapping(value="myreplace", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Boolean> myreplace(@RequestBody MyReplace myreplace , HttpSession session, Model model) throws Exception{
+		Student student= (Student)session.getAttribute("loginUser");
+
+		//	System.out.println(myreplace);
+		//	System.out.println(myreplace.getAbolishCode());
+		//	System.out.println(myreplace.getReplacementCode());
+		boolean check = myReplaceService.insertreplace(student.getStudentId(), myreplace);
+		//	System.out.println(check);
+
+
+		if(check)
+			return new ResponseEntity(true, HttpStatus.OK);
+		return new ResponseEntity(false, HttpStatus.INTERNAL_SERVER_ERROR);
+
+	}
+
+
+
 	@GetMapping("request")
 	public String ShowReplacement(Model model, HttpSession session) throws Exception{
 
-		 Student student = (Student)session.getAttribute("loginUser");
-	     model.addAttribute("replacement", subjectService.getReplacement(student.getStudentId()));
+		Student student = (Student)session.getAttribute("loginUser");
+		List<MyReplace> myreplace = myReplaceService.getAllreplace(student.getStudentId());
+
+		model.addAttribute("myreplace",myreplace);
+		model.addAttribute("replacement", subjectService.getReplacement(student.getStudentId()));
 
 
 		return "student/request";
 	}
-//
+	//
 	@GetMapping("excel")
 	public String excel() {
 		return "excel";
@@ -220,8 +251,8 @@ public class MainController {
 
 	@PostMapping("edit_major")
 	public String edit_major(MajorRequire edit) {
-		System.out.println(edit.getCode());
-		System.out.println(edit.getDepartmentName());;
+		//System.out.println(edit.getCode());
+		//System.out.println(edit.getDepartmentName());;
 		int temp = adminService.editMajor(edit);
 		return "redirect:graduation_require";
 	}
@@ -248,6 +279,7 @@ public class MainController {
 
 		return "student/graduation";
 	}
+
 
 
 }
