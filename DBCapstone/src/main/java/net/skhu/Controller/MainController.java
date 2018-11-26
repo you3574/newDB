@@ -22,11 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import net.skhu.VO.Admin;
 import net.skhu.VO.MajorColor;
 import net.skhu.VO.MajorRequire;
-<<<<<<< HEAD
 import net.skhu.VO.MyCourseRecord;
-=======
 import net.skhu.VO.Replacement;
->>>>>>> 25a21c90d2c74e70ba192e114095ffd96de9a9ab
 import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
@@ -129,25 +126,25 @@ public class MainController {
 
 	@PostMapping("replaceRequest")
 	public String replaceRequest(@RequestParam int id,
-			 HttpServletResponse response) throws Exception{
+			HttpServletResponse response) throws Exception{
 
 
 		List<Replacement> code=subjectService.getReplaceRequest(id);
 
-			return "student/request";
+		return "student/request";
 
 	}
 
 	@GetMapping("request")
 	public String ShowReplacement(Model model, HttpSession session) throws Exception{
 
-		 Student student = (Student)session.getAttribute("loginUser");
-	     model.addAttribute("replacement", subjectService.getReplacement(student.getStudentId()));
+		Student student = (Student)session.getAttribute("loginUser");
+		model.addAttribute("replacement", subjectService.getReplacement(student.getStudentId()));
 
 
 		return "student/request";
 	}
-//
+	//
 	@GetMapping("excel")
 	public String excel() {
 		return "excel";
