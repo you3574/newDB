@@ -8,8 +8,16 @@ public class MyCourseRecord {
 	private String grade;
 	private int year;
 	private int credits;
+	private int exception;
 
 
+
+	public int getException() {
+		return exception;
+	}
+	public void setException(int exception) {
+		this.exception = exception;
+	}
 	private String name;
 
 	public String getName() {

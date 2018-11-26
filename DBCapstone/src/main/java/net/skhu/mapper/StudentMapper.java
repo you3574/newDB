@@ -39,8 +39,12 @@ public interface StudentMapper {
 	List<MyCourseRecord> getStudentRecord(String studentId);
 	String getMajorCourseName(MyCourseRecord record);
 	String getCulturalCourseName(MyCourseRecord record);
-	String getTableName(String year);
-	String getCode(String year);
+	String getTableName(String condition, int departId);
+	String getCode(String condition, int departId);
 	MajorRequire getMajorRequire(Map<String, Object> map);
 	String getMajorName(Map<String, Object> map);
+
+	String getMajorCourseName2(String courseId, int year, String semester, int departmentId);
+	String getDoubleCourseName(MyCourseRecord record, int departmentId);
+
 }

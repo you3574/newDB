@@ -16,7 +16,15 @@ public class Student {
 	private String dname;
 	private String dcode;
 	private String course;
+	private int anotherMajorDepart;
 
+
+	public int getAnotherMajorDepart() {
+		return anotherMajorDepart;
+	}
+	public void setAnotherMajorDepart(int anotherMajorDepart) {
+		this.anotherMajorDepart = anotherMajorDepart;
+	}
 	public String getCourse() {
 		return course;
 	}

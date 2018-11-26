@@ -83,6 +83,17 @@
 	<section id="our-skill" class="section">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+					<div class="info-main" style="margin-bottom: 30px">
+						<div class="section-title">
+							<h2>
+									${loginUser.dname } / ${loginUser.course }<br />
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-6 col-sm-12 col-xs-12 wow fadeIn">
 					<!-- Info Main -->
 					<div class="info-main" style="margin-bottom: 30px">
@@ -120,39 +131,6 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<!-- 
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">학년</th>
-									<th scope="col">1학기</th>
-									<th scope="col">2학기</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row" style="width: 10%">1학년</th>
-									<td>c프로그래밍1,공업수학1,과정지도1,대학생활세미나1</td>
-									<td>c프로그래밍2,공업수학2,과정지도2,대학생활세미나2</td>
-								</tr>
-								<tr>
-									<th scope="row">2학년</th>
-									<td>자바,과정지도3,데이터베이스이론</td>
-									<td>자료구조,컴퓨터구조,운영체제론,과정지도4</td>
-								</tr>
-								<tr>
-									<th scope="row">3학년</th>
-									<td style="color: red">알고리즘,과정지도4</td>
-									<td>과정지도5</td>
-								</tr>
-								<tr>
-									<th scope="row">4학년</th>
-									<td>졸업지도</td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-						 -->
 					</div>
 
 					<p>
@@ -178,19 +156,6 @@
 							<h2>나의 졸업현황</h2>
 						</div>
 						<div class="some-info">
-							<!-- 
-							<form>
-								<select>
-									<option>전공기초</option>
-									<option>전공심화</option>
-									<option>복수전공</option>
-									<option>부전공</option>
-								</select>
-								<button class="btn btn-default"
-									style="background-color: #16A085; color: white; margin-left: 30px">선택</button>
-								<br /> 현재 전공 기초만
-							</form>
-							 -->
 						</div>
 						<!-- Single Skill -->
 						<div class="single-skill">
@@ -371,8 +336,72 @@
 								</div>
 							</div>
 						</div>
-
-
+						
+						
+						<!-- 특별과정(복전 같은것)이 있을 경우 추가적인 상황 보여줘야함 -->
+						<!-- Single Skill -->
+						<c:if test="${loginUser.course == '복수전공' }">
+							<div class="single-skill">
+								<div class="skill-info">
+									<h4>복수전공</h4>
+								</div>
+								<div class="progress">
+									<div class="progress-bar"
+										data-percent="${Map.doublePercentage}"
+										data-target="#layerpop2" data-toggle="modal">
+										<span>${Map.doublePercentage}%</span>
+									</div>
+								</div>
+							</div>
+							<!--/ End Single Skill -->
+	
+							<!--/ 모달구현 -->
+							<div class="modal fade" id="layerpop2">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<!-- header -->
+										<div class="modal-header">
+											<!-- header title -->
+											<h4 class="modal-title">복수전공 과목 수강 목록</h4>
+											총 수강 학점 : ${Map.doubleSum }
+											<!-- body -->
+											<div class="modal-body">
+												<table class="table">
+													<thead>
+														<tr>
+															<th scope="col">년도</th>
+															<th scope="col">학기</th>
+															<th scope="col">과목코드</th>
+															<th scope="col">과목이름</th>
+															<th scope="col">학점</th>
+															<th scope="col">성적</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="list" items="${Map.DoubleList }">
+															<tr>
+																<td>${list.year }</td>
+																<td>${list.semester}</td>
+																<td>${list.courseId}</td>
+																<td>${list.name}</td>
+																<td>${list.credits}</td>
+																<td>${list.grade}</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+											<!-- Footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">닫기</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</c:if>
+	
 						<!-- Single Skill -->
 						<!-- 
 							<div class="single-skill">

@@ -48,7 +48,7 @@
   	SELECT * FROM my_course_record where studentId=#{studentId}
 	order by year, semester;
   </select>
-  
+  <!-- 
   <select id="getMajorCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
   	select majorName from soft_course where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
   </select>
@@ -56,13 +56,31 @@
   <select id="getCulturalCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
   	select cultureName from cultural_course where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
   </select>
+   -->
+  <select id="getMajorCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
+  	select subjectName from all_course
+  	where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
+  	and category in ('전필','전선')
+  </select>
+  
+  <select id="getCulturalCourseName" parameterType="net.skhu.VO.MyCourseRecord" resultType="String">
+  	select subjectName from all_course
+  	where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1
+  	<!-- and category in ('교필','교선') -->
+  </select>
+  
+  <select id="getMajorCourseName2" resultType="String">
+  	select subjectName from all_course
+  	where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1 and departmentId = #{departmentId}
+  	and category in ('전필','전선')
+  </select>
   
   <select id="getTableName" resultType="String">
-  	select tableName from major_connect where name=#{year}
+  	select tableName from major_connect where majorCondition = #{condition} and departmentId = #{departId}
   </select>
   
   <select id="getCode" resultType="String">
-  	select code from major_connect where name=#{year}
+  	select code from major_connect where majorCondition = #{condition} and departmentId = #{departId}
   </select>
   
   <select id="getMajorRequire" parameterType="java.util.HashMap" resultType="net.skhu.VO.MajorRequire">
@@ -72,4 +90,5 @@
   <select id="getMajorName" parameterType="java.util.HashMap" resultType="String">
   	SELECT majorName FROM soft_course where courseId=#{courseId} LIMIT 1;
   </select>
+  
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.skhu.VO.Course;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.service.RegistryService;
 import net.skhu.service.StudentService;
@@ -44,6 +45,25 @@ public class ExcelController {
 
 
 		Boolean checkService = registryService.setMyRecord(list);
+		if(checkService != null && checkService){
+			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("false", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("/allCourse")
+	@ResponseBody
+	public ResponseEntity<String> AllCourse(@RequestParam(value="allCourse") MultipartFile allCourse) throws Exception{
+
+		List<Course> list = new ArrayList<>();
+		if ( (allCourse.getOriginalFilename().indexOf(".xlsx") > -1) ) {
+			list = registryService.Course_xlsx(allCourse.getInputStream());
+		}
+
+		//디비에 입력
+		Boolean checkService = registryService.setAllCourse(list);
+
 		if(checkService != null && checkService){
 			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		}else{

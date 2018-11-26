@@ -1,6 +1,7 @@
 package net.skhu.service;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.CellType;
@@ -11,11 +12,27 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.skhu.VO.Course;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.mapper.ExcelMapper;
 
 @Service
 public class RegistryService {
+
+	private static final String A = "전공필수";
+	private static final String B = "전공선택";
+	private static final String C = "교양필수";
+	private static final String D = "교양선택";
+	private static final String a = "전필";
+	private static final String b = "전선";
+	private static final String c = "교필";
+	private static final String d = "교선";
+	private static final String E = "자연계 ";
+	private static final String e = "사회계 디지털컨텐츠학과";
+	private static final String F = "공학계 ";
+	private static final String f = "공학계 컴퓨터공학과";
+	private static final String G = "전공탐색";
+	private static final String g = "전탐";
 
 	@Autowired
 	private ExcelMapper excelMapper;
@@ -107,5 +124,96 @@ public class RegistryService {
 			return false;
 	}
 
+	public List<Course> Course_xlsx(final InputStream allCourse) throws Exception {
+
+		XSSFWorkbook workbook = new XSSFWorkbook(allCourse);
+		XSSFSheet sheet = workbook.getSheetAt(0); //시트를 읽는다
+		int rowMax = sheet.getPhysicalNumberOfRows(); //행의 최대 값을 얻는다.
+		List<Course> list = new ArrayList<>();
+
+		for(int rowIndex = 5073 ; rowIndex < rowMax ; rowIndex++ ) { //행을 돈다
+			Course temp = new Course();
+
+			XSSFRow row = sheet.getRow(rowIndex); //행을 얻는다
+
+			for(int cellIndex=0 ;  cellIndex < 9  ; cellIndex++) { //열을 돈다
+				XSSFCell cell = row.getCell(cellIndex); //셀 하나를 얻는다.
+
+				if(cellIndex==0) { //년도
+					switch (cell.getCellTypeEnum() ) {
+					case STRING:
+						temp.setYear(Integer.parseInt(cell.getStringCellValue()));
+						break;
+					case NUMERIC:
+						temp.setYear((int)cell.getNumericCellValue());
+						break;
+					default:
+						break;
+					}
+				}else if(cellIndex==1) { //학기
+					temp.setSemester(cell.getStringCellValue());
+				}else if(cellIndex==2) { //과목코드
+					temp.setCourseId(cell.getStringCellValue());
+				}else if(cellIndex==3){ //분반
+					temp.setDivision((int)cell.getNumericCellValue());
+				}else if(cellIndex==4){ //개설 소속
+					String str1 = cell.getStringCellValue();
+					if(str1.equals(E)) {
+						temp.setDepartmentName(e);
+					}else if(str1.equals(F)){
+						temp.setDepartmentName(f);
+					}else {
+						temp.setDepartmentName(cell.getStringCellValue());
+					}
+				}else if(cellIndex==6){ //이름
+					temp.setSubjectName(cell.getStringCellValue());
+				}else if(cellIndex==7){ //이수구분
+					String str = cell.getStringCellValue();
+					if(str.equals(A)) {
+						temp.setCategory(a);
+					}else if(str.equals(B)){
+						temp.setCategory(b);
+					}else if(str.equals(C)) {
+						temp.setCategory(c);
+					}else if(str.equals(D)) {
+						temp.setCategory(d);
+					}else if(str.equals(G)) {
+						temp.setCategory(g);
+					}else {
+						temp.setCategory(str);
+					}
+				}else if(cellIndex==8) { // 학점
+					switch (cell.getCellTypeEnum() ) {
+					case STRING:
+						String str = cell.getStringCellValue().substring(0, 1);
+						temp.setCredits(Integer.parseInt(str));
+						break;
+					case NUMERIC:
+						temp.setCredits((int)cell.getNumericCellValue());
+						break;
+					default:
+						break;
+					}
+				}
+			}//열을 돈다 끝
+
+			//System.out.println(temp.getYear()+"\t"+temp.getSemester()+"\t"+temp.getCourseId()+"\t"+temp.getDivision()+"\t"+temp.getName()+"\t\t\t"+
+			//		temp.getDepartmentName()+"\t\t\t"+temp.getCategory()+"\t"+temp.getCredits());
+			list.add(temp);
+		}//행을 돈다 끝
+
+		workbook.close();
+
+		return list;
+	}
+
+	public Boolean setAllCourse(List<Course> list) {
+
+		int num = excelMapper.setAllCourse(list);
+		if(num>0)
+			return true;
+		else
+			return false;
+	}
 
 }
