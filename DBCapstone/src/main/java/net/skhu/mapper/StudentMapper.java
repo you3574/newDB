@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.VO.Student;
@@ -39,12 +40,17 @@ public interface StudentMapper {
 	List<MyCourseRecord> getStudentRecord(String studentId);
 	String getMajorCourseName(MyCourseRecord record);
 	String getCulturalCourseName(MyCourseRecord record);
-	String getTableName(String condition, int departId);
-	String getCode(String condition, int departId);
+	String getTableName(final String condition, int departId, String year);
+	String getCode(final String condition, int departId, String year);
 	MajorRequire getMajorRequire(Map<String, Object> map);
 	String getMajorName(Map<String, Object> map);
+	String getMajorName2(Map<String, Object> map);
 
 	String getMajorCourseName2(String courseId, int year, String semester, int departmentId);
+	String getMajorRequireCourseName(String courseId, int year, String semester, int departmentId);
 	String getDoubleCourseName(MyCourseRecord record, int departmentId);
 
+	String getCulturalTableName(final String condition, int departId, String year);
+	String getCulturalCode(final String condition, int departId, String year);
+	CulturalRequire getCulturalRequire(String tableName, String code);
 }

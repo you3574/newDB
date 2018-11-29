@@ -69,18 +69,24 @@
   	<!-- and category in ('교필','교선') -->
   </select>
   
+  <select id="getMajorRequireCourseName" resultType="String">
+  	select subjectName from all_course
+  	where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1 and departmentId = #{departmentId}
+  	and category in ('전필')
+  </select>
+  
   <select id="getMajorCourseName2" resultType="String">
   	select subjectName from all_course
   	where courseId=#{courseId} and year=#{year} and semester = #{semester} and division=1 and departmentId = #{departmentId}
-  	and category in ('전필','전선')
+  	and category in ('전필','전선') LIMIT 1;
   </select>
   
   <select id="getTableName" resultType="String">
-  	select tableName from major_connect where majorCondition = #{condition} and departmentId = #{departId}
+  	select tableName from major_connect where majorCondition = #{condition} and departmentId = #{departId} and year = #{year}
   </select>
   
   <select id="getCode" resultType="String">
-  	select code from major_connect where majorCondition = #{condition} and departmentId = #{departId}
+  	select code from major_connect where majorCondition = #{condition} and departmentId = #{departId} and year = #{year}
   </select>
   
   <select id="getMajorRequire" parameterType="java.util.HashMap" resultType="net.skhu.VO.MajorRequire">
@@ -88,7 +94,23 @@
   </select>
   
   <select id="getMajorName" parameterType="java.util.HashMap" resultType="String">
-  	SELECT majorName FROM soft_course where courseId=#{courseId} LIMIT 1;
+  	SELECT subjectName FROM all_course where courseId=#{courseId} and year=#{year} LIMIT 1;
+  </select>
+  
+  <select id="getMajorName2" parameterType="java.util.HashMap" resultType="String">
+  	SELECT subjectName FROM all_course where courseId=#{courseId} LIMIT 1;
+  </select>
+  
+  <select id="getCulturalTableName" resultType="String">
+  	select tableName from cultural_connect where majorCondition = #{condition} and departmentId = #{departId} and year = #{year}
+  </select>
+	
+	<select id="getCulturalCode" resultType="String">
+  	select code from cultural_connect where majorCondition = #{condition} and departmentId = #{departId} and year = #{year}
+  </select>
+  
+  <select id="getCulturalRequire" resultType="net.skhu.VO.CulturalRequire">
+  	select * from ${tableName} where code = #{code} 
   </select>
   
 </mapper>

@@ -1,6 +1,6 @@
 package net.skhu.VO;
 
-public class MajorColor {
+public class SubjectColor {
 
 	private String name;
 	private boolean check;

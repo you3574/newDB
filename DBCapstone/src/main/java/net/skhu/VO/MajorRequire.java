@@ -5,10 +5,10 @@ public class MajorRequire {
 	private int id;
 	private String code;
 	private String name;
-	private int requireMajor;
-	private int totalMajor;
-	private int totalCultural;
-	private int total;
+	private int requireMajor; //전공필수 학점
+	private int totalMajor; 	//전공 학점
+	private int totalCultural;//교양 학점
+	private int total;				//전체 학점
 	private int departmentId;
 	private String departmentName;
 	private String firstSemester;
@@ -18,7 +18,15 @@ public class MajorRequire {
 	private String fifthSemester;
 	private String sixthSemester;
 	private String seventhSemester;
+	private String eighthSemester;
 
+
+	public String getEighthSemester() {
+		return eighthSemester;
+	}
+	public void setEighthSemester(String eighthSemester) {
+		this.eighthSemester = eighthSemester;
+	}
 	public String getFirstSemester() {
 		return firstSemester;
 	}
