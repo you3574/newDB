@@ -13,8 +13,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.checkimg{
-	display:inline;
+.checkimg {
+	display: inline;
 }
 </style>
 
@@ -73,10 +73,9 @@
 									<li><a href="question">문의사항</a></li>
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
-										<li>
-											<a href="/logout"><button class="btn btn-default">로그아웃</button></a>
+										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
 										</li>
-									</c:if>	
+									</c:if>
 								</ul>
 							</div>
 						</nav>
@@ -104,9 +103,45 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<form class="form_upload" id="uploadForm" name="uploadForm"
+					method="post" enctype="multipart/form-data">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center" width="400px">이수 과목 데이터</th>
+								<th class="text-center" width="400px">업로드</th>
+								<th class="text-center" width="150px">샘플 엑셀 양식</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center"><input type="file" name="excelFile"
+									id="excelFile"></td>
+								<td class="text-center">
+									<div class="btn-group btn-group-xs">
+										<button class="btn btn-info" id="uploadDoc" name="uploadDoc">
+											<i class="fa fa-upload"></i> 업로드
+										</button>
+									</div>
+								</td>
+								<td class="text-center">
+									<div class="btn-group btn-group-xs">
+										<button class="btn" id="downloadDoc" name="downloadDoc">
+											<i class="fa fa-download"></i> 다운로드
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
 			<c:choose>
 				<c:when test="${check==false }">
-					수강 데이터가 없습니다.
+
+					<p>이수 과목 데이터가 없습니다. 과목을 업로드해주세요</p>
+
 				</c:when>
 				<c:otherwise>
 					<div class="row">
@@ -134,8 +169,7 @@
 											varStatus="status">
 											<tr>
 												<th scope="row" style="width: 20%">${status.count}학기</th>
-												<td>
-													<c:forEach var="semester" items="${nameList}">
+												<td><c:forEach var="semester" items="${nameList}">
 														<c:choose>
 															<c:when test="${semester.check == false }">
 																<font color="red">${semester.name}</font>
@@ -144,13 +178,12 @@
 																${semester.name}
 															</c:otherwise>
 														</c:choose>
-													</c:forEach>
-												</td>
+													</c:forEach></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-		
+
 								<c:if test="${loginUser.course == '타과복수전공' }">
 									<h4>복수전공</h4>
 									<table class="table">
@@ -165,8 +198,7 @@
 												varStatus="status">
 												<tr>
 													<th scope="row" style="width: 20%">${status.count}학기</th>
-													<td>
-														<c:forEach var="semester" items="${nameList}">
+													<td><c:forEach var="semester" items="${nameList}">
 															<c:choose>
 																<c:when test="${semester.check == false }">
 																	<font color="red">${semester.name}</font>
@@ -175,14 +207,13 @@
 																	${semester.name}
 																</c:otherwise>
 															</c:choose>
-														</c:forEach>
-													</td>
+														</c:forEach></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</c:if>
-								
+
 								<c:if test="${loginUser.course == '타과부전공' }">
 									<h4>부전공</h4>
 									<table class="table">
@@ -197,8 +228,7 @@
 												varStatus="status">
 												<tr>
 													<th scope="row" style="width: 20%">${status.count}학기</th>
-													<td>
-														<c:forEach var="semester" items="${nameList}">
+													<td><c:forEach var="semester" items="${nameList}">
 															<c:choose>
 																<c:when test="${semester.check == false }">
 																	<font color="red">${semester.name}</font>
@@ -207,14 +237,13 @@
 																	${semester.name}
 																</c:otherwise>
 															</c:choose>
-														</c:forEach>
-													</td>
+														</c:forEach></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</c:if>
-								
+
 								<c:if test="${ Cultural.RequireList != NULL}">
 									<h4>교양</h4>
 									<table class="table">
@@ -224,10 +253,10 @@
 											</tr>
 										</thead>
 										<tbody>
-											
-												<tr>
-													<td>
-														<c:forEach var="sub" items="${Cultural.RequireList }">
+
+											<tr>
+												<td><c:forEach var="sub"
+														items="${Cultural.RequireList }">
 														<c:choose>
 															<c:when test="${sub.check == false }">
 																<font color="red">${sub.name}</font>
@@ -236,14 +265,13 @@
 																${sub.name}
 															</c:otherwise>
 														</c:choose>
-														</c:forEach>
-													</td>
-												</tr>
-											
+													</c:forEach></td>
+											</tr>
+
 										</tbody>
 									</table>
 								</c:if>
-								
+
 								<c:if test="${ Cultural.AdditionList != NULL}">
 									<h4>학과 지정 교양</h4>
 									<table class="table">
@@ -253,10 +281,10 @@
 											</tr>
 										</thead>
 										<tbody>
-											
-												<tr>
-													<td>
-													<c:forEach var="sub" items="${ Cultural.AdditionList }">
+
+											<tr>
+												<td><c:forEach var="sub"
+														items="${ Cultural.AdditionList }">
 														<c:choose>
 															<c:when test="${sub.check == false }">
 																<font color="red">${sub.name}</font>
@@ -265,36 +293,39 @@
 																${sub.name}
 															</c:otherwise>
 														</c:choose>
-														</c:forEach>
-													</td>
-												</tr>
-											
+													</c:forEach></td>
+											</tr>
+
 										</tbody>
 									</table>
 								</c:if>
-								
+
 							</div>
-		
+
 							<p>
 							<h4>사회봉사</h4>
-							<font style="font-weight: bold">필요 이수 횟수 : ${ Cultural.VoluntarySum } / ${ Cultural.Voluntary } </font>
-							<small>(아이콘갯수로 이수횟수를 나타냅니다.)</small>
+							<font style="font-weight: bold">필요 이수 횟수 : ${ Cultural.VoluntarySum }
+								/ ${ Cultural.Voluntary } </font> <small>(아이콘갯수로 이수횟수를 나타냅니다.)</small>
 							</p>
-							
-							<c:forEach var="num" begin="1" end="${ Cultural.VoluntarySum }" step="1">
-								<img class="checkimg" style="width: 30px; margin-top: 20px" src="/res/images/success.png">
+
+							<c:forEach var="num" begin="1" end="${ Cultural.VoluntarySum }"
+								step="1">
+								<img class="checkimg" style="width: 30px; margin-top: 20px"
+									src="/res/images/success.png">
 							</c:forEach>
-		
+
 							<p style="margin-bottom: 30px">
 							<h4>채플</h4>
-							<font style="font-weight: bold">필요 이수 횟수 : ${ Cultural.ChapelSum } / ${ Cultural.Chapel } </font>
-							(아이콘갯수로 이수횟수를 나타냅니다.)</small>
+							<font style="font-weight: bold">필요 이수 횟수 : ${ Cultural.ChapelSum }
+								/ ${ Cultural.Chapel } </font> (아이콘갯수로 이수횟수를 나타냅니다.)</small>
 							</p>
-							
-							<c:forEach var="num" begin="1" end="${ Cultural.ChapelSum }" step="1">
-								<img class="checkimg" style="width: 30px; margin-top: 20px" src="/res/images/success.png">
+
+							<c:forEach var="num" begin="1" end="${ Cultural.ChapelSum }"
+								step="1">
+								<img class="checkimg" style="width: 30px; margin-top: 20px"
+									src="/res/images/success.png">
 							</c:forEach>
-								
+
 							<!--/ End Info Main -->
 						</div>
 						<div class="col-md-6 col-sm-12 col-xs-12">
@@ -310,7 +341,8 @@
 										<h4>전체</h4>
 									</div>
 									<div class="progress">
-										<div class="progress-bar" data-percent="${Map.totalPercentage}"
+										<div class="progress-bar"
+											data-percent="${Map.totalPercentage}"
 											data-target="#alllayerpop" data-toggle="modal">
 											<span>${Map.totalPercentage}%</span>
 										</div>
@@ -325,7 +357,7 @@
 											<div class="modal-header">
 												<!-- header title -->
 												<h4 class="modal-title">수강과목 목록</h4>
-												총 수강 학점 : ${Map.totalSum } /  ${Map.total }
+												총 수강 학점 : ${Map.totalSum } / ${Map.total }
 												<!-- body -->
 												<div class="modal-body">
 													<table class="table">
@@ -345,7 +377,7 @@
 																	<td>${list.year }</td>
 																	<td>${list.semester}</td>
 																	<td>${list.courseId}</td>
-																	<td>${list.name}</td>
+																	<td>${list.subjectName}</td>
 																	<td>${list.credits}</td>
 																	<td>${list.grade}</td>
 																</tr>
@@ -362,8 +394,8 @@
 										</div>
 									</div>
 								</div>
-		
-		
+
+
 								<!-- Single Skill -->
 								<div class="single-skill">
 									<div class="skill-info">
@@ -406,7 +438,7 @@
 																	<td>${list.year }</td>
 																	<td>${list.semester}</td>
 																	<td>${list.courseId}</td>
-																	<td>${list.name}</td>
+																	<td>${list.subjectName}</td>
 																	<td>${list.credits}</td>
 																	<td>${list.grade}</td>
 																</tr>
@@ -423,16 +455,17 @@
 										</div>
 									</div>
 								</div>
-		
-		
+
+
 								<!-- Single Skill -->
 								<div class="single-skill">
 									<div class="skill-info">
 										<h4>전공 전체</h4>
 									</div>
 									<div class="progress">
-										<div class="progress-bar" data-percent="${Map.majorPercentage}"
-											data-target="#major" data-toggle="modal">
+										<div class="progress-bar"
+											data-percent="${Map.majorPercentage}" data-target="#major"
+											data-toggle="modal">
 											<span>${Map.majorPercentage}%</span>
 										</div>
 									</div>
@@ -466,7 +499,7 @@
 																	<td>${list.year }</td>
 																	<td>${list.semester}</td>
 																	<td>${list.courseId}</td>
-																	<td>${list.name}</td>
+																	<td>${list.subjectName}</td>
 																	<td>${list.credits}</td>
 																	<td>${list.grade}</td>
 																</tr>
@@ -483,7 +516,7 @@
 										</div>
 									</div>
 								</div>
-		
+
 								<!-- Single Skill -->
 								<div class="single-skill">
 									<div class="skill-info">
@@ -498,7 +531,7 @@
 									</div>
 								</div>
 								<!--/ End Single Skill -->
-		
+
 								<!--/ 모달구현 -->
 								<div class="modal fade" id="cultural">
 									<div class="modal-dialog">
@@ -527,7 +560,7 @@
 																	<td>${list.year }</td>
 																	<td>${list.semester}</td>
 																	<td>${list.courseId}</td>
-																	<td>${list.name}</td>
+																	<td>${list.subjectName}</td>
 																	<td>${list.credits}</td>
 																	<td>${list.grade}</td>
 																</tr>
@@ -544,14 +577,73 @@
 										</div>
 									</div>
 								</div>
-		
-		
+
+
 								<!-- 특별과정-복전이 있을 경우 -->
 								<!-- Single Skill -->
 								<c:if test="${loginUser.course == '타과복수전공' }">
 									<div class="single-skill">
 										<div class="skill-info">
-											<h4>복수전공</h4>
+											<h4>복수전공 필수</h4>
+										</div>
+										<div class="progress">
+											<div class="progress-bar"
+												data-percent="${Map.doubleRequirePercentage}"
+												data-target="#doubleMajorRequire" data-toggle="modal">
+												<span>${Map.doubleRequirePercentage}%</span>
+											</div>
+										</div>
+									</div>
+									<!--/ End Single Skill -->
+
+									<!--/ 모달구현 -->
+									<div class="modal fade" id="doubleMajorRequire">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<!-- header -->
+												<div class="modal-header">
+													<!-- header title -->
+													<h4 class="modal-title">복수전공 필수 과목 수강 목록</h4>
+													총 수강 학점 : ${Map.doubleRequqireSum } / ${Map.totalrequireDouble }
+													<!-- body -->
+													<div class="modal-body">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th scope="col">년도</th>
+																	<th scope="col">학기</th>
+																	<th scope="col">과목코드</th>
+																	<th scope="col">과목이름</th>
+																	<th scope="col">학점</th>
+																	<th scope="col">성적</th>
+																</tr>
+															</thead>
+															<tbody>
+																<c:forEach var="list" items="${Map.DoubleReqquireList }">
+																	<tr>
+																		<td>${list.year }</td>
+																		<td>${list.semester}</td>
+																		<td>${list.courseId}</td>
+																		<td>${list.subjectName}</td>
+																		<td>${list.credits}</td>
+																		<td>${list.grade}</td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+													</div>
+													<!-- Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">닫기</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="single-skill">
+										<div class="skill-info">
+											<h4>복수전공 전체</h4>
 										</div>
 										<div class="progress">
 											<div class="progress-bar"
@@ -562,7 +654,7 @@
 										</div>
 									</div>
 									<!--/ End Single Skill -->
-		
+
 									<!--/ 모달구현 -->
 									<div class="modal fade" id="doubleMajor">
 										<div class="modal-dialog">
@@ -591,7 +683,7 @@
 																		<td>${list.year }</td>
 																		<td>${list.semester}</td>
 																		<td>${list.courseId}</td>
-																		<td>${list.name}</td>
+																		<td>${list.subjectName}</td>
 																		<td>${list.credits}</td>
 																		<td>${list.grade}</td>
 																	</tr>
@@ -609,13 +701,72 @@
 										</div>
 									</div>
 								</c:if>
-		
+
 								<!-- 특별과정-부전공이 있을 경우 -->
 								<!-- Single Skill -->
 								<c:if test="${loginUser.course == '타과부전공' }">
 									<div class="single-skill">
 										<div class="skill-info">
-											<h4>부전공</h4>
+											<h4>부전공 필수</h4>
+										</div>
+										<div class="progress">
+											<div class="progress-bar"
+												data-percent="${Map.doubleRequirePercentage}"
+												data-target="#minorrequire" data-toggle="modal">
+												<span>${Map.doubleRequirePercentage}%</span>
+											</div>
+										</div>
+									</div>
+									<!--/ End Single Skill -->
+
+									<!--/ 모달구현 -->
+									<div class="modal fade" id="minorrequire">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<!-- header -->
+												<div class="modal-header">
+													<!-- header title -->
+													<h4 class="modal-title">부전공 필수 과목 수강 목록</h4>
+													총 수강 학점 : ${Map.doubleRequqireSum } / ${Map.totalrequireDouble }
+													<!-- body -->
+													<div class="modal-body">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th scope="col">년도</th>
+																	<th scope="col">학기</th>
+																	<th scope="col">과목코드</th>
+																	<th scope="col">과목이름</th>
+																	<th scope="col">학점</th>
+																	<th scope="col">성적</th>
+																</tr>
+															</thead>
+															<tbody>
+																<c:forEach var="list" items="${Map.DoubleReqquireList }">
+																	<tr>
+																		<td>${list.year }</td>
+																		<td>${list.semester}</td>
+																		<td>${list.courseId}</td>
+																		<td>${list.subjectName}</td>
+																		<td>${list.credits}</td>
+																		<td>${list.grade}</td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+													</div>
+													<!-- Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">닫기</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="single-skill">
+										<div class="skill-info">
+											<h4>부전공 전체</h4>
 										</div>
 										<div class="progress">
 											<div class="progress-bar"
@@ -626,7 +777,7 @@
 										</div>
 									</div>
 									<!--/ End Single Skill -->
-		
+
 									<!--/ 모달구현 -->
 									<div class="modal fade" id="minor">
 										<div class="modal-dialog">
@@ -655,7 +806,7 @@
 																		<td>${list.year }</td>
 																		<td>${list.semester}</td>
 																		<td>${list.courseId}</td>
-																		<td>${list.name}</td>
+																		<td>${list.subjectName}</td>
 																		<td>${list.credits}</td>
 																		<td>${list.grade}</td>
 																	</tr>
@@ -673,15 +824,15 @@
 										</div>
 									</div>
 								</c:if>
-		
+
 							</div>
-		
+
 							<!--/ End Skill Main -->
 						</div>
 					</div>
 				</c:otherwise>
 			</c:choose>
-			
+
 		</div>
 	</section>
 	<!--/ End Our Skill -->
@@ -706,5 +857,72 @@
 	<!--/ End Footer -->
 
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
+
+	<script type="text/javascript">
+	$(function () {
+		
+		//업로드
+		$('#uploadDoc').bind({
+			click: function(e){
+				e.preventDefault();
+				alert('엑셀 파일을 등록합니다.');	
+	
+				
+				var form = $('form')[0];
+				var formData = new FormData(form);
+				$.ajax({
+					url: "/studentrecord",
+					type: "POST",
+					processData: false,
+					contentType: false,
+					enctype: "multipart/form-data",
+					data: formData,
+	                beforeSend: function(){    
+						//기본적인 확장자 체크
+	                	var name = $('#excelFile').val();
+	                	//alert(name);
+	                	var len = name.length;
+	                	//alert(len);
+	                	var type = name.substring(len-4);
+	                	//alert(type);
+	                	if(type != "xlsx"){
+	                		alert("엑셀 파일이 아닙니다.")
+	                		return false;
+	                	}
+	                	if(typeof excelFile != ''){
+	                		if(confirm('파일을 업로드 하면 기존의 이수 데이터가 사라집니다.')){
+	                			return true;
+							}
+							else{
+								return false;
+							}
+	                	}
+	                },
+					success:function(data){
+						alert(data);
+						location.reload();
+					},
+					error: function(xhr, status, error){
+						//alert(xhr.status);
+						alert(error);
+						alert(xhr.responseText);
+						//alert(status);
+						
+	         	   }
+				})
+		
+			}//end of click event
+		}); 
+		
+		//샘플 파일 다운로드
+		$('#downloadDoc').bind({
+			click: function(e){
+				alert("샘플 파일을 다운로드합니다.")
+				e.preventDefault();
+				window.location.assign('/graduation/sampledownload');
+			}
+		});
+	})
+	</script>
 </body>
 </html>

@@ -42,7 +42,7 @@ public interface StudentMapper {
 	String getCulturalCourseName(MyCourseRecord record);
 	String getTableName(final String condition, int departId, String year);
 	String getCode(final String condition, int departId, String year);
-	MajorRequire getMajorRequire(Map<String, Object> map);
+	MajorRequire getMajorRequire(String tableName, String code, String course);
 	String getMajorName(Map<String, Object> map);
 	String getMajorName2(Map<String, Object> map);
 
@@ -53,4 +53,6 @@ public interface StudentMapper {
 	String getCulturalTableName(final String condition, int departId, String year);
 	String getCulturalCode(final String condition, int departId, String year);
 	CulturalRequire getCulturalRequire(String tableName, String code);
+
+	int deleteStudentRecord(String studentId);
 }

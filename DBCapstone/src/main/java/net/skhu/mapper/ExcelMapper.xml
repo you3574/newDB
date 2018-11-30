@@ -6,11 +6,11 @@
 
 	<insert id="setMyRecord" parameterType="java.util.List">
 		insert into my_course_record ( studentId, year, semester, courseId,
-		credits , grade ) values
+		subjectName, category, credits , grade ) values
 		<foreach collection="list" item="item" separator=",">
 			(
 			#{item.studentId}, #{item.year}, #{item.semester}, #{item.courseId},
-			#{item.credits} , #{item.grade} )
+			#{item.subjectName}, #{item.category}, #{item.credits} , #{item.grade} )
 		</foreach>
 	</insert>
 

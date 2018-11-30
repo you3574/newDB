@@ -89,7 +89,7 @@
   	select code from major_connect where majorCondition = #{condition} and departmentId = #{departId} and year = #{year}
   </select>
   
-  <select id="getMajorRequire" parameterType="java.util.HashMap" resultType="net.skhu.VO.MajorRequire">
+  <select id="getMajorRequire" resultType="net.skhu.VO.MajorRequire">
   	select * from ${tableName} where code = #{code} and name = #{course} 
   </select>
   
@@ -112,5 +112,9 @@
   <select id="getCulturalRequire" resultType="net.skhu.VO.CulturalRequire">
   	select * from ${tableName} where code = #{code} 
   </select>
+  
+  <delete id="deleteStudentRecord">
+  	delete from my_course_record where studentId = #{studentId}
+  </delete>
   
 </mapper>

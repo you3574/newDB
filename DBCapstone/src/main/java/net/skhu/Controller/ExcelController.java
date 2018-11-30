@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.VO.Course;
-import net.skhu.VO.MyCourseRecord;
 import net.skhu.service.RegistryService;
 import net.skhu.service.StudentService;
 
@@ -27,30 +26,7 @@ public class ExcelController {
 	private StudentService studentService;
 
 
-	@PostMapping("/studentrecord")
-	@ResponseBody
-	public ResponseEntity<String> StudentrecordRegistry(@RequestParam(value="Bar") MultipartFile Bar) throws Exception{
 
-		String fileName1 = Bar.getOriginalFilename();
-		List<MyCourseRecord> list = new ArrayList<MyCourseRecord>();
-
-		List<String> idList = studentService.getAllstudentId();
-
-		//엑셀 데이터 저장
-		if ( (fileName1.indexOf(".xlsx") > -1)  ) {
-			list = registryService.Bar_xlsx(Bar.getInputStream(), list, idList );
-		}
-
-		//디비에 입력
-
-
-		Boolean checkService = registryService.setMyRecord(list);
-		if(checkService != null && checkService){
-			return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		}else{
-			return new ResponseEntity<String>("false", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
 
 	@PostMapping("/allCourse")
 	@ResponseBody
