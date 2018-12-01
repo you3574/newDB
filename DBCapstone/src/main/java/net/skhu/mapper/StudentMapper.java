@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.VO.CategoryChange;
 import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
@@ -38,6 +39,7 @@ public interface StudentMapper {
 	//	void delete(int id);
 
 	List<MyCourseRecord> getStudentRecord(String studentId);
+	List<MyCourseRecord> getStudentRecordPass(String studentId);
 	String getMajorCourseName(MyCourseRecord record);
 	String getCulturalCourseName(MyCourseRecord record);
 	String getTableName(final String condition, int departId, String year);
@@ -55,4 +57,10 @@ public interface StudentMapper {
 	CulturalRequire getCulturalRequire(String tableName, String code);
 
 	int deleteStudentRecord(String studentId);
+
+	Integer getRecordId(int recordId);
+	int setCategotyChange(CategoryChange categoryChange);
+	List<CategoryChange> getStatus0(String studentId);
+	List<CategoryChange> getStatus1(String studentId);
+	List<CategoryChange> getStatus2(String studentId);
 }

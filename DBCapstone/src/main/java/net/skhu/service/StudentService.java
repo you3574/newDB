@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.skhu.VO.CategoryChange;
 import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
@@ -913,4 +914,36 @@ public class StudentService {
 		return temp;
 	}
 
+	public List<MyCourseRecord> getAllMyRecord(String studentId){
+		return studentmapper.getStudentRecordPass(studentId);
+	}
+
+	public boolean getRecordId(int recordId) {
+
+		Integer num = studentmapper.getRecordId(recordId);
+		if(num==null)
+			return false;
+		return true;
+	}
+
+	public boolean setCategotyChange(CategoryChange categoryChange) {
+
+		int num = studentmapper.setCategotyChange(categoryChange);
+		if(num>0)
+			return true;
+		return false;
+	}
+
+	public List<CategoryChange> getStatus0(String studentId){
+		return studentmapper.getStatus0(studentId);
+	}
+
+	public List<CategoryChange> getStatus1(String studentId){
+		return studentmapper.getStatus1(studentId);
+	}
+
+	public List<CategoryChange> getStatus2(String studentId){
+		return studentmapper.getStatus2(studentId);
+
+	}
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.Exception.ExcelBlankException;
+import net.skhu.VO.CategoryChange;
 import net.skhu.VO.MyCourseRecord;
 import net.skhu.VO.Student;
 import net.skhu.VO.SubjectColor;
@@ -211,4 +213,38 @@ public class StudentController {
 
 	}
 
+	@GetMapping("/categorychange")
+	public String CategoryChange(Model model,HttpSession session) {
+		Student student = (Student)session.getAttribute("loginUser");
+
+		model.addAttribute("MyRecord", studentService.getAllMyRecord(student.getStudentId()	));
+		model.addAttribute("ApplyList", studentService.getStatus0(student.getStudentId()	));
+		model.addAttribute("AllowList", studentService.getStatus1(student.getStudentId()	));
+		model.addAttribute("RejectList", studentService.getStatus2(student.getStudentId()	));
+
+		return "student/categoryChange";
+
+	}
+
+	@PostMapping("categorychangeapply")
+	@ResponseBody
+	public ResponseEntity<String> ChangeApply(@RequestBody CategoryChange categoryChange) throws Exception{
+
+		//System.out.println(categoryChange.getCategory());
+		//System.out.println(categoryChange.getChangeCategory());
+		boolean check1 = studentService.getRecordId(categoryChange.getRecordId());
+
+		//신청된게 없을 때->중복 신청이 아닐 때
+		if(check1==false) {
+			//데이터 입력
+			boolean check2 = studentService.setCategotyChange(categoryChange);
+			if(check2==true) {
+				return new ResponseEntity<String>("데이터 입력에 성공하였습니다.", HttpStatus.OK);
+			}
+			return new ResponseEntity<String>("데이터 입력에 실패하였습니다.",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+
+		return new ResponseEntity<String>("중복 신청입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

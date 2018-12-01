@@ -69,7 +69,12 @@
 								<ul class="nav navbar-nav menu">
 									<li><a href="student">메인페이지</a></li>
 									<li class="active"><a href="graduation">졸업관리</a></li>
-									<li><a href="request">예외사항 신청</a></li>
+									<li><a href="#">예외사항 신청</a>
+										<ul class="sub-menu">
+											<li><a href="request">대체과목 신청</a></li>	
+											<li><a href="categorychange">이수구분변경 신청</a></li>	
+										</ul>
+									</li>
 									<li><a href="question">문의사항</a></li>
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
@@ -922,7 +927,7 @@
 				window.location.assign('/graduation/sampledownload');
 			}
 		});
-	})
+	});
 	</script>
 </body>
 </html>
