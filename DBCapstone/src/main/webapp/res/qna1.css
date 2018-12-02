@@ -1,7 +1,64 @@
-div.blog-sidebar .title{
-	color:#16A085;
-	font-size: 20px;
+a.searchWord{
+	margin-left:200px;
+}
+button.searchWord,a.searchWord{
+	color:#fff;
+	background-color:#16A085;
+	padding:5px;
+	display:inline-block;
 	font-weight: bold;
+	
+}
+div.searchword1 {
+	display:inline-block;
+	margin-bottom:12px;
+}
+.clear{
+	clear:both;
+}
+
+#blog div.order ul.orderBy li a{
+	text-decoration:none;
+	color:black;
+}
+
+#blog div.order ul.orderBy{
+	margin-left:450px;
+	
+}
+#blog div.order ul.orderBy li.active a{
+	color:#16A085;
+	
+}
+#blog div.order ul.orderBy li a:hover{
+	color:#fff;
+	
+}
+#blog div.order ul.orderBy li:hover{
+	background-color:#16A085;
+	
+}
+#blog div.order ul.orderBy li{
+	display:inline-block;
+	border:2px solid #16A085;
+	padding:10px;
+	border-radius:4px;
+	color:black;
+	font-weight: bold;
+}
+form .searchWord{
+	border:2px solid #16A085;
+	border-radius: 0px;
+}
+#blog div.blog-sidebar .single-sidebar{
+	border:2px solid #16A085;
+	border-radius: 5px;
+}
+div.single-sidebar #title{
+	color:#16A085;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom:15px;
 }
 tbody tr:hover {
 	background-color: #16A085;
@@ -12,7 +69,7 @@ tbody tr:hover {
 	text-align: right;
 }
 
-#portfolio .notice a {
+#portfolio .notice a{
 	background-color: transparent;
 	font-size: 15px;
 	font-weight: bold;

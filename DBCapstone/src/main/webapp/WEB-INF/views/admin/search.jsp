@@ -16,10 +16,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<%@include file="/WEB-INF/views/include/css.jsp"%>
+
 <!-- Title Tag -->
 <title>졸업시켜조ver.admin</title>
 
-<%@include file="/WEB-INF/views/include/css.jsp"%>
+
 
 </head>
 <body>
@@ -104,7 +106,9 @@
 					<div class="single-blog">
 						<div class="blog-content">
 							<h2 style="margin-bottom: 30px">학생 조회</h2>
-
+							<div class="order">
+								<my:orderBy></my:orderBy>
+							</div>
 							<!-- Skill Main -->
 							<div class="skill-main">
 								<table class="table table-bordered mt5">
@@ -149,58 +153,45 @@
 					<div class="blog-sidebar">
 						<!-- Start Search Form -->
 						<div class="single-sidebar form">
-						<div class="title">SEARCH</div>
-							<div class="orderBy">
-								<ul class="orderBy_list">
+							<div id="title">S E A R C H</div>
 
-									<li class="id_asc"><a href='search?orderBy=0'>id오름차순</a></li>
-
-								</ul>
-								<ul>
-									<li class="id_desc"><a href='search?orderBy=1'>id내림차순</a></li>
-								</ul>
-								<ul>
-									<li class="studentId_asc"><a href='search?orderBy=2'>학번순</a></li>
-								</ul>
-							</div>
 							<form:form method="get" modelAttribute="pagination"
 								class="form-inline mb5">
 								<form:hidden path="now" value="1" />
+								<div class="searchword1"
+									style="color: #16A085; font-weight: bold;font-size:15px; margin-right:5px;">페이지
+									크기</div>
+									
+								<div class="searchword1">
+									<form:select path="size" class="form-control searchWord">
 
-								
+										<form:option value="10" />
+										<form:option value="15" />
+										<form:option value="30" />
 
-								<br>
+									</form:select>
+								</div>
+								<div class="clear"></div>
+								<div class="searchword1">
+									<form:select path="category"
+										class="form-control select searchWord" itemValue="value"
+										itemLabel="label" items="${ category }" />
+								</div>
+								<div class="searchword1">
+									<form:input path="searchWord" class="form-control searchWord"
+										placeholder="SEACHWORD" style="width:160px;" />
+								</div>
+								<div class="searchword1">
+									<button type="submit" class="searchWord">검색</button>
+								</div>
 
-								<form:select path="category" class="form-control ml30"
-									itemValue="value" itemLabel="label" items="${ category }" />
+							
 
-								<br>
 
-								<form:input path="searchWord" class="form-control"
-									placeholder="검색문자열" />
-
-								<br>
-
-								<span class="ml30">페이지 크기:</span>
-
-								<form:select path="size" class="form-control autosubmit">
-
-									<form:option value="10" />
-									<form:option value="15" />
-									<form:option value="30" />
-
-								</form:select>
-
-								<br>
-
-								<button type="submit" class="btn btn-default">
-									검색
-								</button>
 
 								<c:if
 									test="${ pagination.category > 0 || pagination.orderBy > 0}">
-									<a class="btn btn-default" href="search?now=1"> 전체목록
-									</a>
+									<a class="searchWord" href="search?now=1"> 전체목록 </a>
 								</c:if>
 
 

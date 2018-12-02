@@ -15,10 +15,10 @@ public class SearchController {
 
 
     @RequestMapping("search")
-    public String list1(@RequestParam("orderBy") int orderBy,Pagination pagination, Model model) {
+    public String list1(Pagination pagination, Model model) {
 
         model.addAttribute("students", searchService.findAll(pagination));
-        model.addAttribute("orderBy", orderBy);
+        model.addAttribute("orderBy", searchService.getOrderByOptions());
         model.addAttribute("category", searchService.getCategoryOptions());
         return "admin/search";
     }
