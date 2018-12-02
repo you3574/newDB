@@ -12,6 +12,8 @@ import net.skhu.mapper.AnswerMapper;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.model.AnswerModel;
 import net.skhu.model.ArticleModel;
+import net.skhu.model.Option;
+import net.skhu.model.QnAPagination;
 
 
 @Service
@@ -31,6 +33,11 @@ public class QnAService {
     public List<Article> getAllArticles() {
 
         return articleMapper.getAllArticles();
+    }
+    
+    public List<Article> getAllArticlesBySearchWord(QnAPagination qpagination) {
+
+        return articleMapper.getAllArticlesBySearchWord(qpagination);
     }
 
     public void update(ArticleModel a) {
@@ -102,6 +109,10 @@ public class QnAService {
 	public void updateAnswer(String message,int articleId) {
 
 		answerMapper.update(message,articleId);
+	}
+
+	public Option[] getCategoryOptions() {
+		return articleMapper.QnACategory;
 	}
 
 

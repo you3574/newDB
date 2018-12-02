@@ -1,3 +1,11 @@
+
+div.searchboard{
+	margin-left:400px;
+}
+div.board search-bar .searchboard{
+	display:inline-block;
+	
+}
 a.searchWord{
 	margin-left:250px;
 }

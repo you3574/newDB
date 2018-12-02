@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,8 @@ import net.skhu.VO.Admin;
 import net.skhu.VO.Student;
 import net.skhu.model.AnswerModel;
 import net.skhu.model.ArticleModel;
+import net.skhu.model.Pagination;
+import net.skhu.model.QnAPagination;
 import net.skhu.service.QnAService;
 
 @Controller
@@ -24,10 +27,10 @@ public class QnAController {
 	@Autowired QnAService qnaService;
 
 	@RequestMapping("question")
-    public String list(Model model) {
+    public String list(@ModelAttribute("qpagination") QnAPagination qpagination,Model model) {
 
-        model.addAttribute("articles", qnaService.getAllArticles());
-
+        model.addAttribute("articles", qnaService.getAllArticlesBySearchWord(qpagination));
+        model.addAttribute("QnACategory", qnaService.getCategoryOptions());
         return "student/question";
     }
 

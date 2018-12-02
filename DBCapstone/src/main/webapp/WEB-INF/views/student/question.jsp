@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
@@ -151,6 +152,28 @@
 
 				</div>
 
+				<div class="clear"></div>
+				<form:form method="get" modelAttribute="qpagination"
+					class="form-inline mb5">
+
+
+
+
+					<div class="board search-bar">
+
+						<div class="searchboard">
+							<form:select path="QnAcategory" class="form-control searchWord"
+								itemValue="value" itemLabel="label" items="${ QnACategory }" />
+							
+								<form:input path="searchWord" class="searchWord"
+									placeholder="SEACHWORD" style="width=300px;width:300px; padding-top: 3px;padding-bottom: 3px;" />
+
+								<button type="submit" class="searchWord">검색</button>
+
+							
+
+						</div>
+				</form:form>
 
 			</div>
 			<div class="row">

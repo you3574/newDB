@@ -12,24 +12,41 @@
 		article a left join student s
 		ON
 		a.writerId=s.id
-		WHERE 
+		WHERE
 		a.id = #{id}
 	</select>
 
 
 	<select id="getAllArticles" resultType="net.skhu.VO.Article">
 		SELECT
-		a.*,s.name as writerName
+		a.*,s.name as
+		writerName
 		FROM
 		article a left join student s
 		ON
 		a.writerId=s.id;
 	</select>
 
+	<select id="getAllArticlesBySearchWord" resultType="net.skhu.VO.Article">
+		SELECT
+		a.*,s.name as
+		writerName
+		FROM
+		article a left join student s
+		ON
+		a.writerId=s.id
+		WHERE a.id>0
+
+		<if test="QnAcategory == 1">AND INSTR(a.subject, #{searchWord}) > 0</if>
+		<if test="QnAcategory == 2">AND INSTR(a.message, #{searchWord}) > 0</if>
+		<if test="QnAcategory == 3">AND INSTR(s.name, #{searchWord}) > 0</if>
+	</select>
+
 
 	<select id="getMyArticles" resultType="net.skhu.VO.Article">
 		SELECT
-		a.*,s.name as writerName
+		a.*,s.name as
+		writerName
 		FROM
 		article a left join student s
 		ON
@@ -64,7 +81,8 @@
 		article
 		SET
 		subject = #{subject},
-		message =#{message},
+		message
+		=#{message},
 		time = NOW()
 		WHERE
 		id = #{id}
@@ -84,12 +102,14 @@
 		VALUES
 		(#{no},NOW(), #{subject},#{message}, #{writerId})
 	</insert>
-	
+
 	<insert id="insertNotice">
 		INSERT
-		article (no,time, subject, message, writerId ,notice)
+		article (no,time, subject, message, writerId
+		,notice)
 		VALUES
-		(#{no},NOW(), #{subject},#{message}, #{writerId}, #{notice})
+		(#{no},NOW(), #{subject},#{message}, #{writerId},
+		#{notice})
 	</insert>
 
 

@@ -22,19 +22,5 @@ public class SearchController {
         model.addAttribute("category", searchService.getCategoryOptions());
         return "admin/search";
     }
-//    @RequestMapping("search")
-//    public String list2(Pagination pagination, Model model) {
-//
-//        model.addAttribute("students", searchService.findAll(pagination));
-//        model.addAttribute("orderBy", searchService.getOrderByOptions());
-//        model.addAttribute("category", searchService.getCategoryOptions());
-//        return "admin/search";
-//    }
-//    @RequestMapping("question_details")
-//    public String view(@RequestParam("id") int id,Model model) {
-//        model.addAttribute("article", qnaService.getOne(id));
-//        model.addAttribute("answer", qnaService.getAnswer(id));
-//
-//        return "student/question_details";
-//    }
+
 }
