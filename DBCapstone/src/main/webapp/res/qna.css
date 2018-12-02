@@ -1,3 +1,8 @@
+div.blog-sidebar .title{
+	color:#16A085;
+	font-size: 20px;
+	font-weight: bold;
+}
 tbody tr:hover {
 	background-color: #16A085;
 	color: #fff;

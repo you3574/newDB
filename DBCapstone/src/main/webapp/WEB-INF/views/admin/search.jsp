@@ -149,48 +149,57 @@
 					<div class="blog-sidebar">
 						<!-- Start Search Form -->
 						<div class="single-sidebar form">
+						<div class="title">SEARCH</div>
+							<div class="orderBy">
+								<ul class="orderBy_list">
 
+									<li class="id_asc"><a href='search?orderBy=0'>id오름차순</a></li>
+
+								</ul>
+								<ul>
+									<li class="id_desc"><a href='search?orderBy=1'>id내림차순</a></li>
+								</ul>
+								<ul>
+									<li class="studentId_asc"><a href='search?orderBy=2'>학번순</a></li>
+								</ul>
+							</div>
 							<form:form method="get" modelAttribute="pagination"
 								class="form-inline mb5">
 								<form:hidden path="now" value="1" />
 
-								<span>정렬순서:</span>
 								
-								<form:select path="orderBy" class="form-control autosubmit"
-									itemValue="value" itemLabel="label" items="${ orderBy }" />
-								
-								<br>	
-								
+
+								<br>
+
 								<form:select path="category" class="form-control ml30"
 									itemValue="value" itemLabel="label" items="${ category }" />
-								
+
 								<br>
-									
+
 								<form:input path="searchWord" class="form-control"
 									placeholder="검색문자열" />
-								
+
 								<br>
-									
+
 								<span class="ml30">페이지 크기:</span>
-								
+
 								<form:select path="size" class="form-control autosubmit">
-								
+
 									<form:option value="10" />
 									<form:option value="15" />
 									<form:option value="30" />
-									
+
 								</form:select>
-								
+
 								<br>
-								
+
 								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i> 검색
+									검색
 								</button>
-								
+
 								<c:if
 									test="${ pagination.category > 0 || pagination.orderBy > 0}">
-									<a class="btn btn-default" href="list?now=1"> <i
-										class="glyphicon glyphicon-ban-circle"></i> 검색취소
+									<a class="btn btn-default" href="search?now=1"> 전체목록
 									</a>
 								</c:if>
 
