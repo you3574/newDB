@@ -54,5 +54,5 @@
 		
 		
 		
-		<link rel="stylesheet" href="res/qna.css">
+		<link rel="stylesheet" href="/res/qna1.css">
 

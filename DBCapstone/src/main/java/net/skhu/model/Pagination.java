@@ -16,7 +16,7 @@ public class Pagination {
         String url = null;
         try {
             String temp = (searchWord == null) ? "" : URLEncoder.encode(searchWord, "UTF-8");
-            url = String.format("now=%d&sz=%d&ob=%d&cg=%d&word=%s", now, size, orderBy,category , temp);
+            url = String.format("now=%d&sz=%d&orderBy=%d&cg=%d&word=%s", now, size, orderBy,category , temp);
             //현재페이지와 페이지당 레코드 수를 전달 어떻게 정렬했고 어떤 카테고리로 검색했는지 전달
         } catch (UnsupportedEncodingException e) { }
         return url;

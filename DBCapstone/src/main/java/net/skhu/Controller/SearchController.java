@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.model.Pagination;
 import net.skhu.service.SearchService;
@@ -14,11 +15,26 @@ public class SearchController {
 
 
     @RequestMapping("search")
-    public String list2(Pagination pagination, Model model) {
+    public String list1(Pagination pagination, Model model) {
 
         model.addAttribute("students", searchService.findAll(pagination));
         model.addAttribute("orderBy", searchService.getOrderByOptions());
         model.addAttribute("category", searchService.getCategoryOptions());
         return "admin/search";
     }
+//    @RequestMapping("search")
+//    public String list2(Pagination pagination, Model model) {
+//
+//        model.addAttribute("students", searchService.findAll(pagination));
+//        model.addAttribute("orderBy", searchService.getOrderByOptions());
+//        model.addAttribute("category", searchService.getCategoryOptions());
+//        return "admin/search";
+//    }
+//    @RequestMapping("question_details")
+//    public String view(@RequestParam("id") int id,Model model) {
+//        model.addAttribute("article", qnaService.getOne(id));
+//        model.addAttribute("answer", qnaService.getAnswer(id));
+//
+//        return "student/question_details";
+//    }
 }
