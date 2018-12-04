@@ -44,7 +44,8 @@ public class QnAController {
 
     @RequestMapping("question_details")
     public String view(@RequestParam("id") int id,Model model) {
-        model.addAttribute("article", qnaService.getOne(id));
+        qnaService.updateHits(id);
+    	model.addAttribute("article", qnaService.getOne(id));
         model.addAttribute("answer", qnaService.getAnswer(id));
 
         return "student/question_details";

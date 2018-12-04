@@ -6,6 +6,7 @@
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 <head>
 <!-- Meta tag -->
 <meta charset="utf-8">
@@ -127,6 +128,7 @@
 									<th>글쓴이</th>
 									<th>답변 유무</th>
 									<th>작성시간</th>
+									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -141,8 +143,9 @@
 								</c:if> <c:if test="${article.answerYN ==false }">
 								답변 미완료</td>
 										</c:if>
-										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+										<td><fmt:setLocale value="ko_kr"/><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
 												value="${ article.time }" /></td>
+												<td>${ article.hits }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

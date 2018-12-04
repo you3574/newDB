@@ -29,6 +29,7 @@ import net.skhu.VO.Student;
 import net.skhu.dto.SignUpDto;
 import net.skhu.service.AdminService;
 import net.skhu.service.MyReplaceService;
+import net.skhu.service.QnAService;
 import net.skhu.service.SignService;
 import net.skhu.service.StudentService;
 import net.skhu.service.SubjectService;
@@ -47,6 +48,8 @@ public class MainController {
 	private SubjectService subjectService;
 	@Autowired
 	private MyReplaceService myReplaceService;
+	@Autowired
+	private QnAService qnaService;
 
 
 	@GetMapping("/")
@@ -82,7 +85,9 @@ public class MainController {
 	}
 
 	@GetMapping("admin")
-	public String Admin() {
+	public String Admin(Model model) {
+		
+		model.addAttribute("articles",qnaService.findTopFive());
 		return "admin/admin";
 
 

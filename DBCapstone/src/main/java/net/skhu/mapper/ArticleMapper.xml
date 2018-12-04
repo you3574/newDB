@@ -40,6 +40,8 @@
 		<if test="QnAcategory == 1">AND INSTR(a.subject, #{searchWord}) > 0</if>
 		<if test="QnAcategory == 2">AND INSTR(a.message, #{searchWord}) > 0</if>
 		<if test="QnAcategory == 3">AND INSTR(s.name, #{searchWord}) > 0</if>
+		ORDER BY
+		no DESC
 	</select>
 
 
@@ -64,6 +66,16 @@
 		no DESC
 		LIMIT
 		0, 1
+	</select>
+	<select id="findTopFive" resultType="net.skhu.VO.Article">
+		SELECT
+		*
+		FROM
+		article
+		ORDER BY
+		no DESC
+		LIMIT
+		0, 5
 	</select>
 
 
@@ -92,6 +104,14 @@
 		article
 		SET
 		answerYN=#{no}
+		WHERE
+		id = #{id}
+	</update>
+	<update id="updateHits">
+		UPDATE
+		article
+		SET
+		hits=hits+1
 		WHERE
 		id = #{id}
 	</update>

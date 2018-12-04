@@ -37,18 +37,7 @@
 	</div>
 	<!--/ End Preloader -->
 
-	<!-- Mp Color -->
-	<div class="mp-color">
-		<div class="icon inOut">
-			<i class="fa fa-cog fa-spin"></i>
-		</div>
-		<h4>Choose Color</h4>
-		<span class="color1"></span> <span class="color2"></span> <span
-			class="color3"></span> <span class="color4"></span> <span
-			class="color5"></span> <span class="color6"></span> <span
-			class="color7"></span> <span class="color8"></span>
-	</div>
-	<!--/ ENd Mp Color -->
+	
 
 	<!-- Start Header -->
 	<header id="header">
@@ -73,6 +62,11 @@
 									<li><a href="graduation_require">졸업요건</a></li>
 									<li><a href="subject">대체과목 관리</a></li>
 									<li><a href="question_admin">문의사항</a></li>
+									<li>${loginUser.name}</li>
+									<c:if test="${loginUser != NULL }">
+										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
+										</li>
+									</c:if>
 								</ul>
 							</div>
 						</nav>
@@ -106,6 +100,7 @@
 					<div class="single-blog">
 						<div class="blog-content">
 							<h2 style="margin-bottom: 30px">학생 조회</h2>
+							<my:morethan8></my:morethan8>
 							<div class="order">
 								<my:orderBy></my:orderBy>
 							</div>
@@ -118,9 +113,8 @@
 											<th>학번</th>
 											<th>이름</th>
 											<th>학과</th>
-											<th>학년</th>
-											<th>전공이수학점</th>
-											<th>교양이수학점</th>
+											<th>수강학기</th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -130,9 +124,8 @@
 												<td>${ student.studentId }</td>
 												<td>${ student.name }</td>
 												<td>${ student.dname}</td>
-												<td>${ student.grade }</td>
-												<td>${ student.majorCredit }</td>
-												<td>${ student.culturalCredit }</td>
+												<td>${ student.semester }</td>
+												
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -184,10 +177,6 @@
 								<div class="searchword1">
 									<button type="submit" class="searchWord">검색</button>
 								</div>
-
-							
-
-
 
 								<c:if
 									test="${ pagination.category > 0 || pagination.orderBy > 0}">

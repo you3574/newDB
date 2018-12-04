@@ -7,14 +7,13 @@ public class Article {
 
 	int id;
 	int no;
-
 	int writerId;
 	String subject;
 	String message;
 	Date time;
 	boolean answerYN;
 	boolean notice;
-
+	int hits;
 	String writerName;
 
 	public int getId() {
@@ -71,6 +70,12 @@ public class Article {
 	}
 	public void setNotice(boolean notice) {
 		this.notice = notice;
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
 	}
 
 

@@ -22,6 +22,7 @@ public class SearchService {
 
         return searchMapper.findAll(pagination);
     }
+	
 
 	public Option[] getOrderByOptions() {
         return SearchMapper.orderBy;
@@ -30,5 +31,7 @@ public class SearchService {
     public Option[] getCategoryOptions() {
         return SearchMapper.category;
     }
+
+	
 
 }

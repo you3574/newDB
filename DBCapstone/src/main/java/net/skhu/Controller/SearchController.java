@@ -22,5 +22,6 @@ public class SearchController {
         model.addAttribute("category", searchService.getCategoryOptions());
         return "admin/search";
     }
+    
 
 }

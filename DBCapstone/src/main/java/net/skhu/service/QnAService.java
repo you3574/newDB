@@ -39,6 +39,9 @@ public class QnAService {
 
         return articleMapper.getAllArticlesBySearchWord(qpagination);
     }
+    public List<Article> findTopFive(){
+		return articleMapper.findTopFive();
+		}
 
     public void update(ArticleModel a) {
         articleMapper.update(a.getId(),a.getSubject(),a.getMessage());
@@ -46,6 +49,10 @@ public class QnAService {
 
     public void updateYN(boolean yes,int id) {
     	articleMapper.updateYN(yes,id);
+    }
+    public void updateHits(int id) {
+    	articleMapper.updateHits(id);
+    	
     }
 
     public void insert(ArticleModel a, int writerId) {

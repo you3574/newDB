@@ -9,7 +9,7 @@ public class Student {
 	private String name;
 	private int departmentId;
 	private int professorId;
-	private int grade;
+	private int semester;
 	private int majorCredit;
 	private int culturalCredit;
 	private boolean socialService;
@@ -73,11 +73,12 @@ public class Student {
 	public void setProfessorId(int professorId) {
 		this.professorId = professorId;
 	}
-	public int getGrade() {
-		return grade;
+	
+	public int getSemester() {
+		return semester;
 	}
-	public void setGrade(int grade) {
-		this.grade = grade;
+	public void setSemester(int semester) {
+		this.semester = semester;
 	}
 	public int getMajorCredit() {
 		return majorCredit;
