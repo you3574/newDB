@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<fmt:setLocale value="ko_kr"/>
+<fmt:setLocale value="ko_kr" />
 <head>
 <!-- Meta tag -->
 <meta charset="utf-8">
@@ -66,7 +66,11 @@
 									<li class="active"><a href="admin">메인페이지</a></li>
 									<li><a href="search">학생조회</a></li>
 									<li><a href="graduation_require">졸업요건</a></li>
-									<li><a href="subject">대체과목 관리</a></li>
+									<li><a href="#">예외사항 관리</a>
+										<ul class="sub-menu">
+											<li><a href="subject">대체과목 관리</a></li>
+											<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>
+										</ul></li>
 									<li><a href="question_admin">문의사항</a></li>
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
@@ -102,8 +106,7 @@
 										<span>성공회대학교</span>졸업관리시스템
 									</h1>
 									<p>
-										이 페이지는 성공회대학교 졸업관리시스템입니다.<br>
-										<a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
+										이 페이지는 성공회대학교 졸업관리시스템입니다.<br> <a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
 									</p>
 								</div>
 							</div>
@@ -126,8 +129,7 @@
 										<span>성공회대학교</span>졸업관리시스템
 									</h1>
 									<p>
-										이 페이지는 성공회대학교 졸업관리시스템입니다.<br>
-										<a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
+										이 페이지는 성공회대학교 졸업관리시스템입니다.<br> <a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
 									</p>
 								</div>
 							</div>
@@ -150,8 +152,7 @@
 										<span>성공회대학교</span>졸업관리시스템
 									</h1>
 									<p>
-										이 페이지는 성공회대학교 졸업관리시스템입니다.<br>
-										<a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
+										이 페이지는 성공회대학교 졸업관리시스템입니다.<br> <a href="www.skhu.ac.kr">www.skhu.ac.kr</a>
 									</p>
 								</div>
 							</div>
@@ -202,8 +203,8 @@
 						</div>
 						<ul class="info-list">
 							<c:forEach var="article" items="${ articles }">
-								<li><i class="fa fa-check"></i>${ article.subject }                  <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-												value="${ article.time }" /></li>
+								<li><i class="fa fa-check"></i>${ article.subject } <fmt:formatDate
+										pattern="yyyy-MM-dd HH:mm:ss" value="${ article.time }" /></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -235,5 +236,4 @@
 
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 </body>
-
 </html>

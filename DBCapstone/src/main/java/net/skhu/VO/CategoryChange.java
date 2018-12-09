@@ -13,8 +13,15 @@ public class CategoryChange {
 	private String comment;
 	private String semester;
 	private int year;
+	private String reason;
 
 
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public String getSemester() {
 		return semester;
 	}

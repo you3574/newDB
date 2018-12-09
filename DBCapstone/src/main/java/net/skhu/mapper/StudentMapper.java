@@ -25,6 +25,9 @@ public interface StudentMapper {
 
 	//학생의 학번을 가지고  해당 학생 한 명을 조회하여 그 객체 반환
 	Student findByStudentId(int studentId);
+
+	String getStudentName(String studentId);
+	String getStudentDepartment(String studentId);
 	//
 	//	//학생 테이블에 존재하는 모든 학생의 객체들을 반환
 	//	List<Student> findAll();
@@ -44,7 +47,9 @@ public interface StudentMapper {
 	String getCulturalCourseName(MyCourseRecord record);
 	String getTableName(final String condition, int departId, String year);
 	String getCode(final String condition, int departId, String year);
-	MajorRequire getMajorRequire(String tableName, String code, String course);
+	//MajorRequire getMajorRequire(String tableName, String code, String course);
+	MajorRequire getMajorRequire(String year, String course, int departmentId);
+
 	String getMajorName(Map<String, Object> map);
 	String getMajorName2(Map<String, Object> map);
 
@@ -52,9 +57,9 @@ public interface StudentMapper {
 	String getMajorRequireCourseName(String courseId, int year, String semester, int departmentId);
 	String getDoubleCourseName(MyCourseRecord record, int departmentId);
 
-	String getCulturalTableName(final String condition, int departId, String year);
-	String getCulturalCode(final String condition, int departId, String year);
-	CulturalRequire getCulturalRequire(String tableName, String code);
+	//String getCulturalTableName(final String condition, int departId, String year);
+	//String getCulturalCode(final String condition, int departId, String year);
+	CulturalRequire getCulturalRequire(String year, String course, int departmentId);
 
 	int deleteStudentRecord(String studentId);
 

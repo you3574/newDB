@@ -24,11 +24,13 @@ public class StudentService {
 	private static final String courseB ="전공심화";
 	private static final String courseC ="타과복수전공";
 	private static final String courseD ="타과부전공";
-	private static final String majorCondition0 = "주전공";
-	private static final String majorCondition1 = "타과복수전공";
-	private static final String majorCondition2 = "타과부전공";
-	private static final String majorCondition3 = "복수전공";
-	private static final String majorCondition4 = "부전공";
+	private static final String courseE ="복수전공";
+	private static final String courseF ="부전공";
+	//private static final String majorCondition0 = "주전공";
+	//private static final String majorCondition1 = "타과복수전공";
+	//private static final String majorCondition2 = "타과부전공";
+	//private static final String majorCondition3 = "복수전공";
+	//private static final String majorCondition4 = "부전공";
 	private static final String A = "전필";
 	private static final String B = "전선";
 	private static final String C = "교필";
@@ -58,6 +60,13 @@ public class StudentService {
 	public Student findByStudentId(int id) {
 
 		return studentmapper.findByStudentId(id);
+	}
+
+	public String getStudentName(String studentId) {
+		return studentmapper.getStudentName(studentId);
+	}
+	public String getStudentDepartment(String studentId) {
+		return studentmapper.getStudentDepartment(studentId);
 	}
 
 	//	public List<Student> getfindAll(){
@@ -131,22 +140,24 @@ public class StudentService {
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 
 					//이수 변경 신청으로 전공선택인 경우
-					if(list.get(i).getException()==1) {
+					/*if(list.get(i).getException()==1) {
 						majorList.add(list.get(i)); //전공 리스트에 추가
 						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
 					}else {
 						culturalList.add(list.get(i)); //교양 리스트에 추가
 						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}
+					}*/
+					culturalList.add(list.get(i)); //교양 리스트에 추가
+					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}
 
 			}//for문 종료
 
 			//수료 학점 가져오기
-			String tableName = studentmapper.getTableName(majorCondition0, student.getDepartmentId(), year);
-			String code = studentmapper.getCode(majorCondition0, student.getDepartmentId(), year);
+			//String tableName = studentmapper.getTableName(majorCondition0, student.getDepartmentId(), year);
+			//String code = studentmapper.getCode(majorCondition0, student.getDepartmentId(), year);
 
-			MajorRequire temp = studentmapper.getMajorRequire(tableName, code, student.getCourse());
+			MajorRequire temp = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
 
 			total = temp.getTotal(); //졸업 요구 학점
 			totalrequireMajor = temp.getRequireMajor(); //전필 요구 학점
@@ -212,13 +223,15 @@ public class StudentService {
 				}//교양 -> 교필, 교선 모두 교양 리스트에 추가
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 					//이수 변경 신청으로 전공선택인 경우
-					if(list.get(i).getException()==1) {
+					/*if(list.get(i).getException()==1) {
 						majorList.add(list.get(i)); //전공 리스트에 추가
 						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
 					}else {
 						culturalList.add(list.get(i)); //교양 리스트에 추가
 						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}
+					}*/
+					culturalList.add(list.get(i)); //교양 리스트에 추가
+					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}//복수전공 필수 -> 복필 리스트와 복전 전체 리스트에 둘 다 추가해야함
 				else if(list.get(i).getCategory().equals(E)) {
 					doubleReqquireList.add(list.get(i));
@@ -235,19 +248,22 @@ public class StudentService {
 
 			//수료 학점 가져오기
 
-			String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
-			String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
+			//String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
+			//String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
 
-			String doubleTableName = studentmapper.getTableName(majorCondition3, student.getAnotherMajorDepart(), year);
-			String doubleCode = studentmapper.getCode(majorCondition3, student.getAnotherMajorDepart(), year);
+			//String doubleTableName = studentmapper.getTableName(majorCondition3, student.getAnotherMajorDepart(), year);
+			//String doubleCode = studentmapper.getCode(majorCondition3, student.getAnotherMajorDepart(), year);
 
-			MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
-			MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition3);
+			//MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
+			//MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition3);
+			MajorRequire major = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
+			MajorRequire doubleMajor = studentmapper.getMajorRequire(year, courseE , student.getAnotherMajorDepart());
 
 			total = major.getTotal(); //졸업 요구 학점
 			totalrequireMajor = major.getRequireMajor(); //전필 요구 학점
 			totalMajor = major.getTotalMajor(); //전공 요구 학점
 			totalCultural = major.getTotalCultural(); //교양 요구 학점
+
 			totalrequireDouble = doubleMajor.getRequireMajor(); //복전 또는 부전공 필수 학점
 			totalDouble = doubleMajor.getTotalMajor(); //복전 또는 부전공 요구 학점
 
@@ -327,13 +343,15 @@ public class StudentService {
 				}//교양 -> 교필, 교선 모두 교양 리스트에 추가
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 					//이수 변경 신청으로 전공선택인 경우
-					if(list.get(i).getException()==1) {
+					/*if(list.get(i).getException()==1) {
 						majorList.add(list.get(i)); //전공 리스트에 추가
 						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
 					}else {
 						culturalList.add(list.get(i)); //교양 리스트에 추가
 						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}
+					}*/
+					culturalList.add(list.get(i)); //교양 리스트에 추가
+					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}//부전공 필수 -> 부필 리스트와 부전 전체 리스트에 둘 다 추가해야함
 				else if(list.get(i).getCategory().equals(G)) {
 					doubleReqquireList.add(list.get(i));
@@ -349,14 +367,20 @@ public class StudentService {
 
 			//수료 학점 가져오기
 
-			String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
-			String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
+			//String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
+			//String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
 
-			String doubleTableName = studentmapper.getTableName(majorCondition4, student.getAnotherMajorDepart(), year);
-			String doubleCode = studentmapper.getCode(majorCondition4, student.getAnotherMajorDepart(), year);
+			//String doubleTableName = studentmapper.getTableName(majorCondition4, student.getAnotherMajorDepart(), year);
+			//String doubleCode = studentmapper.getCode(majorCondition4, student.getAnotherMajorDepart(), year);
 
-			MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
-			MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition4);
+			//MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
+			//부전공 경우 부전공 필수 학점이 0인 경우가 있다. 이거 예외 처리 해야함
+
+
+			//MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition4);
+			MajorRequire major = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
+			MajorRequire doubleMajor = studentmapper.getMajorRequire(year, courseF , student.getAnotherMajorDepart());
+			//부전공 경우 부전공 필수 학점이 0인 경우가 있다. 이거 예외 처리 해야함
 
 			total = major.getTotal(); //졸업 요구 학점
 			totalrequireMajor = major.getRequireMajor(); //전필 요구 학점
@@ -432,6 +456,7 @@ public class StudentService {
 		String code = null;
 
 		//전공 기초, 전공 심화일 경우
+		/*
 		if(student.getCourse().equals(courseA) || student.getCourse().equals(courseB)) {
 			tableName = studentmapper.getTableName(majorCondition0, student.getDepartmentId(), year);
 			code = studentmapper.getCode(majorCondition0, student.getDepartmentId(), year);
@@ -443,9 +468,9 @@ public class StudentService {
 		else if(student.getCourse().equals(courseD)) {
 			tableName = studentmapper.getTableName(majorCondition2, student.getDepartmentId(), year);
 			code = studentmapper.getCode(majorCondition2, student.getDepartmentId(), year);
-		}
+		}*/
 
-		MajorRequire temp = studentmapper.getMajorRequire(tableName, code, student.getCourse());
+		MajorRequire temp = studentmapper.getMajorRequire(year, student.getCourse(),student.getDepartmentId() );
 		List<List<String>> list = new ArrayList<>();
 
 		//문자열 -> 배열 -> 리스트
@@ -692,13 +717,15 @@ public class StudentService {
 		MajorRequire temp;
 
 		if(student.getCourse().equals(courseC)) { //복전일 경우
-			tableName = studentmapper.getTableName(majorCondition3, student.getAnotherMajorDepart(), year);
-			code = studentmapper.getCode(majorCondition3, student.getAnotherMajorDepart(), year);
-			temp = studentmapper.getMajorRequire(tableName, code, majorCondition3);
+			//tableName = studentmapper.getTableName(majorCondition3, student.getAnotherMajorDepart(), year);
+			//code = studentmapper.getCode(majorCondition3, student.getAnotherMajorDepart(), year);
+			//temp = studentmapper.getMajorRequire(tableName, code, majorCondition3);
+			temp = studentmapper.getMajorRequire(year, courseE,student.getAnotherMajorDepart());
 		}else { //부전공일 경우
-			tableName = studentmapper.getTableName(majorCondition4, student.getAnotherMajorDepart(), year);
-			code = studentmapper.getCode(majorCondition4, student.getAnotherMajorDepart(), year);
-			temp = studentmapper.getMajorRequire(tableName, code, majorCondition4);
+			//tableName = studentmapper.getTableName(majorCondition4, student.getAnotherMajorDepart(), year);
+			//code = studentmapper.getCode(majorCondition4, student.getAnotherMajorDepart(), year);
+			//temp = studentmapper.getMajorRequire(tableName, code, majorCondition4);
+			temp = studentmapper.getMajorRequire(year, courseF,student.getAnotherMajorDepart() );
 		}
 
 		List<List<String>> list = new ArrayList<>();
@@ -790,14 +817,13 @@ public class StudentService {
 	}
 
 
-	public Map<String, Object> getCulturalList(final String condition, List<MyCourseRecord> culturalList,
-			String year, int departId, String studentId) {
+	public Map<String, Object> getCulturalList(String year, Student student, List<MyCourseRecord> culturalList) {
 
 		Map<String, Object> temp = new HashMap<>();
-		String tableName = studentmapper.getCulturalTableName(condition, departId, year);
-		String code = studentmapper.getCulturalCode(condition, departId, year);
+		//String tableName = studentmapper.getCulturalTableName(condition, departId, year);
+		//String code = studentmapper.getCulturalCode(condition, departId, year);
 
-		CulturalRequire culturalRequire = studentmapper.getCulturalRequire(tableName, code);
+		CulturalRequire culturalRequire = studentmapper.getCulturalRequire(year, student.getCourse(), student.getDepartmentId());
 
 		/*System.out.println("교양 필수 과목 :"+culturalRequire.getRequireSubject()+" / 채플 이수 횟수 :"+culturalRequire.getChapel()+
 				" / 사회봉사 이수 횟수 :"+culturalRequire.getVoluntary()+

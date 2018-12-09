@@ -21,6 +21,15 @@
 	<select id="findByStudentId" resultType="net.skhu.VO.Student">
 		SELECT * FROM student WHERE studentId = #{studentId}
 	</select>
+	
+	<select id="getStudentName" resultType="String">
+		select name from student where studentId=#{studentId}
+	</select>
+	
+	<select id="getStudentDepartment" resultType="String">
+		SELECT b.dname FROM student a left join department b
+		on a.departmentId = b.id where studentId=#{studentId}
+	</select>
 
 	<!-- <select id="findAll" resultType="Student"> -->
 	<!-- SELECT * FROM Student -->
@@ -103,10 +112,15 @@
 		departmentId = #{departId} and year = #{year}
 	</select>
 
+	<!-- 
 	<select id="getMajorRequire"
 		resultType="net.skhu.VO.MajorRequire">
 		select * from ${tableName} where code = #{code} and name = #{course}
+	</select> -->
+	<select id="getMajorRequire" resultType="net.skhu.VO.MajorRequire">
+		select * from major_require where year = #{year} and name = #{course} and departmentId=#{departmentId}
 	</select>
+	
 
 	<select id="getMajorName" parameterType="java.util.HashMap"
 		resultType="String">
@@ -119,6 +133,7 @@
 		SELECT subjectName FROM all_course where courseId=#{courseId} LIMIT 1;
 	</select>
 
+<!-- 
 	<select id="getCulturalTableName" resultType="String">
 		select tableName from cultural_connect where majorCondition = #{condition}
 		and departmentId = #{departId} and year = #{year}
@@ -128,10 +143,10 @@
 		select code from cultural_connect where majorCondition = #{condition} and
 		departmentId = #{departId} and year = #{year}
 	</select>
+	 -->
 
-	<select id="getCulturalRequire"
-		resultType="net.skhu.VO.CulturalRequire">
-		select * from ${tableName} where code = #{code}
+	<select id="getCulturalRequire" resultType="net.skhu.VO.CulturalRequire">
+		select * from cultural_require where year = #{year} and name = #{course} and departmentId=#{departmentId}
 	</select>
 
 	<delete id="deleteStudentRecord">
@@ -143,8 +158,8 @@
 	</select>
 	
 	<insert id="setCategotyChange" parameterType="net.skhu.VO.CategoryChange">
-		insert category_change (recordId, studentId, courseId, subjectName, category, changeCategory, semester, year)
-		values (#{recordId}, #{studentId}, #{courseId}, #{subjectName}, #{category}, #{changeCategory}, #{semester}, #{year})
+		insert category_change (recordId, studentId, courseId, subjectName, category, changeCategory, semester, year, reason)
+		values (#{recordId}, #{studentId}, #{courseId}, #{subjectName}, #{category}, #{changeCategory}, #{semester}, #{year}, #{reason})
 	</insert>
 	
 	<select id="getStatus0" resultType="net.skhu.VO.CategoryChange">

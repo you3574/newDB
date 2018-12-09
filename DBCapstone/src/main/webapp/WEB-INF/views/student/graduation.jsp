@@ -22,6 +22,12 @@
 <title>졸업시켜조</title>
 
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+<style type="text/css">
+.section-title p {
+    font-weight: 300;
+    padding: 0 10px;
+}
+</style>
 </head>
 <body>
 
@@ -160,6 +166,7 @@
 									<p style="padding-left: 0%">이수하지 않은 과목은 빨간색으로 보입니다.</p>
 									<p style="padding-left: 0%">전공 과정에 따라 필수 과정 중 일부만 이수할 수도
 										있습니다.</p>
+									<p style="padding-left: 0%">입학 년도를 기준으로 필수 과목이 보여집니다.</p>
 								</div>
 								<h4>주전공</h4>
 								<table class="table">
@@ -183,6 +190,7 @@
 																${semester.name}
 															</c:otherwise>
 														</c:choose>
+														,
 													</c:forEach></td>
 											</tr>
 										</c:forEach>
@@ -212,6 +220,7 @@
 																	${semester.name}
 																</c:otherwise>
 															</c:choose>
+															,
 														</c:forEach></td>
 												</tr>
 											</c:forEach>
@@ -242,6 +251,7 @@
 																	${semester.name}
 																</c:otherwise>
 															</c:choose>
+															,
 														</c:forEach></td>
 												</tr>
 											</c:forEach>
@@ -270,6 +280,7 @@
 																${sub.name}
 															</c:otherwise>
 														</c:choose>
+														,
 													</c:forEach></td>
 											</tr>
 
@@ -298,6 +309,7 @@
 																${sub.name}
 															</c:otherwise>
 														</c:choose>
+														,
 													</c:forEach></td>
 											</tr>
 

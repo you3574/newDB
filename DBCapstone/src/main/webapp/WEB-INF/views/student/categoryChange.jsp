@@ -159,8 +159,8 @@
 									<th scope="col">학기</th>
 									<th scope="col">과목코드</th>
 									<th scope="col">이름</th>
-									<th scope="col">이수 구분</th>
-									<th scope="col">신청</th>
+									<th scope="col">변경 신청</th>
+									<th scope="col">신청 사유</th>
 									<th scope="col">상태</th>
 								</tr>
 							</thead>
@@ -171,8 +171,8 @@
 										<td>${ list.semester }</td>
 										<td>${ list.courseId }</td>
 										<td>${ list.subjectName}</td>
-										<td>${ list.category}</td>
-										<td>${ list.changeCategory}</td>
+										<td>${ list.category}->${ list.changeCategory}</td>
+										<td>${ list.reason}</td>
 										<td><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
 									</tr>
 								</c:forEach>
@@ -193,8 +193,8 @@
 									<th scope="col">학기</th>
 									<th scope="col">과목코드</th>
 									<th scope="col">이름</th>
-									<th scope="col">이수 구분</th>
-									<th scope="col">신청</th>
+									<th scope="col">변경 신청</th>
+									<th scope="col">신청 사유</th>
 									<th scope="col">상태</th>
 								</tr>
 							</thead>
@@ -205,8 +205,8 @@
 										<td>${ list.semester }</td>
 										<td>${ list.courseId }</td>
 										<td>${ list.subjectName}</td>
-										<td>${ list.category}</td>
-										<td>${ list.changeCategory}</td>
+										<td>${ list.category}->${ list.changeCategory}</td>
+										<td>${ list.reason}</td>
 										<td><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></td>
 									</tr>
 								</c:forEach>
@@ -227,10 +227,10 @@
 									<th scope="col">학기</th>
 									<th scope="col">과목코드</th>
 									<th scope="col">이름</th>
-									<th scope="col">이수 구분</th>
-									<th scope="col">신청</th>
+									<th scope="col">변경 신청</th>
+									<th scope="col">신청 사유</th>
+									<th scope="col">거절 사유</th>
 									<th scope="col">상태</th>
-									<th scope="col">메모</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -240,10 +240,10 @@
 										<td>${ list.semester }</td>
 										<td>${ list.courseId }</td>
 										<td>${ list.subjectName}</td>
-										<td>${ list.category}</td>
-										<td>${ list.changeCategory}</td>
-										<td><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></td>
+										<td>${ list.category}->${ list.changeCategory}</td>
+										<td>${ list.reason}</td>
 										<td>${ list.comment}</td>
+										<td><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -284,6 +284,10 @@
 											</tr>
 										</tbody>
 									</table>
+									<div class="form-group">
+										<label>신청 사유</label>
+										<input type="text" class="form-control" id="reason" placeholder="사유를 입력하세요.">
+								  	</div>
 								</div>
 								<br />
 								<!-- Footer -->
@@ -399,11 +403,16 @@
 		$("#change_submit").click(function(){
 			//alert($("#selectform option:selected").val());
 			var selectVal = $("#selectform option:selected").val();
-			
+			var reason = $("#reason").val();
 			if(categoty == selectVal){
 				alert("이수 구분이 같습니다.");
 				return false;
+			}else if(reason==""){
+				alert("변경 사유를 입력하세요.");
+				return false;
 			}
+			
+			
 			//var itemString = '<c:out value="${ItemString}"/>';
 			var sendData;
 			sendData = JSON.stringify({
@@ -414,7 +423,8 @@
 	            "category":			categoty,
 	            "changeCategory":	selectVal,
 	            "semester":			semester,
-	            "year":				year
+	            "year":				year,
+	            "reason":			reason
 	        });	
 			
 			$.ajax({

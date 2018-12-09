@@ -85,8 +85,8 @@ public class StudentController {
 				model.addAttribute("NameList", nameList);
 
 				//채플, 사봉, 교필, 학과지정 교양 가져오기
-				Map<String, Object> cultural = studentService.getCulturalList(majorCondition0,
-						(List<MyCourseRecord>)tempMap.get("CulturalList"), year, student.getDepartmentId(), student.getStudentId());
+				Map<String, Object> cultural = studentService.getCulturalList(year, student,
+						(List<MyCourseRecord>)tempMap.get("CulturalList"));
 				model.addAttribute("Cultural", cultural);
 
 			}else if(student.getCourse().equals(courseC)) { //타과 복수전공일 경우
@@ -104,8 +104,8 @@ public class StudentController {
 				model.addAttribute("DoubleNameList", doubleNameList);
 
 				//교양 관련 가져오기
-				Map<String, Object> cultural = studentService.getCulturalList(courseC, (List<MyCourseRecord>)tempMap.get("CulturalList"),
-						year, student.getDepartmentId(), student.getStudentId());
+				Map<String, Object> cultural = studentService.getCulturalList(year, student,
+						(List<MyCourseRecord>)tempMap.get("CulturalList"));
 
 				model.addAttribute("Cultural", cultural);
 
@@ -124,8 +124,8 @@ public class StudentController {
 				model.addAttribute("minorNameList", minorNameList);
 
 				//교양 관련 가져오기
-				Map<String, Object> cultural = studentService.getCulturalList(courseD, (List<MyCourseRecord>)tempMap.get("CulturalList"),
-						year, student.getDepartmentId(), student.getStudentId());
+				Map<String, Object> cultural = studentService.getCulturalList(year, student,
+						(List<MyCourseRecord>)tempMap.get("CulturalList"));
 
 				model.addAttribute("Cultural", cultural);
 			}
