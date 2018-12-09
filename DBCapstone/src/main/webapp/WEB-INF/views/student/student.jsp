@@ -52,7 +52,7 @@
 					<div class="col-md-3 col-sm-15 col-xs-15">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><span>졸업</span>관리시스템</a>
+							<a href="student"><span>졸업</span>관리시스템</a>
 						</div>
 						<!--/ End Logo -->
 					</div>
@@ -63,7 +63,7 @@
 								<div class="mobile-nav"></div>
 								<div class="collapse navbar-collapse">
 									<ul class="nav navbar-nav menu">
-										<li class="active"><a href="student">메인페이지</a></li>
+										<li><a href="uesrinfo">개인정보 변경</a></li>
 										<li><a href="graduation">졸업관리</a></li>
 										<li><a href="#">예외사항 신청</a>
 											<ul class="sub-menu">

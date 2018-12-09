@@ -120,7 +120,8 @@ public class StudentService {
 			for(int i=0 ; i<list.size() ; i++) {
 
 				//논패스나 F가 아닌 경우게 합산 저장
-				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("F")))
+				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("N"))
+						&& !(list.get(i).getGrade().equals("F")))
 					totalSum = totalSum + list.get(i).getCredits();
 				else //NP거나 F면 계산할 때는 취득 학점을 0으로 해줘야 하니까
 					list.get(i).setCredits(0);
@@ -140,22 +141,13 @@ public class StudentService {
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 
 					//이수 변경 신청으로 전공선택인 경우
-					/*if(list.get(i).getException()==1) {
-						majorList.add(list.get(i)); //전공 리스트에 추가
-						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
-					}else {
-						culturalList.add(list.get(i)); //교양 리스트에 추가
-						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}*/
+
 					culturalList.add(list.get(i)); //교양 리스트에 추가
 					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}
 
 			}//for문 종료
 
-			//수료 학점 가져오기
-			//String tableName = studentmapper.getTableName(majorCondition0, student.getDepartmentId(), year);
-			//String code = studentmapper.getCode(majorCondition0, student.getDepartmentId(), year);
 
 			MajorRequire temp = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
 
@@ -198,13 +190,19 @@ public class StudentService {
 			tempMap.put("culturalPercentage",culturalPercentage);
 			tempMap.put("totalCultural", totalCultural);
 
+			//모든 %가 100이면 pass 1로 바꿔주기
+			if(totalPercentage==100 && majorRequirePercentage==100 && majorPercentage==100 && culturalPercentage==100) {
+				studentmapper.SetPassOne(student.getStudentId());
+			}
+
 		}else if(student.getCourse().equals(courseC)) { //복수 전공일 경우
 			System.out.println("복수전공을 계산합니다.");
 
 			for(int i=0 ; i<list.size() ; i++) {
 
 				//논패스나 F가 아닌 경우게 합산 저장
-				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("F")))
+				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("N"))
+						&& !(list.get(i).getGrade().equals("F")))
 					totalSum = totalSum + list.get(i).getCredits();
 				else //NP거나 F면 계산할 때는 취득 학점을 0으로 해줘야 하니까
 					list.get(i).setCredits(0);
@@ -223,13 +221,6 @@ public class StudentService {
 				}//교양 -> 교필, 교선 모두 교양 리스트에 추가
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 					//이수 변경 신청으로 전공선택인 경우
-					/*if(list.get(i).getException()==1) {
-						majorList.add(list.get(i)); //전공 리스트에 추가
-						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
-					}else {
-						culturalList.add(list.get(i)); //교양 리스트에 추가
-						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}*/
 					culturalList.add(list.get(i)); //교양 리스트에 추가
 					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}//복수전공 필수 -> 복필 리스트와 복전 전체 리스트에 둘 다 추가해야함
@@ -248,14 +239,6 @@ public class StudentService {
 
 			//수료 학점 가져오기
 
-			//String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
-			//String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
-
-			//String doubleTableName = studentmapper.getTableName(majorCondition3, student.getAnotherMajorDepart(), year);
-			//String doubleCode = studentmapper.getCode(majorCondition3, student.getAnotherMajorDepart(), year);
-
-			//MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
-			//MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition3);
 			MajorRequire major = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
 			MajorRequire doubleMajor = studentmapper.getMajorRequire(year, courseE , student.getAnotherMajorDepart());
 
@@ -317,6 +300,11 @@ public class StudentService {
 			tempMap.put("doublePercentage",doublePercentage);
 			tempMap.put("totalDouble",totalDouble );
 
+			//모든 %가 100이면 pass 1로 바꿔주기
+			if(totalPercentage==100 && majorRequirePercentage==100 && majorPercentage==100 && culturalPercentage==100
+					&& doubleRequirePercentage==100 && doublePercentage==100 ) {
+				studentmapper.SetPassOne(student.getStudentId());
+			}
 
 		}else if(student.getCourse().equals(courseD)) { //부전공일 경우
 			System.out.println("부전공을 계산합니다.");
@@ -324,7 +312,8 @@ public class StudentService {
 			for(int i=0 ; i<list.size() ; i++) {
 
 				//논패스나 F가 아닌 경우게 합산 저장
-				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("F")))
+				if( !(list.get(i).getGrade().equals("NP")) && !(list.get(i).getGrade().equals("N"))
+						&& !(list.get(i).getGrade().equals("F")))
 					totalSum = totalSum + list.get(i).getCredits();
 				else //NP거나 F면 계산할 때는 취득 학점을 0으로 해줘야 하니까
 					list.get(i).setCredits(0);
@@ -343,13 +332,7 @@ public class StudentService {
 				}//교양 -> 교필, 교선 모두 교양 리스트에 추가
 				else if(list.get(i).getCategory().equals(C) || list.get(i).getCategory().equals(D)) {
 					//이수 변경 신청으로 전공선택인 경우
-					/*if(list.get(i).getException()==1) {
-						majorList.add(list.get(i)); //전공 리스트에 추가
-						majorSum = majorSum + list.get(i).getCredits(); //전공 학점 더하기
-					}else {
-						culturalList.add(list.get(i)); //교양 리스트에 추가
-						culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
-					}*/
+
 					culturalList.add(list.get(i)); //교양 리스트에 추가
 					culturalSum = culturalSum + list.get(i).getCredits(); //교양 학점 더하기
 				}//부전공 필수 -> 부필 리스트와 부전 전체 리스트에 둘 다 추가해야함
@@ -367,17 +350,9 @@ public class StudentService {
 
 			//수료 학점 가져오기
 
-			//String majorTableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
-			//String majorCode = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
-
-			//String doubleTableName = studentmapper.getTableName(majorCondition4, student.getAnotherMajorDepart(), year);
-			//String doubleCode = studentmapper.getCode(majorCondition4, student.getAnotherMajorDepart(), year);
-
-			//MajorRequire major = studentmapper.getMajorRequire(majorTableName, majorCode, majorCondition1);
 			//부전공 경우 부전공 필수 학점이 0인 경우가 있다. 이거 예외 처리 해야함
 
 
-			//MajorRequire doubleMajor = studentmapper.getMajorRequire(doubleTableName, doubleCode , majorCondition4);
 			MajorRequire major = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
 			MajorRequire doubleMajor = studentmapper.getMajorRequire(year, courseF , student.getAnotherMajorDepart());
 			//부전공 경우 부전공 필수 학점이 0인 경우가 있다. 이거 예외 처리 해야함
@@ -427,17 +402,36 @@ public class StudentService {
 			tempMap.put("culturalPercentage",culturalPercentage);
 			tempMap.put("totalCultural",totalCultural );
 
-			double doubleRequirePercentage = Math.round(  (((double)doubleRequqireSum/totalrequireDouble*100) *100 ) / 100.0  );
-			if(doubleRequirePercentage>100)
-				doubleRequirePercentage = 100;
-			tempMap.put("doubleRequirePercentage",doubleRequirePercentage);
-			tempMap.put("totalrequireDouble",totalrequireDouble );
-
 			double doublePercentage = Math.round(  (((double)doubleSum/totalDouble*100) *100 ) / 100.0  );
 			if(doublePercentage>100)
 				doublePercentage = 100;
 			tempMap.put("doublePercentage",doublePercentage);
 			tempMap.put("totalDouble",totalDouble );
+
+			if(totalrequireDouble != 0) {
+				double doubleRequirePercentage = Math.round(  (((double)doubleRequqireSum/totalrequireDouble*100) *100 ) / 100.0  );
+				if(doubleRequirePercentage>100)
+					doubleRequirePercentage = 100;
+				tempMap.put("doubleRequirePercentage",doubleRequirePercentage);
+				tempMap.put("totalrequireDouble",totalrequireDouble );
+				tempMap.put("totalrequireDouble0", false );
+
+				//모든 %가 100이면 pass 1로 바꿔주기
+				if(totalPercentage==100 && majorRequirePercentage==100 && majorPercentage==100 && culturalPercentage==100
+						&& doubleRequirePercentage==100 && doublePercentage==100 ) {
+					studentmapper.SetPassOne(student.getStudentId());
+				}
+			}else {
+				tempMap.put("totalrequireDouble0", true );
+
+				//모든 %가 100이면 pass 1로 바꿔주기
+				if(totalPercentage==100 && majorRequirePercentage==100 && majorPercentage==100 && culturalPercentage==100
+						&& doublePercentage==100 ) {
+					studentmapper.SetPassOne(student.getStudentId());
+				}
+			}
+
+
 		}
 
 
@@ -456,19 +450,6 @@ public class StudentService {
 		String code = null;
 
 		//전공 기초, 전공 심화일 경우
-		/*
-		if(student.getCourse().equals(courseA) || student.getCourse().equals(courseB)) {
-			tableName = studentmapper.getTableName(majorCondition0, student.getDepartmentId(), year);
-			code = studentmapper.getCode(majorCondition0, student.getDepartmentId(), year);
-		}
-		else if(student.getCourse().equals(courseC)) { //내가 타 과를 복전할 경우, 원래 전공의 전필 과목을 가져옴 ->
-			tableName = studentmapper.getTableName(majorCondition1, student.getDepartmentId(), year);
-			code = studentmapper.getCode(majorCondition1, student.getDepartmentId(), year);
-		}
-		else if(student.getCourse().equals(courseD)) {
-			tableName = studentmapper.getTableName(majorCondition2, student.getDepartmentId(), year);
-			code = studentmapper.getCode(majorCondition2, student.getDepartmentId(), year);
-		}*/
 
 		MajorRequire temp = studentmapper.getMajorRequire(year, student.getCourse(),student.getDepartmentId() );
 		List<List<String>> list = new ArrayList<>();
@@ -520,7 +501,8 @@ public class StudentService {
 			for(int k=0 ; k<nameList.get(i).size() ; k++) {
 				for(int n=0 ; n<majorList.size() ; n++) {
 					if(nameList.get(i).get(k).getCourseId().equals(majorList.get(n).getCourseId())) {
-						if( !(majorList.get(n).getGrade().equals("NP")) && !(majorList.get(n).getGrade().equals("F"))){
+						if( !(majorList.get(n).getGrade().equals("NP")) && !(majorList.get(n).getGrade().equals("N"))
+								&& !(majorList.get(n).getGrade().equals("F"))){
 							nameList.get(i).get(k).setCheck(true);
 							break;
 						}
@@ -794,7 +776,8 @@ public class StudentService {
 					//System.out.println("c");
 					//nameList.get(i).get(k).getName() -> C프로그래밍Ⅰ
 					if(nameList.get(i).get(k).getCourseId().equals(majorList.get(n).getCourseId())) {
-						if( !(majorList.get(n).getGrade().equals("NP")) && !(majorList.get(n).getGrade().equals("F"))){
+						if( !(majorList.get(n).getGrade().equals("NP")) && !(majorList.get(n).getGrade().equals("N"))
+								&& !(majorList.get(n).getGrade().equals("F"))){
 							nameList.get(i).get(k).setCheck(true);
 							break;
 						}
@@ -884,7 +867,8 @@ public class StudentService {
 					sub.setCheck(false);
 
 					//논패스 그리고 f가 아닐 경우
-					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("F"))) {
+					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("N")) &&
+							!(culturalList.get(i).getGrade().equals("F"))) {
 						for(int j=0 ; j<requireSubject.size() ; j++) {
 							if(culturalList.get(i).getCourseId().equals( requireSubject.get(j) )) {
 								sub.setCheck(true);
@@ -899,7 +883,8 @@ public class StudentService {
 					SubjectColor sub = new SubjectColor();
 					sub.setCheck(false);
 					//논패스 그리고 f가 아닐 경우
-					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("F"))) {
+					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("N")) &&
+							!(culturalList.get(i).getGrade().equals("F"))) {
 						for(int j=0 ; j<additionSubject.size() ; j++) {
 							if(culturalList.get(i).getCourseId().equals( additionSubject.get(j) )) {
 								sub.setCheck(true);
@@ -971,5 +956,35 @@ public class StudentService {
 	public List<CategoryChange> getStatus2(String studentId){
 		return studentmapper.getStatus2(studentId);
 
+	}
+
+	/*
+	public boolean updateUser1(int departmentId, int course, String studentId) throws Exception {
+		int num=0;
+		if(course==1)
+			num = studentmapper.updateUser1(departmentId, courseA, studentId);
+		else
+			num =  studentmapper.updateUser1(departmentId, courseB, studentId);
+
+		if(num>0)
+			return true;
+		else
+			throw new Exception();
+	}
+	 */
+	public boolean updateUser2(int departmentId, int course, int anotherMajorDepart, String studentId, int semester) throws Exception {
+		int num=0;
+		if(course==1)
+			num = studentmapper.updateUser2(departmentId, courseA, 0, studentId, semester);
+		else if(course==2)
+			num = studentmapper.updateUser2(departmentId, courseB, 0, studentId, semester);
+		else if(course==3)
+			num = studentmapper.updateUser2(departmentId, courseC, anotherMajorDepart, studentId, semester);
+		else
+			num = studentmapper.updateUser2(departmentId, courseD, anotherMajorDepart, studentId, semester);
+		if(num>0)
+			return true;
+		else
+			throw new Exception();
 	}
 }

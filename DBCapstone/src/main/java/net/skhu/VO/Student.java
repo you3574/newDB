@@ -80,7 +80,7 @@ public class Student {
 	public void setProfessorId(int professorId) {
 		this.professorId = professorId;
 	}
-	
+
 	public int getSemester() {
 		return semester;
 	}

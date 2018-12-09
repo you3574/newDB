@@ -68,4 +68,8 @@ public interface StudentMapper {
 	List<CategoryChange> getStatus0(String studentId);
 	List<CategoryChange> getStatus1(String studentId);
 	List<CategoryChange> getStatus2(String studentId);
+
+	int updateUser1(int departmentId, String course, String studentId);
+	int updateUser2(int departmentId, String course, int anotherMajorDepart, String studentId, int semester);
+	int SetPassOne(String studentId);
 }

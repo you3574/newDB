@@ -5,6 +5,7 @@ public class MajorRequire {
 	private int id;
 	private String code;
 	private String name;
+	private String year;
 	private int requireMajor; //전공필수 학점
 	private int totalMajor; 	//전공 학점
 	private int totalCultural;//교양 학점
@@ -21,6 +22,12 @@ public class MajorRequire {
 	private String eighthSemester;
 
 
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public String getEighthSemester() {
 		return eighthSemester;
 	}

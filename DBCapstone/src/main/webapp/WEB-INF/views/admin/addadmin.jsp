@@ -123,22 +123,44 @@
 					<div class="info-main">
 						<div class="section-title left">
 							<p>
-							<h2>학과 목록</h2>
-							클릭하여 추가, 수정, 삭제 합니다.
+							<h2>관리자 추가</h2>
+							관리자를 추가합니다.
 							</p>
+						</div>
+						<div class="row">
+							<form class="form_upload" method="POST">
+								<div class="form-group">
+									<label for="exampleInput">ID</label> <input
+										type="text" name="adminId" class="form-control"
+										placeholder="ID를 입력하세요">
+								</div>
+								<div class="form-group">
+									<label>이름</label> <input
+										type="text" name="name" class="form-control" 
+										placeholder="이름을 입력하세요">
+								</div>
+								<div class="form-group">
+									<label>암호</label> <input
+										type="password" name="pw" class="form-control"
+										placeholder="암호">
+								</div>
+								<button type="submit" class="btn btn-default">추가</button>
+							</form>
 						</div>
 						<table class="table">
 							<thead style="background-color: lightgrey;">
 								<tr>
 									<th scope="col">순서</th>
+									<th scope="col">ID</th>
 									<th scope="col">이름</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="list" items="${departList}" varStatus="status">
-									<tr data-url="departrequirelist?id=${ list.id }">
+								<c:forEach var="list" items="${AdminList}" varStatus="status">
+									<tr>
 										<td>${status.count }</td>
-										<td>${ list.dname }</td>
+										<td>${ list.adminId }</td>
+										<td>${ list.name }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -158,9 +180,9 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12 ">
 						<!-- Logo -->
-						<div class="logo" style="margin-botton">
+						<div class="logo" style="">
 							<a href="index.html"><span>성공회</span>대학교</a>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -168,5 +190,5 @@
 		<!--/ End Footer Top -->
 	</footer>
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
-    </body>
+</body>
 </html>

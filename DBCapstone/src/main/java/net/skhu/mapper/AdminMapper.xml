@@ -30,5 +30,91 @@
 		update category_change set status = 2, comment = #{comment}
 		where id = #{id}
 	</update>
-
+	
+	<select id="getAllDepartment" resultType="net.skhu.VO.Department">
+		SELECT * FROM department;
+	</select>
+	
+	<select id="getDepartmentName" resultType="String">
+		select dname FROM department where id=#{id}
+	</select>
+	
+	<select id="getMajorRequire" resultType="net.skhu.VO.MajorRequire">
+		SELECT id, year, departmentName, name FROM major_require where departmentId=#{id} order by year, id
+	</select>
+	
+	<select id="getCulturalRequire" resultType="net.skhu.VO.CulturalRequire">
+		SELECT id, year, departmentName, name FROM cultural_require where departmentId=#{id} order by year, id
+	</select>
+	
+	<select id="getMajorById" resultType="net.skhu.VO.MajorRequire">
+		select * FROM major_require where id=#{id}
+	</select>
+	
+	<select id="GetCulById" resultType="net.skhu.VO.CulturalRequire">
+		select * from cultural_require where id=#{id}
+	</select>
+	
+	<update id="EditMajor">
+		update major_require set name = #{name}, requireMajor= #{requireMajor} , totalMajor=#{totalMajor },total=#{total},
+		firstSemester=#{firstSemester },secondSemester=#{secondSemester },thirdSemester=#{thirdSemester },
+		fourthSemester=#{fourthSemester },fifthSemester=#{fifthSemester },sixthSemester=#{sixthSemester },seventhSemester=#{seventhSemester },
+		eighthSemester=#{eighthSemester }
+		where id = #{id}
+	</update>
+	
+	<update id="EditCul">
+		update cultural_require set name = #{name}, chapel= #{chapel} , requireSubject=#{requireSubject },voluntary=#{voluntary},
+		voluntarySubject=#{voluntarySubject },totalCultural=#{totalCultural },additionalSubject=#{additionalSubject }
+		where id = #{id}
+	</update>
+	
+	<delete id="DeleteMajorById">
+		delete from major_require where id=#{id}
+	</delete>
+	
+	<delete id="DeleteCulById">
+		delete from cultural_require where id=#{id}
+	</delete>
+	
+	<select id="CheckMajor" resultType="net.skhu.VO.MajorRequire">
+		select * from major_require where year=#{year} and name = #{name} and departmentId =#{departmentId}
+	</select>
+	
+	<select id="CheckCul" resultType="net.skhu.VO.CulturalRequire">
+		select * from cultural_require where year=#{year} and name = #{name} and departmentId =#{departmentId}
+	</select>
+	
+	<insert id="InputMajor" parameterType="net.skhu.VO.MajorRequire">
+		insert into major_require (year, departmentId, departmentName, name, requireMajor, totalMajor,  total, firstSemester,
+		 secondSemester, thirdSemester, fourthSemester, fifthSemester, sixthSemester, seventhSemester, eighthSemester)
+  		values ( #{year}, #{departmentId}, #{departmentName}, #{name}, #{requireMajor}, #{totalMajor}, #{total}, #{firstSemester}, 
+  			#{secondSemester},#{thirdSemester},#{fourthSemester},#{fifthSemester},#{sixthSemester},#{seventhSemester},#{eighthSemester})
+	</insert>
+	
+	<insert id="InputCul" parameterType="net.skhu.VO.CulturalRequire">
+		insert into cultural_require (year, departmentId, departmentName, name, chapel, requireSubject, 
+			voluntary , voluntarySubject, totalCultural, additionalSubject)
+		values ( #{year},#{departmentId},#{departmentName},#{name},#{chapel},#{requireSubject},
+			#{voluntary},#{voluntarySubject},#{totalCultural},#{additionalSubject} )
+	</insert>
+	
+	<update id="SetMajorTotalCultural">
+		update major_require set totalCultural = #{totalCultural}
+		where id = #{id}
+	</update>
+	
+	<update id="SetMajorTotalCultural2">
+		update major_require set totalCultural = #{totalCultural}
+		where year = #{year} and name = #{name} and departmentId = #{departmentId}
+	</update>
+	
+	<select id="GetAdminList" resultType="net.skhu.VO.Admin">
+		select adminId, name from admin
+	</select>
+	
+	<insert id="AddAdmin">
+		insert into admin (name, adminId, pw)
+		values (#{name}, #{adminId}, #{pw})
+	</insert>
 </mapper>

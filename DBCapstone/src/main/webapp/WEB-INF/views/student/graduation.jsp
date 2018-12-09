@@ -73,7 +73,7 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-									<li><a href="student">메인페이지</a></li>
+									<li><a href="uesrinfo">개인정보 변경</a></li>
 									<li class="active"><a href="graduation">졸업관리</a></li>
 									<li><a href="#">예외사항 신청</a>
 										<ul class="sub-menu">
@@ -737,50 +737,53 @@
 									<!--/ End Single Skill -->
 
 									<!--/ 모달구현 -->
-									<div class="modal fade" id="minorrequire">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<!-- header -->
-												<div class="modal-header">
-													<!-- header title -->
-													<h4 class="modal-title">부전공 필수 과목 수강 목록</h4>
-													총 수강 학점 : ${Map.doubleRequqireSum } / ${Map.totalrequireDouble }
-													<!-- body -->
-													<div class="modal-body">
-														<table class="table">
-															<thead>
-																<tr>
-																	<th scope="col">년도</th>
-																	<th scope="col">학기</th>
-																	<th scope="col">과목코드</th>
-																	<th scope="col">과목이름</th>
-																	<th scope="col">학점</th>
-																	<th scope="col">성적</th>
-																</tr>
-															</thead>
-															<tbody>
-																<c:forEach var="list" items="${Map.DoubleReqquireList }">
+									<c:if test="${totalrequireDouble0 == false }">
+										<div class="modal fade" id="minorrequire">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<!-- header -->
+													<div class="modal-header">
+														<!-- header title -->
+														<h4 class="modal-title">부전공 필수 과목 수강 목록</h4>
+														총 수강 학점 : ${Map.doubleRequqireSum } / ${Map.totalrequireDouble }
+														<!-- body -->
+														<div class="modal-body">
+															<table class="table">
+																<thead>
 																	<tr>
-																		<td>${list.year }</td>
-																		<td>${list.semester}</td>
-																		<td>${list.courseId}</td>
-																		<td>${list.subjectName}</td>
-																		<td>${list.credits}</td>
-																		<td>${list.grade}</td>
+																		<th scope="col">년도</th>
+																		<th scope="col">학기</th>
+																		<th scope="col">과목코드</th>
+																		<th scope="col">과목이름</th>
+																		<th scope="col">학점</th>
+																		<th scope="col">성적</th>
 																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-													</div>
-													<!-- Footer -->
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">닫기</button>
+																</thead>
+																<tbody>
+																	<c:forEach var="list" items="${Map.DoubleReqquireList }">
+																		<tr>
+																			<td>${list.year }</td>
+																			<td>${list.semester}</td>
+																			<td>${list.courseId}</td>
+																			<td>${list.subjectName}</td>
+																			<td>${list.credits}</td>
+																			<td>${list.grade}</td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</div>
+														<!-- Footer -->
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">닫기</button>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
+										</div>	
+									</c:if>
+									
 									<div class="single-skill">
 										<div class="skill-info">
 											<h4>부전공 전체</h4>
