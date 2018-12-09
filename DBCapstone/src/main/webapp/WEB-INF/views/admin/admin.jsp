@@ -54,8 +54,11 @@
 					<div class="logo">
 						<a href="admin"><span>졸업</span>관리시스템</a>
 					</div>
+
 					<!--/ End Logo -->
 				</div>
+
+
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div class="nav-area">
 						<!-- Main Menu -->
@@ -63,7 +66,7 @@
 							<div class="mobile-nav"></div>
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
-									<li class="active"><a href="admin">메인페이지</a></li>
+									<li><a href="addadmin">관리자 추가</a></li>
 									<li><a href="search">학생조회</a></li>
 									<li><a href="graduation_require">졸업요건</a></li>
 									<li><a href="#">예외사항 관리</a>
@@ -84,7 +87,6 @@
 						<!--/ End Main Menu -->
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</header>

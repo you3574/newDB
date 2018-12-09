@@ -174,4 +174,17 @@
 		select * from category_change where studentId = #{studentId} and status = 2
 	</select>
 
+	<update id="updateUser1">
+		update student set departmentId=#{departmentId}, course=#{course}
+		where studentId=#{studentId}
+	</update>
+	
+	<update id="updateUser2">
+		update student set departmentId=#{departmentId}, course=#{course}, anotherMajorDepart=#{anotherMajorDepart}, semester=#{semester}
+		where studentId=#{studentId}
+	</update>
+	
+	<update id="SetPassOne">
+		update student set pass=1 where studentId=#{studentId}
+	</update>
 </mapper>

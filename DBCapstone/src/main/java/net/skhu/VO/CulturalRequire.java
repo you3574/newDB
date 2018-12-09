@@ -4,14 +4,30 @@ public class CulturalRequire {
 
 	private int id;
 	private String code;
-	private String departmentId;
+	private int departmentId;
 	private String departmentName;
+	private String name;
+	private String year;
 	private int chapel;
 	private String requireSubject;
 	private int voluntary;
 	private String voluntarySubject;
 	private int totalCultural;
 	private String additionalSubject;
+
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public int getId() {
 		return id;
 	}
@@ -24,10 +40,10 @@ public class CulturalRequire {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(String departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 	public String getDepartmentName() {
