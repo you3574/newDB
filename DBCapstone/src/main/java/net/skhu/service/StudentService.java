@@ -409,6 +409,7 @@ public class StudentService {
 			tempMap.put("totalDouble",totalDouble );
 
 			if(totalrequireDouble != 0) {
+				System.out.println("totalrequireDouble="+totalrequireDouble);
 				double doubleRequirePercentage = Math.round(  (((double)doubleRequqireSum/totalrequireDouble*100) *100 ) / 100.0  );
 				if(doubleRequirePercentage>100)
 					doubleRequirePercentage = 100;
@@ -823,34 +824,73 @@ public class StudentService {
 		//사횝봉사는 디비에서 not NULL로 디폴트값 정해놔서 null일 수 없다
 		List<String> voluntarySubject = Arrays.asList(culturalRequire.getVoluntarySubject().split(","));
 
+
 		//교필 과목이 있을 경우
 		List<String> requireSubject = new ArrayList<>();
 		if(culturalRequire.getRequireSubject() != null) {
 			checkRequire = true;
 			requireSubject = Arrays.asList(culturalRequire.getRequireSubject().split(","));
+			//for(int i=0 ; i<requireSubject.size(); i++)
+			//	requireList2.add(e)
 		}
 		//System.out.println(requireSubject.get(0));
 
 		//학과 추가 교양 과목이 있을 경우
 		List<String> additionSubject = new ArrayList<>();
 		if(culturalRequire.getAdditionalSubject() != null) {
+			System.out.println(culturalRequire.getAdditionalSubject());
 			checkAdd = true;
 			additionSubject = Arrays.asList(culturalRequire.getAdditionalSubject().split(","));
+			for(int i=0 ; i<additionSubject.size() ; i++)
+				System.out.println(additionSubject.get(i));
 		}
 		//System.out.println("---");
 		//System.out.println(additionSubject.get(0));
 
 		List<SubjectColor> requireList =  new ArrayList<>();
-		List<SubjectColor> additionList =  new ArrayList<>();
+		for(int i=0 ; i<requireSubject.size() ; i++) {
+			SubjectColor tempColor = new SubjectColor();
+			Map<String, Object> tempMap = new HashMap<String, Object>();
+			tempMap.put("courseId", requireSubject.get(i));
+			tempMap.put("year", year);
 
+			String tempName = studentmapper.getMajorName(tempMap);
+			if(tempName==null) {
+				tempName = studentmapper.getMajorName2(tempMap);
+			}
+			tempColor.setName(tempName);
+			tempColor.setCourseId(requireSubject.get(i));
+			tempColor.setCheck(false);
+			requireList.add(tempColor);
+		}
+
+
+		List<SubjectColor> additionList =  new ArrayList<>();
+		for(int i=0 ; i<additionSubject.size() ; i++) {
+			SubjectColor tempColor = new SubjectColor();
+			Map<String, Object> tempMap = new HashMap<String, Object>();
+			tempMap.put("courseId", additionSubject.get(i));
+			tempMap.put("year", year);
+
+			String tempName = studentmapper.getMajorName(tempMap);
+			if(tempName==null) {
+				tempName = studentmapper.getMajorName2(tempMap);
+			}
+			tempColor.setName(tempName);
+			tempColor.setCourseId(additionSubject.get(i));
+			tempColor.setCheck(false);
+			additionList.add(tempColor);
+		}
+
+
+		System.out.println("-----------------------");
 		for(int i=0 ; i<culturalList.size() ; i++) {
 
 			//내가 들은 과목이 채플일 경우
-			if(culturalList.get(i).getSubjectName().contains("채플"))
+			if(culturalList.get(i).getSubjectName().contains("채플") || culturalList.get(i).getCourseId().equals("AC00001"))
 				chapelSum++;
 			//내가 들은 과목이 채플이 아닌 경우->사회봉사 또는 다른 교양
 			else {
-
 				//사회봉사일 경우 카운트 해주기
 				if(culturalRequire.getVoluntary() != volSum) {
 					for(int k=0 ; k<voluntarySubject.size() ; k++) {
@@ -870,27 +910,24 @@ public class StudentService {
 					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("N")) &&
 							!(culturalList.get(i).getGrade().equals("F"))) {
 						for(int j=0 ; j<requireSubject.size() ; j++) {
-							if(culturalList.get(i).getCourseId().equals( requireSubject.get(j) )) {
-								sub.setCheck(true);
-								sub.setCourseId(culturalList.get(i).getCourseId());
-								sub.setName(culturalList.get(i).getSubjectName());
-								requireList.add(sub);
+							if(culturalList.get(i).getCourseId().equals( requireList.get(j).getCourseId() )) {
+								requireList.get(j).setCheck(true);
+
 							}
 						}
 					}
+
 				}
 				if(checkAdd) { //학과 지정 교양
-					SubjectColor sub = new SubjectColor();
-					sub.setCheck(false);
+					//SubjectColor sub = new SubjectColor();
+					//sub.setCheck(false);
 					//논패스 그리고 f가 아닐 경우
 					if( !(culturalList.get(i).getGrade().equals("NP")) && !(culturalList.get(i).getGrade().equals("N")) &&
 							!(culturalList.get(i).getGrade().equals("F"))) {
-						for(int j=0 ; j<additionSubject.size() ; j++) {
-							if(culturalList.get(i).getCourseId().equals( additionSubject.get(j) )) {
-								sub.setCheck(true);
-								sub.setCourseId(culturalList.get(i).getCourseId());
-								sub.setName(culturalList.get(i).getSubjectName());
-								additionList.add(sub);
+						for(int j=0 ; j<additionList.size() ; j++) {
+							if(culturalList.get(i).getCourseId().equals( additionList.get(j).getCourseId() )) {
+								additionList.get(j).setCheck(true);
+
 							}
 						}
 					}
@@ -899,7 +936,7 @@ public class StudentService {
 		}
 
 		if(checkRequire) { //교필과목이 존재할 경우
-			System.out.println("교필");
+			//System.out.println("교필");
 			/*for(int i=0 ; i<requireList.size() ; i++) {
 				System.out.println("이름 :"+requireList.get(i).getName()+" / 코드 :"+requireList.get(i).getCourseId()+
 						" / 이수여부 :"+requireList.get(i).isCheck());
@@ -908,10 +945,10 @@ public class StudentService {
 		}
 		if(checkAdd) { //학과 지정 교양
 			System.out.println("학과지정 교양");
-			/*for(int i=0 ; i<additionList.size() ; i++) {
+			for(int i=0 ; i<additionList.size() ; i++) {
 				System.out.println("이름 :"+additionList.get(i).getName()+" / 코드 :"+additionList.get(i).getCourseId()+
 						" / 이수여부 :"+additionList.get(i).isCheck());
-			}*/
+			}
 			temp.put("AdditionList", additionList); //학과 지정 교양 과목 리스트와 수강 여부
 		}
 

@@ -9,6 +9,7 @@ import net.skhu.VO.CategoryChange;
 import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.Department;
 import net.skhu.VO.MajorRequire;
+import net.skhu.VO.Replacement;
 
 @Mapper
 public interface AdminMapper {
@@ -40,5 +41,10 @@ public interface AdminMapper {
 
 	List<Admin> GetAdminList();
 	int AddAdmin(Admin admin);
+	List<Replacement> ReplaceList(int departmentId);
+	int ReplacementInput(Replacement replace);
+	Replacement ReplacementEdit(int id);
+	int ReplaceDelete(int id);
+	int ReplaceEdit(Replacement replace);
 }
 

@@ -71,11 +71,11 @@
 							<div class="collapse navbar-collapse">
 								<ul class="nav navbar-nav menu">
 									<li><a href="admin">메인페이지</a></li>
-									<li><a href="student_review">학생조회</a></li>
+									<li><a href="search">학생조회</a></li>
 									<li class="active"><a href="graduation_require">졸업요건</a></li>
 									<li><a href="#">예외사항 관리</a>
 										<ul class="sub-menu">
-											<li><a href="subject">대체과목 관리</a></li>
+											<li><a href="departreplace">대체과목 관리</a></li>
 											<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>
 										</ul></li>
 									<li><a href="question_admin">문의사항</a></li>
@@ -592,62 +592,69 @@
 						
 						$("#edit_delete").click(function(){
 							
-							//alert(majorId);
-							//alert(typeof(majorId));
-							var sendData1 = "id="+majorId;
-							$.ajax({
-								url: "deleteMajorById",
-								method: "GET",
-								data:sendData1,
-								dataType: "text",
-								success:function(data){
-									alert("삭제했습니다.");
-									location.reload();
-								},
-								error: function(xhr, status, error){
-									alert(error);
-									alert(xhr.responseText);
-									
-				         	    }
-							});
+							if(confirm("삭제하시겠습니까?")){
+								var sendData1 = "id="+majorId;
+								$.ajax({
+									url: "deleteMajorById",
+									method: "GET",
+									data:sendData1,
+									dataType: "text",
+									success:function(data){
+										alert("삭제했습니다.");
+										location.reload();
+									},
+									error: function(xhr, status, error){
+										alert(error);
+										alert(xhr.responseText);
+										
+					         	    }
+								});
+							}else{
+								return false;
+							}
 						});
 						
 						$("#edit_submit").click(function(){
 							
-							var sendData2 = JSON.stringify({
-								"id" : data.id,
-								"name" : $("#editname option:selected").text(),
-								"requireMajor" : $("#editrequireMajor").val(),
-								"totalMajor" : $("#edittotalMajor").val(),
-								"total" : $("#edittotal").val(),
-								"firstSemester" : $("#editfirstSemester").val(),
-								"secondSemester" : $("#editsecondSemester").val(),
-								"thirdSemester" : $("#editthirdSemester").val(),
-								"fourthSemester" : $("#editfourthSemester").val(),
-								"fifthSemester" : $("#editfifthSemester").val(),
-								"sixthSemester" : $("#editsixthSemester").val(),
-								"seventhSemester" : $("#editseventhSemester").val(),
-								"eighthSemester" : $("#editeighthSemester").val()
-					        });	
+							if(confirm("수정하시겠습니까?")){
+								var sendData2 = JSON.stringify({
+									"id" : data.id,
+									"name" : $("#editname option:selected").text(),
+									"requireMajor" : $("#editrequireMajor").val(),
+									"totalMajor" : $("#edittotalMajor").val(),
+									"total" : $("#edittotal").val(),
+									"firstSemester" : $("#editfirstSemester").val(),
+									"secondSemester" : $("#editsecondSemester").val(),
+									"thirdSemester" : $("#editthirdSemester").val(),
+									"fourthSemester" : $("#editfourthSemester").val(),
+									"fifthSemester" : $("#editfifthSemester").val(),
+									"sixthSemester" : $("#editsixthSemester").val(),
+									"seventhSemester" : $("#editseventhSemester").val(),
+									"eighthSemester" : $("#editeighthSemester").val()
+						        });	
+								
+								
+								$.ajax({
+									url: "editMajor",
+									method: "POST",
+									data:sendData2,
+									dataType: "text",
+									contentType: "application/json;charset=UTF-8",
+									//contentType: "text/plain;charset=UTF-8",
+									success:function(data){
+										alert("수정했습니다.");
+										location.reload();
+									},
+									error: function(xhr, status, error){
+										alert(error);
+										alert(xhr.responseText);
+										
+					         	    }
+								});
+							}else{
+								return false;
+							}
 							
-							
-							$.ajax({
-								url: "editMajor",
-								method: "POST",
-								data:sendData2,
-								dataType: "json",
-								contentType: "application/json;charset=UTF-8",
-								//contentType: "text/plain;charset=UTF-8",
-								success:function(data){
-									alert("수정했습니다.");
-									location.reload();
-								},
-								error: function(xhr, status, error){
-									alert(error);
-									alert(xhr.responseText);
-									
-				         	    }
-							});
 						});
 						
 

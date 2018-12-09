@@ -21,6 +21,7 @@ import net.skhu.VO.Admin;
 import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.MajorRequire;
 import net.skhu.VO.MyCourseRecord;
+import net.skhu.VO.Replacement;
 import net.skhu.VO.Student;
 import net.skhu.VO.SubjectColor;
 import net.skhu.service.AdminService;
@@ -359,5 +360,64 @@ public class AdminController {
 		}
 
 	}
+
+	@GetMapping("departreplace")
+	public String DepartReplace(Model model) {
+		model.addAttribute("departList", adminService.getAllDepartment());
+		return "admin/departreplace";
+	}
+
+	@GetMapping("replacelist")
+	public String ReplaceList(@RequestParam(value="id") int id, Model model) {
+
+		model.addAttribute("DepartmentName", adminService.getDepartmentName(id));
+		model.addAttribute("DepartmentId", id);
+		model.addAttribute("ReplaceList", adminService.ReplaceList(id));
+		return "admin/replacelist";
+	}
+
+	@PostMapping("replacementinput")
+	@ResponseBody
+	public ResponseEntity<String> ReplacementInput(@RequestBody Replacement replace){
+		System.out.println(replace.getAbolishName());
+		boolean check = adminService.ReplacementInput(replace);
+		if(check)
+			return new ResponseEntity("success", HttpStatus.OK);
+		else
+			return new ResponseEntity("false", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@PostMapping("replacementedit")
+	@ResponseBody
+	public Replacement ReplacementEdit(@RequestBody int id){
+		System.out.println("ReplacementEdit="+id);
+
+		Replacement temp = adminService.ReplacementEdit(id);
+		System.out.println(temp.getAbolishName());
+		return temp;
+	}
+
+	@PostMapping("replacedelete")
+	@ResponseBody
+	public ResponseEntity<String> ReplaceDelete(@RequestBody int id){
+		System.out.println("ReplaceDelete="+id);
+
+		boolean check = adminService.ReplaceDelete(id);
+		if(check)
+			return new ResponseEntity("success", HttpStatus.OK);
+		else
+			return new ResponseEntity("false", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@PostMapping("replacesubmit")
+	@ResponseBody
+	public ResponseEntity<String> ReplaceEdit(@RequestBody Replacement replace){
+		boolean check = adminService.ReplaceEdit(replace);
+		if(check)
+			return new ResponseEntity("success", HttpStatus.OK);
+		else
+			return new ResponseEntity("false", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
 
 }

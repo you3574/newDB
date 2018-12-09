@@ -130,7 +130,7 @@
 									<li><a href="graduation_require">졸업요건</a></li>
 									<li><a href="#">예외사항 관리</a>
 										<ul class="sub-menu">
-											<li><a href="subject">대체과목 관리</a></li>
+											<li><a href="departreplace">대체과목 관리</a></li>
 											<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>
 										</ul></li>
 									<li><a href="question_admin">문의사항</a></li>
@@ -761,22 +761,24 @@
 								<!-- 특별과정-부전공이 있을 경우 -->
 								<!-- Single Skill -->
 								<c:if test="${student.course == '타과부전공' }">
-									<div class="single-skill">
-										<div class="skill-info">
-											<h4>부전공 필수</h4>
-										</div>
-										<div class="progress">
-											<div class="progress-bar"
-												data-percent="${Map.doubleRequirePercentage}"
-												data-target="#minorrequire" data-toggle="modal">
-												<span>${Map.doubleRequirePercentage}%</span>
+									<c:if test="${Map.totalrequireDouble0 == false }">
+										<div class="single-skill">
+											<div class="skill-info">
+												<h4>부전공 필수</h4>
+											</div>
+											<div class="progress">
+												<div class="progress-bar"
+													data-percent="${Map.doubleRequirePercentage}"
+													data-target="#minorrequire" data-toggle="modal">
+													<span>${Map.doubleRequirePercentage}%</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<!--/ End Single Skill -->
+										<!--/ End Single Skill -->
+									</c:if>
 
 									<!--/ 모달구현 -->
-									<c:if test="${totalrequireDouble0 == false }">
+									<c:if test="${Map.totalrequireDouble0 == false }">
 										<div class="modal fade" id="minorrequire">
 											<div class="modal-dialog">
 												<div class="modal-content">

@@ -82,7 +82,7 @@
 									<li class="active"><a href="graduation_require">졸업요건</a></li>
 									<li><a href="#">예외사항 관리</a>
 										<ul class="sub-menu">
-											<li><a href="subject">대체과목 관리</a></li>
+											<li><a href="departreplace">대체과목 관리</a></li>
 											<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>
 										</ul></li>
 									<li><a href="question_admin">문의사항</a></li>

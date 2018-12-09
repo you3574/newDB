@@ -74,7 +74,7 @@
 									<li><a href="graduation">졸업관리</a></li>
 									<li><a href="#">예외사항 관리</a>
 											<ul class="sub-menu">
-												<li><a href="subject">대체과목 관리</a></li>	
+												<li><a href="departreplace">대체과목 관리</a></li>
 												<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>	
 											</ul>
 									</li>	

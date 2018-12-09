@@ -2,35 +2,33 @@ package net.skhu.VO;
 
 public class Replacement {
 
-	int id;
-	String category;
-	String departmentName;
-	String abolishCode;
-	String abolishName;
-	int credits;
-	String replacementCode;
-	String replacementName;
-	String studentId;
-
-
-
-	public String getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
-	}
+	private int id;
+	private String largeCategory;
+	private int departmentId;
+	private String departmentName;
+	private String abolishCode;
+	private String abolishName;
+	private String category;
+	private int credits;
+	private String replacementCode;
+	private String replacementName;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCategory() {
-		return category;
+	public String getLargeCategory() {
+		return largeCategory;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setLargeCategory(String largeCategory) {
+		this.largeCategory = largeCategory;
+	}
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 	public String getDepartmentName() {
 		return departmentName;
@@ -50,7 +48,12 @@ public class Replacement {
 	public void setAbolishName(String abolishName) {
 		this.abolishName = abolishName;
 	}
-
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public int getCredits() {
 		return credits;
 	}
@@ -69,7 +72,6 @@ public class Replacement {
 	public void setReplacementName(String replacementName) {
 		this.replacementName = replacementName;
 	}
-
 
 
 }

@@ -11,6 +11,7 @@ import net.skhu.VO.CategoryChange;
 import net.skhu.VO.CulturalRequire;
 import net.skhu.VO.Department;
 import net.skhu.VO.MajorRequire;
+import net.skhu.VO.Replacement;
 import net.skhu.mapper.AdminMapper;
 
 @Service
@@ -241,6 +242,41 @@ public class AdminService {
 
 	public boolean AddAdmin(Admin admin) {
 		int num = adminMapper.AddAdmin(admin);
+
+		if(num>0)
+			return true;
+		else
+			return false;
+	}
+
+	public List<Replacement> ReplaceList(int departmentId){
+		return adminMapper.ReplaceList(departmentId);
+	}
+
+	public boolean ReplacementInput(Replacement replace) {
+		int num = adminMapper.ReplacementInput(replace);
+
+		if(num>0)
+			return true;
+		else
+			return false;
+	}
+
+	public Replacement ReplacementEdit(int id) {
+		return adminMapper.ReplacementEdit(id);
+	}
+
+	public boolean ReplaceDelete(int id) {
+		int num = adminMapper.ReplaceDelete(id);
+
+		if(num>0)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean ReplaceEdit(Replacement replace) {
+		int num = adminMapper.ReplaceEdit(replace);
 
 		if(num>0)
 			return true;
