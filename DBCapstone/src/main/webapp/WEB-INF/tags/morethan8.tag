@@ -33,7 +33,7 @@ String url = request.getAttribute("javax.servlet.forward.request_uri") + "?" + q
 
 <div class="morethan8">
 	<input type="checkbox" name=morethan8 onclick="morethan8onClick()" value="notchecked" />8학기
-	이상
+	이상 졸업조건 미충족
 </div>
 <script language="javascript">
 

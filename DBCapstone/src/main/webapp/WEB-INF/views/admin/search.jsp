@@ -99,11 +99,12 @@
 					<!-- Single blog -->
 					<div class="single-blog">
 						<div class="blog-content">
-							<h2 style="margin-bottom: 30px">학생 조회</h2>
-							<my:morethan8></my:morethan8>
+							<h2 style="margin-bottom: 5px">학생 조회</h2>
+							<my:grade></my:grade>
 							<div class="order">
 								<my:orderBy></my:orderBy>
 							</div>
+							<my:morethan8></my:morethan8>
 							<!-- Skill Main -->
 							<div class="skill-main">
 								<table class="table table-bordered mt5">
@@ -114,7 +115,7 @@
 											<th>이름</th>
 											<th>학과</th>
 											<th>수강학기</th>
-											
+											<th>졸업요건 충족여부</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -124,8 +125,25 @@
 												<td>${ student.studentId }</td>
 												<td>${ student.name }</td>
 												<td>${ student.dname}</td>
-												<td>${ student.semester }</td>
-												
+												<td>
+												<c:choose>
+												<c:when test="${ student.semester==1}">1학년 1학기</c:when>
+												<c:when test="${ student.semester==2}">1학년 2학기</c:when>
+												<c:when test="${ student.semester==3}">2학년 1학기</c:when>
+												<c:when test="${ student.semester==4}">2학년 2학기</c:when>
+												<c:when test="${ student.semester==5}">3학년 1학기</c:when>
+												<c:when test="${ student.semester==6}">3학년 2학기</c:when>
+												<c:when test="${ student.semester==7}">4학년 1학기</c:when>
+												<c:when test="${ student.semester==8}">4학년 2학기</c:when>
+												<c:otherwise>8학기 초과( ${ student.dname})학기</c:otherwise>
+												</c:choose>
+												</td>
+												<td>
+												<c:choose>
+												<c:when test="${ student.pass==0 }">N</c:when>
+												<c:otherwise>Y</c:otherwise>
+												</c:choose>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -11,13 +11,14 @@ public class Pagination {
     String searchWord;   // 검색어
     int orderBy;      //정렬순서
     int recordCount; //전체학생수
-    int semester;
+    int semester; //초과학기수 검사
+    int grade; //학년
 
     public String getQueryString() {
         String url = null;
         try {
             String temp = (searchWord == null) ? "" : URLEncoder.encode(searchWord, "UTF-8");
-            url = String.format("now=%d&sz=%d&orderBy=%d&semester=%d&cg=%d&word=%s", now, size, orderBy,semester,category , temp);
+            url = String.format("now=%d&sz=%d&orderBy=%d&semester=%d&grade=%d&cg=%d&word=%s", now, size, orderBy,semester,grade,category , temp);
             //현재페이지와 페이지당 레코드 수를 전달 어떻게 정렬했고 어떤 카테고리로 검색했는지 전달
         } catch (UnsupportedEncodingException e) { }
         return url;
@@ -77,6 +78,14 @@ public class Pagination {
 
 	public void setSemester(int semester) {
 		this.semester = semester;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 }
