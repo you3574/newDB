@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import net.skhu.VO.CategoryChange;
 import net.skhu.VO.CulturalRequire;
@@ -41,35 +42,34 @@ public interface StudentMapper {
 	//	//해당 id의 학생 정보 삭제
 	//	void delete(int id);
 
-	List<MyCourseRecord> getStudentRecord(String studentId);
-	List<MyCourseRecord> getStudentRecordPass(String studentId);
+	List<MyCourseRecord> getStudentRecord(@Param("studentId")String studentId);
+	List<MyCourseRecord> getStudentRecordPass(@Param("studentId")String studentId);
 	String getMajorCourseName(MyCourseRecord record);
 	String getCulturalCourseName(MyCourseRecord record);
-	String getTableName(final String condition, int departId, String year);
-	String getCode(final String condition, int departId, String year);
-	//MajorRequire getMajorRequire(String tableName, String code, String course);
-	MajorRequire getMajorRequire(String year, String course, int departmentId);
+	String getTableName(final String condition,@Param("departId") int departId,@Param("year") String year);
+	String getCode(final String condition,@Param("departId") int departId,@Param("year") String year);
+	MajorRequire getMajorRequire(@Param("year") String year, @Param("course") String course,@Param("departmentId") int departmentId);
 
 	String getMajorName(Map<String, Object> map);
 	String getMajorName2(Map<String, Object> map);
 
-	String getMajorCourseName2(String courseId, int year, String semester, int departmentId);
-	String getMajorRequireCourseName(String courseId, int year, String semester, int departmentId);
-	String getDoubleCourseName(MyCourseRecord record, int departmentId);
+	String getMajorCourseName2(@Param("courseId")String courseId, @Param("year")int year, @Param("semester")String semester, @Param("departmentId")int departmentId);
+	String getMajorRequireCourseName(@Param("courseId")String courseId,@Param("year") int year, @Param("semester")String semester,@Param("departmentId") int departmentId);
+	String getDoubleCourseName(MyCourseRecord record, @Param("departmentId")int departmentId);
 
 	//String getCulturalTableName(final String condition, int departId, String year);
 	//String getCulturalCode(final String condition, int departId, String year);
-	CulturalRequire getCulturalRequire(String year, String course, int departmentId);
+	CulturalRequire getCulturalRequire(@Param("year") String year,@Param("course") String course,@Param("departmentId") int departmentId);
 
-	int deleteStudentRecord(String studentId);
+	int deleteStudentRecord(@Param("studentId")String studentId);
 
-	Integer getRecordId(int recordId);
+	Integer getRecordId(@Param("recordId")int recordId);
 	int setCategotyChange(CategoryChange categoryChange);
-	List<CategoryChange> getStatus0(String studentId);
-	List<CategoryChange> getStatus1(String studentId);
-	List<CategoryChange> getStatus2(String studentId);
+	List<CategoryChange> getStatus0(@Param("studentId")String studentId);
+	List<CategoryChange> getStatus1(@Param("studentId")String studentId);
+	List<CategoryChange> getStatus2(@Param("studentId")String studentId);
 
-	int updateUser1(int departmentId, String course, String studentId);
-	int updateUser2(int departmentId, String course, int anotherMajorDepart, String studentId, int semester);
-	int SetPassOne(String studentId);
+	int updateUser1(@Param("departmentId")int departmentId, @Param("course")String course, @Param("studentId")String studentId);
+	int updateUser2(@Param("departmentId")int departmentId, @Param("course")String course,@Param("anotherMajorDepart") int anotherMajorDepart,@Param("studentId") String studentId, @Param("semester")int semester);
+	int SetPassOne(@Param("studentId")String studentId);
 }

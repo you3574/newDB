@@ -238,8 +238,9 @@ public class StudentService {
 			}//for문 종료
 
 			//수료 학점 가져오기
-
+			System.out.println("year="+year);
 			MajorRequire major = studentmapper.getMajorRequire(year, student.getCourse(), student.getDepartmentId());
+			//MajorRequire major = studentmapper.getMajorRequire(, student.getCourse(), student.getDepartmentId());
 			MajorRequire doubleMajor = studentmapper.getMajorRequire(year, courseE , student.getAnotherMajorDepart());
 
 			total = major.getTotal(); //졸업 요구 학점

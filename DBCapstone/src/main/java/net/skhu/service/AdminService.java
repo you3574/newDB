@@ -25,6 +25,7 @@ public class AdminService {
 	private static final String F = "복선";
 	private static final String G = "부필";
 	private static final String H = "부선";
+	private static final String vol = "AA00001,AC00003,AE00029,AE00030,AE00044,AE00046";
 
 	//@Autowired
 	//private GraduationMapper graduationMapper;
@@ -45,9 +46,7 @@ public class AdminService {
 		return graduationMapper.getCode(id);
 	}
 
-	public List<MajorRequire> getMajorRequire(String code){
-		return graduationMapper.getMajorRequire(code);
-	}
+
 
 	public int majorInput(MajorRequire input) {
 		return graduationMapper.majorInput(input);
@@ -203,6 +202,8 @@ public class AdminService {
 			if(temp2 != null) {
 				throw new Exception("해당 교양 조건이 이미 존재합니다.");
 			}else {
+				if(inputCul.getVoluntarySubject().equals("") || inputCul.getVoluntarySubject()==null)
+					inputCul.setVoluntarySubject(vol);
 				int num1 = adminMapper.InputCul(inputCul);
 				int num2 = adminMapper.SetMajorTotalCultural(temp1.getId(), inputCul.getTotalCultural());
 				if(num1>0 && num2>0)

@@ -73,6 +73,7 @@ public class StudentController {
 
 			//로그인한 사람의 학번 가져와서 앞의 4자리만 추출 -> 입학 년도
 			String year = student.getStudentId().substring(0, 4);
+			System.out.println("year="+year);
 			//전공 기초, 전공 심화일 경우
 			if(student.getCourse().equals(courseA) || student.getCourse().equals(courseB)) {
 
