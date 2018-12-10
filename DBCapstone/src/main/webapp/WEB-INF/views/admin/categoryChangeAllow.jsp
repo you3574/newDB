@@ -59,7 +59,7 @@
 				<div class="col-md-3 col-sm-15 col-xs-15">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="student"><span>졸업</span>관리시스템</a>
+						<a href="admin"><span>졸업</span>관리시스템</a>
 					</div>
 					<!--/ End Logo -->
 				</div>

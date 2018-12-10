@@ -91,7 +91,7 @@
 	<section id="portfolio" class="section archive page">
 		<div class="container">
 			<div class="notice">
-				<a href="question_write">공지사항 작성</a>
+				<a href="question_write_notice">공지사항 작성</a>
 			</div>
 			<div class="row">
 				<c:forEach var="article" items="${ articles }">

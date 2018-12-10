@@ -122,9 +122,10 @@
 						<table class="table table-bordered mt5">
 							<thead>
 								<tr>
+								<th class="text-center">*</th>
 									<th class="text-center">번호</th>
 									<th>제목</th>
-									<th>내용</th>
+									
 									<th>글쓴이</th>
 									<th>답변 유무</th>
 									<th>작성시간</th>
@@ -134,10 +135,11 @@
 							<tbody>
 								<c:forEach var="article" items="${ articles }">
 									<tr data-url="question_details?id=${ article.id }">
+									<td class="text-center"><c:if test="${article.notice==true }">공지</c:if>-</td>
 										<td class="text-center">${ article.no }</td>
 										<td>${ article.subject }</td>
-										<td>${ article.message }</td>
-										<td>${ article.writerName }</td>
+										
+										<td><c:if test="${article.writerName==null }">관리자</c:if>${article.writerName}</td>
 										<td><c:if test="${article.answerYN ==true }">
 									답변 완료
 								</c:if> <c:if test="${article.answerYN ==false }">

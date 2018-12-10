@@ -52,7 +52,7 @@
 				<div class="col-md-3 col-sm-15 col-xs-15">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="student"><span>졸업</span>관리시스템</a>
+						<a href="admin"><span>졸업</span>관리시스템</a>
 					</div>
 					<!--/ End Logo -->
 				</div>
@@ -65,9 +65,13 @@
 								<ul class="nav navbar-nav menu">
 									<li><a href="admin">메인페이지</a></li>
 									<li><a href="search">학생조회</a></li>
-									<li><a href="graduation_require">졸업요건</a></li>
-									<li class="active"><a href="subject">대체과목 관리</a></li>
-									<li class="active"><a href="question_admin">문의사항</a></li>
+									<li class="active"><a href="graduation_require">졸업요건</a></li>
+									<li><a href="#">예외사항 관리</a>
+										<ul class="sub-menu">
+											<li><a href="departreplace">대체과목 관리</a></li>
+											<li><a href="categoryChangeAllow">이수구분변경 관리</a></li>
+										</ul></li>
+									<li><a href="question_admin">문의사항</a></li>
 									<li>${loginUser.name}</li>
 									<c:if test="${loginUser != NULL }">
 										<li><a href="/logout"><button class="btn btn-default">로그아웃</button></a>
