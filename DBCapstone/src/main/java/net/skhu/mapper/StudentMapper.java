@@ -73,3 +73,4 @@ public interface StudentMapper {
 	int updateUser2(@Param("departmentId")int departmentId, @Param("course")String course,@Param("anotherMajorDepart") int anotherMajorDepart,@Param("studentId") String studentId, @Param("semester")int semester);
 	int SetPassOne(@Param("studentId")String studentId);
 }
+

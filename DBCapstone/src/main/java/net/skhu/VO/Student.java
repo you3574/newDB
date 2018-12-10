@@ -17,8 +17,15 @@ public class Student {
 	private String dcode;
 	private String course;
 	private int anotherMajorDepart;
+	private int pass;
 
 
+	public int getPass() {
+		return pass;
+	}
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
 	public int getAnotherMajorDepart() {
 		return anotherMajorDepart;
 	}

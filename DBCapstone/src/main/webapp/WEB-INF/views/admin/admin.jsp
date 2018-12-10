@@ -238,4 +238,5 @@
 
 	<%@include file="/WEB-INF/views/include/javascript.jsp"%>
 </body>
+
 </html>

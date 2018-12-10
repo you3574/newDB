@@ -9,10 +9,18 @@
 		SELECT s.*,d.dname
 		FROM student s left join department d on s.departmentId=d.id
 		WHERE s.id>0
-		<if test="semester==8">AND semester >=8</if>
+		<if test="semester==8">AND semester >=8 AND pass=0</if>
+		
 		<if test="category == 1">AND INSTR(s.studentId, #{searchWord}) > 0</if>
 		<if test="category == 2">AND INSTR(s.name, #{searchWord}) > 0</if>
 		<if test="category == 3">AND INSTR(d.dname, #{searchWord}) > 0</if>
+		
+		<if test="grade == 1">AND semester IN(1,2)</if>
+		<if test="grade == 2">AND semester IN(3,4)</if>
+		<if test="grade == 3">AND semester IN(5,6)</if>
+		<if test="grade == 4">AND semester IN(7,8)</if>
+		<if test="grade == 5">AND semester > 8</if>
+		
 		ORDER BY
 		<choose>
 			<when test="orderBy == 1">s.id DESC</when>
@@ -26,11 +34,17 @@
 		<bind name="start" value="(now - 1) * size" />
 		SELECT s.*,d.dname
 		FROM student s left join department d on s.departmentId=d.id
-		WHERE semester>=8
+		WHERE semester>=8 and pass=0
 	
 		<if test="category == 1">AND INSTR(s.studentId, #{searchWord}) > 0</if>
 		<if test="category == 2">AND INSTR(s.name, #{searchWord}) > 0</if>
 		<if test="category == 3">AND INSTR(d.dname, #{searchWord}) > 0</if>
+		
+		<if test="grade == 1">AND semester IN(1,2)</if>
+		<if test="grade == 2">AND semester IN(3,4)</if>
+		<if test="grade == 3">AND semester IN(5,6)</if>
+		<if test="grade == 4">AND semester IN(7,8)</if>
+		<if test="grade == 5">AND semester > 8</if>
 		ORDER BY
 		<choose>
 			<when test="orderBy == 1">s.id DESC</when>

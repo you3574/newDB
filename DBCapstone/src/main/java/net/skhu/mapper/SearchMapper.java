@@ -23,4 +23,5 @@ public interface SearchMapper {
 	Option[] orderBy = { new Option(0, "ID오름차순"), new Option(1, "ID내림차순"),
            new Option(2, "학번") };
 	
+	
 }

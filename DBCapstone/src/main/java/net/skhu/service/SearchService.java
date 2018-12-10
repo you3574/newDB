@@ -31,6 +31,8 @@ public class SearchService {
     public Option[] getCategoryOptions() {
         return SearchMapper.category;
     }
+    
+    
 
 	
 
